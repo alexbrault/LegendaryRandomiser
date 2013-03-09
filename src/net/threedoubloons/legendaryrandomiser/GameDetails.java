@@ -77,11 +77,13 @@ public class GameDetails implements Serializable {
 		public final static Henchman[] all = {handNinja, doombots, sentinel, mutates};
 	}
 	
-	private Random r = new Random();
+	private static Random r = new Random();
 
 	private int numPlayers = 2;
 	private int numVillains = 2;
+	private static int[] numVillainsPerPlayer = {0, 1, 2, 3, 3, 4};
 	private int numHenchmen = 1;
+	private static int[] numHenchmenPerPlayer = {0, 1, 1, 1, 2, 2};
 	private Mastermind mastermind;
 	private ArrayList<Villain> villains = new ArrayList<Villain>();
 	private ArrayList<Henchman> henchmen = new ArrayList<Henchman>();
@@ -112,7 +114,7 @@ public class GameDetails implements Serializable {
 		if (mastermind == null) {
 			addRandomMastermind();
 		}
-		
+		applyPlayerCountToVillains();
 		addAlwaysLeads();
 		addVillains();
 		addHenchmen();
@@ -123,7 +125,16 @@ public class GameDetails implements Serializable {
 		mastermind = Mastermind.all[mPosition];
 	}
 	
+	private void applyPlayerCountToVillains() {
+		numVillains = numVillainsPerPlayer[numPlayers];
+		numHenchmen = numHenchmenPerPlayer[numPlayers];
+	}
+	
 	public boolean addAlwaysLeads() {
+		if (numPlayers == 1) {
+			return true;
+		}
+		
 		Villain preferred = getMastermind().getAlwaysLeads();
 		if (preferred == null) {
 			return false;
