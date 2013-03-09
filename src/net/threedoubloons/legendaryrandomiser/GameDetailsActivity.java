@@ -3,8 +3,10 @@ package net.threedoubloons.legendaryrandomiser;
 import net.threedoubloons.legendaryrandomiser.GameDetails.Mastermind;
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 
@@ -30,6 +32,15 @@ public class GameDetailsActivity extends Activity {
 		Mastermind m = details.getMastermind();
 		mastermind.setText(m.getName());
 		mastermind.setCompoundDrawablesWithIntrinsicBounds(m.getPictureId(), 0, 0, 0);
+		
+		LayoutInflater inflater = getLayoutInflater();
+		LinearLayout villainsList = (LinearLayout)findViewById(R.id.villains_list);
+		for (GameDetails.Villain villain : details.getVillains()) {
+			TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
+			v.setText(villain.getName());
+			v.setCompoundDrawablesWithIntrinsicBounds(villain.getPictureId(), 0, 0, 0);
+			villainsList.addView(v);
+		}
 	}
 
 	/**

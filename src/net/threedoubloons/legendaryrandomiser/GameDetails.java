@@ -100,6 +100,10 @@ public class GameDetails implements Serializable {
 		return Mastermind.nullMastermind;
 	}
 	
+	public final ArrayList<Villain> getVillains() {
+		return villains;
+	}
+	
 	public void randomiseAll() {
 		if (mastermind == null) {
 			addRandomMastermind();
@@ -114,6 +118,7 @@ public class GameDetails implements Serializable {
 		int mPosition = r.nextInt(Mastermind.all.length);
 		mastermind = Mastermind.all[mPosition];
 	}
+	
 	public boolean addAlwaysLeads() {
 		Villain preferred = getMastermind().getAlwaysLeads();
 		if (preferred == null) {
@@ -126,6 +131,7 @@ public class GameDetails implements Serializable {
 			return addPreferredVillain(preferred);
 		}
 	}
+	
 	private boolean addPreferredVillain(Villain preferred) {
 		if (villains.contains(preferred)) {
 			return true;
@@ -138,6 +144,7 @@ public class GameDetails implements Serializable {
 		villains.add(preferred);
 		return true;
 	}
+	
 	private boolean addPreferredHenchman(Villain preferred) {
 		if (henchmen.contains(preferred)) {
 			return true;

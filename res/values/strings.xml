@@ -8,5 +8,6 @@
     <string name="title_activity_game_details">Game Details</string>
     <string name="numPlayersLabel">Number of players</string>
     <string name="MastermindLabel">You are fighting</string>
+    <string name="leading_label">leading the combined forces of</string>
 
 </resources>

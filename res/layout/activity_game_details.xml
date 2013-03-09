@@ -19,17 +19,34 @@
         android:text="@string/MastermindLabel"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
+    <include
+        layout="@layout/legendary_item_label"
         android:id="@+id/mastermind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/textView1"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mastermind"
+        android:layout_below="@+id/mastermind"
         android:layout_marginTop="19dp"
-        android:drawableLeft="@drawable/missing_img"
-        android:gravity="left|center_vertical"
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:text="@string/leading_label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <LinearLayout
+        android:id="@+id/villains_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="19dp"
+        android:orientation="vertical" >
+
+    </LinearLayout>
 
 </RelativeLayout>
