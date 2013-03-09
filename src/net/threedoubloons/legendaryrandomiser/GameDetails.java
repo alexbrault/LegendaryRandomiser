@@ -1,6 +1,7 @@
 package net.threedoubloons.legendaryrandomiser;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GameDetails implements Serializable {
@@ -8,19 +9,32 @@ public class GameDetails implements Serializable {
 
 	public static class Mastermind implements Serializable {
 		private static final long serialVersionUID = -8346554204948014704L;
-		private String name;
-		private int pictureId;
+		private final String name;
+		private final int pictureId;
+		private final Villain alwaysLeads;
 		public String getName() {
 			return name;
 		}
 		public int getPictureId() {
 			return pictureId;
 		}
-		public Mastermind(String name, int pictureId) {
+		public Villain getAlwaysLeads() {
+			return alwaysLeads;
+		}
+		public Mastermind(String name, int pictureId, Villain alwaysLeads) {
 			super();
 			this.name = name;
 			this.pictureId = pictureId;
+			this.alwaysLeads = alwaysLeads;
 		}
+
+		public final static Mastermind[] all = {
+			new GameDetails.Mastermind("Red Skull", R.drawable.red_skull, GameDetails.Villain.hydra), 
+			new GameDetails.Mastermind("Loki", R.drawable.loki, GameDetails.Villain.enemiesOfAsgard), 
+			new GameDetails.Mastermind("Dr. Doom", R.drawable.drdoom, GameDetails.Henchman.doombots), 
+			new GameDetails.Mastermind("Magneto", R.drawable.magneto, GameDetails.Villain.brotherhood)
+		};
+		public final static Mastermind nullMastermind = new Mastermind("NULL", 0, null);
 	}
 	
 	public static class Villain implements Serializable {
@@ -46,6 +60,8 @@ public class GameDetails implements Serializable {
 		public final static Villain hydra = new Villain("Hydra", R.drawable.missing_img);
 		public final static Villain mastersOfEvil = new Villain("Masters of Evil", R.drawable.missing_img);
 		public final static Villain radiation = new Villain("Radiation", R.drawable.missing_img);
+		
+		public final static Villain[] all = {skrulls, spiderfoes, enemiesOfAsgard, brotherhood, hydra, mastersOfEvil, radiation};
 	}
 	public static class Henchman extends Villain implements Serializable {
 		private static final long serialVersionUID = -3646715723455606919L;
@@ -55,24 +71,21 @@ public class GameDetails implements Serializable {
 
 		public final static Henchman handNinja = new Henchman("Hand Ninjas", R.drawable.missing_img);
 		public final static Henchman doombots = new Henchman("Doombot Legion", R.drawable.missing_img);
-		public final static Henchman skrulls = new Henchman("Skrulls", R.drawable.missing_img);
 		public final static Henchman sentinel = new Henchman("Sentinels", R.drawable.missing_img);
 		public final static Henchman mutates = new Henchman("Savage Land Mutates", R.drawable.missing_img);
+		
+		public final static Henchman[] all = {handNinja, doombots, sentinel, mutates};
 	}
 	
 	private Random r = new Random();
 
 	private int numPlayers = 2;
+	private int numVillains = 2;
+	private int numHenchmen = 1;
 	private Mastermind mastermind;
+	private ArrayList<Villain> villains = new ArrayList<Villain>();
+	private ArrayList<Henchman> henchmen = new ArrayList<Henchman>();
 	
-	public final static Mastermind[] masterminds = {
-		new Mastermind("Red Skull", R.drawable.red_skull), 
-		new Mastermind("Loki", R.drawable.loki), 
-		new Mastermind("Dr. Doom", R.drawable.drdoom), 
-		new Mastermind("Magneto", R.drawable.magneto)
-	};
-	private final static Mastermind nullMastermind = new Mastermind("NULL", 0);
-
 	public int getNumPlayers() {
 		return numPlayers;
 	}
@@ -84,17 +97,89 @@ public class GameDetails implements Serializable {
 	public final Mastermind getMastermind() {
 		if (mastermind != null)
 			return mastermind;
-		return nullMastermind;
+		return Mastermind.nullMastermind;
 	}
 	
 	public void randomiseAll() {
 		if (mastermind == null) {
-			randomiseMastermind();
+			addRandomMastermind();
+		}
+		
+		addAlwaysLeads();
+		addVillains();
+		addHenchmen();
+	}
+	
+	public void addRandomMastermind() {
+		int mPosition = r.nextInt(Mastermind.all.length);
+		mastermind = Mastermind.all[mPosition];
+	}
+	public boolean addAlwaysLeads() {
+		Villain preferred = getMastermind().getAlwaysLeads();
+		if (preferred == null) {
+			return false;
+		}
+		
+		if (preferred instanceof Henchman) {
+			return addPreferredHenchman(preferred);
+		} else {
+			return addPreferredVillain(preferred);
+		}
+	}
+	private boolean addPreferredVillain(Villain preferred) {
+		if (villains.contains(preferred)) {
+			return true;
+		}
+		
+		if (villains.size() >= numVillains) {
+			return false;
+		}
+		
+		villains.add(preferred);
+		return true;
+	}
+	private boolean addPreferredHenchman(Villain preferred) {
+		if (henchmen.contains(preferred)) {
+			return true;
+		}
+		
+		if (henchmen.size() >= numHenchmen) {
+			return false;
+		}
+		
+		henchmen.add((Henchman)preferred);
+		return true;
+	}
+
+	private void addVillains() {
+		while (villains.size() < numVillains) {
+			addRandomVillain();
 		}
 	}
 	
-	public void randomiseMastermind() {
-		int mPosition = r.nextInt(masterminds.length);
-		mastermind = masterminds[mPosition];
+	private void addRandomVillain() {
+		int vPosition;
+		Villain v;
+		do {
+			vPosition = r.nextInt(Villain.all.length);
+			v = Villain.all[vPosition];
+		} while (villains.contains(v));
+		villains.add(v);
+	}
+
+	private void addHenchmen() {
+		while (henchmen.size() < numHenchmen) {
+			addRandomHenchman();
+		}
+	}
+	
+	private void addRandomHenchman() {
+		int vPosition;
+		Henchman v;
+		do {
+			vPosition = r.nextInt(Henchman.all.length);
+			v = Henchman.all[vPosition];
+		} while (henchmen.contains(v));
+		henchmen.add(v);
 	}
 }
