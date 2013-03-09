@@ -104,6 +104,10 @@ public class GameDetails implements Serializable {
 		return villains;
 	}
 	
+	public final ArrayList<Henchman> getHenchmen() {
+		return henchmen;
+	}
+	
 	public void randomiseAll() {
 		if (mastermind == null) {
 			addRandomMastermind();

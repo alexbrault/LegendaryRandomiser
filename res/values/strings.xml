@@ -9,5 +9,6 @@
     <string name="numPlayersLabel">Number of players</string>
     <string name="MastermindLabel">You are fighting</string>
     <string name="leading_label">leading the combined forces of</string>
+    <string name="also_leading_label">and</string>
 
 </resources>

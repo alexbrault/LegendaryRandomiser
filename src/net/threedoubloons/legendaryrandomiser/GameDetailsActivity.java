@@ -41,6 +41,14 @@ public class GameDetailsActivity extends Activity {
 			v.setCompoundDrawablesWithIntrinsicBounds(villain.getPictureId(), 0, 0, 0);
 			villainsList.addView(v);
 		}
+
+		LinearLayout henchmenList = (LinearLayout)findViewById(R.id.henchmen_list);
+		for (GameDetails.Henchman h : details.getHenchmen()) {
+			TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
+			v.setText(h.getName());
+			v.setCompoundDrawablesWithIntrinsicBounds(h.getPictureId(), 0, 0, 0);
+			henchmenList.addView(v);
+		}
 	}
 
 	/**
