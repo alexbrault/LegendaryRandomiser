@@ -1,6 +1,8 @@
 package net.threedoubloons.legendaryrandomiser;
 
-import net.threedoubloons.legendaryrandomiser.GameDetails.Mastermind;
+import net.threedoubloons.legendaryrandomiser.data.Henchman;
+import net.threedoubloons.legendaryrandomiser.data.Mastermind;
+import net.threedoubloons.legendaryrandomiser.data.Villain;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -35,7 +37,7 @@ public class GameDetailsActivity extends Activity {
 		
 		LayoutInflater inflater = getLayoutInflater();
 		LinearLayout villainsList = (LinearLayout)findViewById(R.id.villains_list);
-		for (GameDetails.Villain villain : details.getVillains()) {
+		for (Villain villain : details.getVillains()) {
 			TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
 			v.setText(villain.getName());
 			v.setCompoundDrawablesWithIntrinsicBounds(villain.getPictureId(), 0, 0, 0);
@@ -43,7 +45,7 @@ public class GameDetailsActivity extends Activity {
 		}
 
 		LinearLayout henchmenList = (LinearLayout)findViewById(R.id.henchmen_list);
-		for (GameDetails.Henchman h : details.getHenchmen()) {
+		for (Henchman h : details.getHenchmen()) {
 			TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
 			v.setText(h.getName());
 			v.setCompoundDrawablesWithIntrinsicBounds(h.getPictureId(), 0, 0, 0);

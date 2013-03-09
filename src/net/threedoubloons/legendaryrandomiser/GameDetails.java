@@ -4,86 +4,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
+import net.threedoubloons.legendaryrandomiser.data.Henchman;
+import net.threedoubloons.legendaryrandomiser.data.Mastermind;
+import net.threedoubloons.legendaryrandomiser.data.Villain;
+
 public class GameDetails implements Serializable {
 	private static final long serialVersionUID = -6690498520538188426L;
-
-	public static class Mastermind implements Serializable {
-		private static final long serialVersionUID = -8346554204948014704L;
-		private final String name;
-		private final int pictureId;
-		private final Villain alwaysLeads;
-		public String getName() {
-			return name;
-		}
-		public int getPictureId() {
-			return pictureId;
-		}
-		public Villain getAlwaysLeads() {
-			return alwaysLeads;
-		}
-		public Mastermind(String name, int pictureId, Villain alwaysLeads) {
-			super();
-			this.name = name;
-			this.pictureId = pictureId;
-			this.alwaysLeads = alwaysLeads;
-		}
-
-		public final static Mastermind[] all = {
-			new GameDetails.Mastermind("Red Skull", R.drawable.red_skull, GameDetails.Villain.hydra), 
-			new GameDetails.Mastermind("Loki", R.drawable.loki, GameDetails.Villain.enemiesOfAsgard), 
-			new GameDetails.Mastermind("Dr. Doom", R.drawable.drdoom, GameDetails.Henchman.doombots), 
-			new GameDetails.Mastermind("Magneto", R.drawable.magneto, GameDetails.Villain.brotherhood)
-		};
-		public final static Mastermind nullMastermind = new Mastermind("NULL", 0, null);
-	}
-	
-	public static class Villain implements Serializable {
-		private static final long serialVersionUID = 4309878817795983831L;
-		private String name;
-		private int pictureId;
-		public String getName() {
-			return name;
-		}
-		public int getPictureId() {
-			return pictureId;
-		}
-		public Villain(String name, int pictureId) {
-			super();
-			this.name = name;
-			this.pictureId = pictureId;
-		}
-		
-		public final static Villain skrulls = new Villain("Skrulls", R.drawable.skrulls);
-		public final static Villain spiderfoes = new Villain("Spider-Foes", R.drawable.spiderfoes);
-		public final static Villain enemiesOfAsgard = new Villain("Enemies of Asgard", R.drawable.enemies_of_asgard);
-		public final static Villain brotherhood = new Villain("Brotherhood", R.drawable.brotherhood);
-		public final static Villain hydra = new Villain("Hydra", R.drawable.hydra);
-		public final static Villain mastersOfEvil = new Villain("Masters of Evil", R.drawable.masters);
-		public final static Villain radiation = new Villain("Radiation", R.drawable.radiation);
-		
-		public final static Villain[] all = {skrulls, spiderfoes, enemiesOfAsgard, brotherhood, hydra, mastersOfEvil, radiation};
-	}
-	public static class Henchman extends Villain implements Serializable {
-		private static final long serialVersionUID = -3646715723455606919L;
-		public Henchman(String name, int pictureId) {
-			super(name, pictureId);
-		}
-
-		public final static Henchman handNinja = new Henchman("Hand Ninjas", R.drawable.hand_ninja);
-		public final static Henchman doombots = new Henchman("Doombot Legion", R.drawable.doombots);
-		public final static Henchman sentinel = new Henchman("Sentinels", R.drawable.sentinel);
-		public final static Henchman mutates = new Henchman("Savage Land Mutates", R.drawable.mutates);
-		
-		public final static Henchman[] all = {handNinja, doombots, sentinel, mutates};
-	}
-	
 	private static Random r = new Random();
 
 	private int numPlayers = 2;
 	private int numVillains = 2;
-	private static int[] numVillainsPerPlayer = {0, 1, 2, 3, 3, 4};
+	private final static int[] numVillainsPerPlayer = {0, 1, 2, 3, 3, 4};
 	private int numHenchmen = 1;
-	private static int[] numHenchmenPerPlayer = {0, 1, 1, 1, 2, 2};
+	private final static int[] numHenchmenPerPlayer = {0, 1, 1, 1, 2, 2};
 	private Mastermind mastermind;
 	private ArrayList<Villain> villains = new ArrayList<Villain>();
 	private ArrayList<Henchman> henchmen = new ArrayList<Henchman>();
@@ -94,6 +27,22 @@ public class GameDetails implements Serializable {
 
 	public void setNumPlayers(int numPlayers) {
 		this.numPlayers = numPlayers;
+	}
+	
+	public int getNumVillains() {
+		return numVillains;
+	}
+
+	public void setNumVillains(int numVillains) {
+		this.numVillains = numVillains;
+	}
+
+	public int getNumHenchmen() {
+		return numHenchmen;
+	}
+
+	public void setNumHenchmen(int numHenchmen) {
+		this.numHenchmen = numHenchmen;
 	}
 	
 	public final Mastermind getMastermind() {
@@ -147,7 +96,7 @@ public class GameDetails implements Serializable {
 		}
 	}
 	
-	private boolean addPreferredVillain(Villain preferred) {
+	public boolean addPreferredVillain(Villain preferred) {
 		if (villains.contains(preferred)) {
 			return true;
 		}
@@ -160,7 +109,7 @@ public class GameDetails implements Serializable {
 		return true;
 	}
 	
-	private boolean addPreferredHenchman(Villain preferred) {
+	public boolean addPreferredHenchman(Villain preferred) {
 		if (henchmen.contains(preferred)) {
 			return true;
 		}
