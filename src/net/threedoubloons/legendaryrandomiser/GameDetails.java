@@ -23,15 +23,54 @@ public class GameDetails implements Serializable {
 		}
 	}
 	
-	public GameDetails() {
-		r = new Random();
+	public static class Villain implements Serializable {
+		private static final long serialVersionUID = 4309878817795983831L;
+		private String name;
+		private int pictureId;
+		public String getName() {
+			return name;
+		}
+		public int getPictureId() {
+			return pictureId;
+		}
+		public Villain(String name, int pictureId) {
+			super();
+			this.name = name;
+			this.pictureId = pictureId;
+		}
+		
+		public final static Villain skrulls = new Villain("Skrulls", R.drawable.missing_img);
+		public final static Villain spiderfoes = new Villain("Spider-Foes", R.drawable.missing_img);
+		public final static Villain enemiesOfAsgard = new Villain("Enemies of Asgard", R.drawable.missing_img);
+		public final static Villain brotherhood = new Villain("Brotherhood", R.drawable.missing_img);
+		public final static Villain hydra = new Villain("Hydra", R.drawable.missing_img);
+		public final static Villain mastersOfEvil = new Villain("Masters of Evil", R.drawable.missing_img);
+		public final static Villain radiation = new Villain("Radiation", R.drawable.missing_img);
 	}
+	public static class Henchman extends Villain implements Serializable {
+		private static final long serialVersionUID = -3646715723455606919L;
+		public Henchman(String name, int pictureId) {
+			super(name, pictureId);
+		}
+
+		public final static Henchman handNinja = new Henchman("Hand Ninjas", R.drawable.missing_img);
+		public final static Henchman doombots = new Henchman("Doombot Legion", R.drawable.missing_img);
+		public final static Henchman skrulls = new Henchman("Skrulls", R.drawable.missing_img);
+		public final static Henchman sentinel = new Henchman("Sentinels", R.drawable.missing_img);
+		public final static Henchman mutates = new Henchman("Savage Land Mutates", R.drawable.missing_img);
+	}
+	
+	private Random r = new Random();
 
 	private int numPlayers = 2;
 	private Mastermind mastermind;
-	private Random r;
 	
-	public final static Mastermind[] masterminds = {new Mastermind("Red Skull", R.drawable.ic_launcher), new Mastermind("Loki", R.drawable.ic_launcher)};
+	public final static Mastermind[] masterminds = {
+		new Mastermind("Red Skull", R.drawable.red_skull), 
+		new Mastermind("Loki", R.drawable.loki), 
+		new Mastermind("Dr. Doom", R.drawable.drdoom), 
+		new Mastermind("Magneto", R.drawable.magneto)
+	};
 	private final static Mastermind nullMastermind = new Mastermind("NULL", 0);
 
 	public int getNumPlayers() {
