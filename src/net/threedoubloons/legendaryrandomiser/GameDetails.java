@@ -2,6 +2,9 @@ package net.threedoubloons.legendaryrandomiser;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import net.threedoubloons.legendaryrandomiser.data.Henchman;
@@ -20,6 +23,7 @@ public class GameDetails implements Serializable {
 	private Mastermind mastermind;
 	private ArrayList<Villain> villains = new ArrayList<Villain>();
 	private ArrayList<Henchman> henchmen = new ArrayList<Henchman>();
+	private HashMap<String, Integer> villainDeckContents = new HashMap<String, Integer>();
 	
 	public int getNumPlayers() {
 		return numPlayers;
@@ -59,10 +63,16 @@ public class GameDetails implements Serializable {
 		return henchmen;
 	}
 	
+	public final Collection<Map.Entry<String, Integer>> getVillainsDeckContents() {
+		return villainDeckContents.entrySet();
+	}
+	
+	public void setVillainDeckContentsForCardType(String type, int number) {
+		villainDeckContents.put(type, number);
+	}
+	
 	public void randomiseAll() {
-		if (mastermind == null) {
-			addRandomMastermind();
-		}
+		addRandomMastermind();
 		applyPlayerCountToVillains();
 		addAlwaysLeads();
 		addVillains();
@@ -70,6 +80,7 @@ public class GameDetails implements Serializable {
 	}
 	
 	public void addRandomMastermind() {
+		if (mastermind != null) return;
 		int mPosition = r.nextInt(Mastermind.all.length);
 		mastermind = Mastermind.all[mPosition];
 	}
