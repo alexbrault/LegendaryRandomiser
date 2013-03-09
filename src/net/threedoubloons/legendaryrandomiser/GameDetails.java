@@ -53,13 +53,13 @@ public class GameDetails implements Serializable {
 			this.pictureId = pictureId;
 		}
 		
-		public final static Villain skrulls = new Villain("Skrulls", R.drawable.missing_img);
-		public final static Villain spiderfoes = new Villain("Spider-Foes", R.drawable.missing_img);
-		public final static Villain enemiesOfAsgard = new Villain("Enemies of Asgard", R.drawable.missing_img);
-		public final static Villain brotherhood = new Villain("Brotherhood", R.drawable.missing_img);
-		public final static Villain hydra = new Villain("Hydra", R.drawable.missing_img);
-		public final static Villain mastersOfEvil = new Villain("Masters of Evil", R.drawable.missing_img);
-		public final static Villain radiation = new Villain("Radiation", R.drawable.missing_img);
+		public final static Villain skrulls = new Villain("Skrulls", R.drawable.skrulls);
+		public final static Villain spiderfoes = new Villain("Spider-Foes", R.drawable.spiderfoes);
+		public final static Villain enemiesOfAsgard = new Villain("Enemies of Asgard", R.drawable.enemies_of_asgard);
+		public final static Villain brotherhood = new Villain("Brotherhood", R.drawable.brotherhood);
+		public final static Villain hydra = new Villain("Hydra", R.drawable.hydra);
+		public final static Villain mastersOfEvil = new Villain("Masters of Evil", R.drawable.masters);
+		public final static Villain radiation = new Villain("Radiation", R.drawable.radiation);
 		
 		public final static Villain[] all = {skrulls, spiderfoes, enemiesOfAsgard, brotherhood, hydra, mastersOfEvil, radiation};
 	}
@@ -69,10 +69,10 @@ public class GameDetails implements Serializable {
 			super(name, pictureId);
 		}
 
-		public final static Henchman handNinja = new Henchman("Hand Ninjas", R.drawable.missing_img);
-		public final static Henchman doombots = new Henchman("Doombot Legion", R.drawable.missing_img);
-		public final static Henchman sentinel = new Henchman("Sentinels", R.drawable.missing_img);
-		public final static Henchman mutates = new Henchman("Savage Land Mutates", R.drawable.missing_img);
+		public final static Henchman handNinja = new Henchman("Hand Ninjas", R.drawable.hand_ninja);
+		public final static Henchman doombots = new Henchman("Doombot Legion", R.drawable.doombots);
+		public final static Henchman sentinel = new Henchman("Sentinels", R.drawable.sentinel);
+		public final static Henchman mutates = new Henchman("Savage Land Mutates", R.drawable.mutates);
 		
 		public final static Henchman[] all = {handNinja, doombots, sentinel, mutates};
 	}
