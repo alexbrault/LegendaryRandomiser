@@ -15,13 +15,13 @@ public class Scheme implements Serializable {
 	static {
 		schemeActions.put("robbery", new SchemeAction(){
 			public void apply(GameDetails details) {
-				details.setVillainDeckContentsForCardType("Twist", 8);
-				details.setVillainDeckContentsForCardType("Bystander", 12);
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				details.setVillainDeckContentsForCardType(CardType.bystander, 12);
 			}});
 		schemeActions.put("breakout",  new SchemeAction() {
 			public void apply(GameDetails details) {
 				details.setNumHenchmen(details.getNumHenchmen() + 1);
-				details.setVillainDeckContentsForCardType("Twist", 8);
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
 			}});
 	}
 	
@@ -42,8 +42,8 @@ public class Scheme implements Serializable {
 		schemeActions.get(action).apply(details);
 	}
 	
-	public final Scheme breakout = new Scheme("Negative Zone Prison Breakout", "breakout");
-	public final Scheme robbery = new Scheme("Midtown Bank Robbery", "robbery");
+	public final static Scheme breakout = new Scheme("Negative Zone Prison Breakout", "breakout");
+	public final static Scheme robbery = new Scheme("Midtown Bank Robbery", "robbery");
 	
-	public final Scheme[] all = {breakout, robbery};
+	public final static Scheme[] all = {breakout, robbery};
 }

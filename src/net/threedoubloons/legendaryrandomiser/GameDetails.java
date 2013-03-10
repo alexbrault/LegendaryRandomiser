@@ -7,8 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import net.threedoubloons.legendaryrandomiser.data.CardType;
 import net.threedoubloons.legendaryrandomiser.data.Henchman;
 import net.threedoubloons.legendaryrandomiser.data.Mastermind;
+import net.threedoubloons.legendaryrandomiser.data.Scheme;
 import net.threedoubloons.legendaryrandomiser.data.Villain;
 
 public class GameDetails implements Serializable {
@@ -23,7 +25,8 @@ public class GameDetails implements Serializable {
 	private Mastermind mastermind;
 	private ArrayList<Villain> villains = new ArrayList<Villain>();
 	private ArrayList<Henchman> henchmen = new ArrayList<Henchman>();
-	private HashMap<String, Integer> villainDeckContents = new HashMap<String, Integer>();
+	private Scheme scheme;
+	private HashMap<CardType, Integer> villainDeckContents = new HashMap<CardType, Integer>();
 	
 	public int getNumPlayers() {
 		return numPlayers;
@@ -63,22 +66,24 @@ public class GameDetails implements Serializable {
 		return henchmen;
 	}
 	
-	public final Collection<Map.Entry<String, Integer>> getVillainsDeckContents() {
+	public final Collection<Map.Entry<CardType, Integer>> getVillainsDeckContents() {
 		return villainDeckContents.entrySet();
 	}
 	
-	public void setVillainDeckContentsForCardType(String type, int number) {
+	public void setVillainDeckContentsForCardType(CardType type, int number) {
 		villainDeckContents.put(type, number);
 	}
 	
 	public void randomiseAll() {
 		addRandomMastermind();
 		applyPlayerCountToVillains();
+		addRandomScheme();
+		applyScheme();
 		addAlwaysLeads();
 		addVillains();
 		addHenchmen();
 	}
-	
+
 	public void addRandomMastermind() {
 		if (mastermind != null) return;
 		int mPosition = r.nextInt(Mastermind.all.length);
@@ -88,6 +93,16 @@ public class GameDetails implements Serializable {
 	private void applyPlayerCountToVillains() {
 		numVillains = numVillainsPerPlayer[numPlayers];
 		numHenchmen = numHenchmenPerPlayer[numPlayers];
+	}
+	
+	public void addRandomScheme() {
+		if (scheme != null) return;
+		int mPosition = r.nextInt(Scheme.all.length);
+		scheme = Scheme.all[mPosition];
+	}
+	
+	private void applyScheme() {
+		scheme.applyScheme(this);
 	}
 	
 	public boolean addAlwaysLeads() {
