@@ -24,7 +24,8 @@ public class CardType implements Serializable {
 		return pictureId;
 	}
 	
-	public final static CardType bystander = new CardType("Bystander", R.drawable.missing_img);
-	public final static CardType masterStrike = new CardType("Master Strike", R.drawable.missing_img);
-	public final static CardType schemeTwist = new CardType("Scheme Twist", R.drawable.missing_img);
+	public final static CardType bystander = new CardType("Bystander", R.drawable.bystander);
+	public final static CardType masterStrike = new CardType("Master Strike", R.drawable.masterstrike);
+	public final static CardType schemeTwist = new CardType("Scheme Twist", R.drawable.scheme_twist);
+	public final static CardType hero = new CardType("Hero Card", R.drawable.missing_img);
 }
