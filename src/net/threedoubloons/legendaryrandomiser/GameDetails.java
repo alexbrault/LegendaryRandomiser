@@ -22,6 +22,7 @@ public class GameDetails implements Serializable {
 	private final static int[] numVillainsPerPlayer = {0, 1, 2, 3, 3, 4};
 	private int numHenchmen = 1;
 	private final static int[] numHenchmenPerPlayer = {0, 1, 1, 1, 2, 2};
+	private final static int[] numBystanderPerPlayer = {0, 1, 2, 8, 8, 12};
 	private Mastermind mastermind;
 	private ArrayList<Villain> villains = new ArrayList<Villain>();
 	private ArrayList<Henchman> henchmen = new ArrayList<Henchman>();
@@ -76,7 +77,7 @@ public class GameDetails implements Serializable {
 	
 	public void randomiseAll() {
 		addRandomMastermind();
-		applyPlayerCountToVillains();
+		applyPlayerCount();
 		addRandomScheme();
 		applyScheme();
 		addAlwaysLeads();
@@ -90,15 +91,22 @@ public class GameDetails implements Serializable {
 		mastermind = Mastermind.all[mPosition];
 	}
 	
-	private void applyPlayerCountToVillains() {
+	private void applyPlayerCount() {
 		numVillains = numVillainsPerPlayer[numPlayers];
 		numHenchmen = numHenchmenPerPlayer[numPlayers];
+		setVillainDeckContentsForCardType(CardType.bystander, numBystanderPerPlayer[numPlayers]);
+		setVillainDeckContentsForCardType(CardType.masterStrike, numPlayers > 1 ? 5 : 1);
 	}
 	
 	public void addRandomScheme() {
 		if (scheme != null) return;
-		int mPosition = r.nextInt(Scheme.all.length);
-		scheme = Scheme.all[mPosition];
+		if (numPlayers != 1) {
+			int mPosition = r.nextInt(Scheme.all.length);
+			scheme = Scheme.all[mPosition];
+		} else {
+			int mPosition = r.nextInt(Scheme.allSinglePlayer.length);
+			scheme = Scheme.allSinglePlayer[mPosition];
+		}
 	}
 	
 	private void applyScheme() {

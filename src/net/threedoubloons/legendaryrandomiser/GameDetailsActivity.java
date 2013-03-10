@@ -1,5 +1,8 @@
 package net.threedoubloons.legendaryrandomiser;
 
+import java.util.Map;
+
+import net.threedoubloons.legendaryrandomiser.data.CardType;
 import net.threedoubloons.legendaryrandomiser.data.Henchman;
 import net.threedoubloons.legendaryrandomiser.data.Mastermind;
 import net.threedoubloons.legendaryrandomiser.data.Villain;
@@ -39,20 +42,30 @@ public class GameDetailsActivity extends Activity {
 		view.setText(details.getScheme().getName());
 		
 		LayoutInflater inflater = getLayoutInflater();
-		LinearLayout villainsList = (LinearLayout)findViewById(R.id.villains_list);
+		LinearLayout list;
+		
+		list = (LinearLayout)findViewById(R.id.villains_list);
 		for (Villain villain : details.getVillains()) {
 			TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
 			v.setText(villain.getName());
 			v.setCompoundDrawablesWithIntrinsicBounds(villain.getPictureId(), 0, 0, 0);
-			villainsList.addView(v);
+			list.addView(v);
 		}
 
-		LinearLayout henchmenList = (LinearLayout)findViewById(R.id.henchmen_list);
+		list = (LinearLayout)findViewById(R.id.henchmen_list);
 		for (Henchman h : details.getHenchmen()) {
 			TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
 			v.setText(h.getName());
 			v.setCompoundDrawablesWithIntrinsicBounds(h.getPictureId(), 0, 0, 0);
-			henchmenList.addView(v);
+			list.addView(v);
+		}
+		
+		list = (LinearLayout)findViewById(R.id.villaindeck_list);
+		for (Map.Entry<CardType, Integer> card : details.getVillainsDeckContents()) {
+			TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
+			v.setText(String.format("%d %s", card.getValue(), card.getKey().getName()));
+			v.setCompoundDrawablesWithIntrinsicBounds(card.getKey().getPictureId(), 0, 0, 0);
+			list.addView(v);
 		}
 	}
 
