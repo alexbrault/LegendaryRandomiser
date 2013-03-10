@@ -179,4 +179,8 @@ public class GameDetails implements Serializable {
 		} while (henchmen.contains(v));
 		henchmen.add(v);
 	}
+
+	public final Scheme getScheme() {
+		return scheme;
+	}
 }

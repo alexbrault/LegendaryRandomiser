@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 
 public class GameDetailsActivity extends Activity {
-	private TextView mastermind;
 	GameDetails details;
 	
 	@Override
@@ -29,11 +28,15 @@ public class GameDetailsActivity extends Activity {
 		}
 		
 		details.randomiseAll();
-		mastermind = (TextView)findViewById(R.id.mastermind);
+		TextView view;
 		
+		view = (TextView)findViewById(R.id.mastermind);		
 		Mastermind m = details.getMastermind();
-		mastermind.setText(m.getName());
-		mastermind.setCompoundDrawablesWithIntrinsicBounds(m.getPictureId(), 0, 0, 0);
+		view.setText(m.getName());
+		view.setCompoundDrawablesWithIntrinsicBounds(m.getPictureId(), 0, 0, 0);
+
+		view = (TextView)findViewById(R.id.scheme);
+		view.setText(details.getScheme().getName());
 		
 		LayoutInflater inflater = getLayoutInflater();
 		LinearLayout villainsList = (LinearLayout)findViewById(R.id.villains_list);

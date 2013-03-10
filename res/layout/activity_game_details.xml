@@ -31,13 +31,32 @@
         android:layout_alignLeft="@+id/textView1"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/textView1"/>
+    
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mastermind"
+        android:layout_below="@+id/mastermind"
+        android:layout_marginTop="19dp"
+        android:text="@string/scheme_label"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <TextView
+        android:id="@+id/scheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_below="@+id/textView4"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/mastermind"
-        android:layout_below="@+id/mastermind"
+        android:layout_alignLeft="@+id/scheme"
+        android:layout_below="@+id/scheme"
         android:layout_marginTop="19dp"
         android:text="@string/leading_label"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -48,7 +67,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
         android:layout_below="@+id/textView2"
-        android:layout_marginTop="19dp"
         android:orientation="vertical" >
 
     </LinearLayout>
@@ -59,8 +77,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/villains_list"
         android:layout_below="@+id/villains_list"
-        android:layout_marginTop="19dp"
         android:text="@string/also_leading_label"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <LinearLayout
@@ -69,7 +88,6 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView3"
         android:layout_below="@+id/textView3"
-        android:layout_marginTop="19dp"
         android:orientation="vertical" >
 
     </LinearLayout>

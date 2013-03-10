@@ -10,5 +10,6 @@
     <string name="MastermindLabel">You are fighting</string>
     <string name="leading_label">leading the combined forces of</string>
     <string name="also_leading_label">and</string>
+    <string name="scheme_label">who is planning</string>
 
 </resources>
