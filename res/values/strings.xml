@@ -3,7 +3,6 @@
 
     <string name="app_name">Legendary Randomiser</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
     <string name="randomise">Randomise</string>
     <string name="title_activity_game_details">Game Details</string>
     <string name="numPlayersLabel">Number of players</string>
