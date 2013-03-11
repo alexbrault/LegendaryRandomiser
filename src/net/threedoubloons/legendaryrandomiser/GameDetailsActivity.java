@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
@@ -75,6 +76,24 @@ public class GameDetailsActivity extends Activity {
 			v.setText(h.getName());
 			v.setCompoundDrawablesWithIntrinsicBounds(h.getPictureId(), 0, h.getAffiliationPictureId(), 0);
 			list.addView(v);
+		}
+		
+		if (details.getNumNotes() > 0) {
+			findViewById(R.id.notes_layout).setVisibility(View.VISIBLE);
+			list = (LinearLayout)findViewById(R.id.notes_list);
+			for (String h : details.getNotes()) {
+				TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
+				v.setText(h);
+				v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.bullet, 0, 0, 0);
+				list.addView(v);
+			}
+			for (String h : details.getErrors()) {
+				TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
+				v.setText(h);
+				v.setTextColor(getResources().getColor(R.color.error_message));
+				v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.bullet_important, 0, 0, 0);
+				list.addView(v);
+			}
 		}
 	}
 

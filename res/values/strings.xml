@@ -13,5 +13,6 @@
     <string name="scheme_label">who is planning</string>
     <string name="villaindeck_label">Add the following cards to the Villain deck:</string>
     <string name="heroes_label">Joining your side are these heroes</string>
+    <string name="notes_label">Additional notes</string>
 
 </resources>

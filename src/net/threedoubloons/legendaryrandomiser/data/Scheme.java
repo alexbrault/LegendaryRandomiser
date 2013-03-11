@@ -28,7 +28,9 @@ public class Scheme implements Serializable {
 				details.setNumHeroes(6);
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
 				details.setVillainDeckContentsForCardType(CardType.hero, 12);
-				details.addPreferredVillain(Villain.skrulls);
+				if (!details.addPreferredVillain(Villain.skrulls)) {
+					details.addError("Scheme requires the Skrulls villain group");
+				}
 			}});
 		schemeActions.put("portals",  new SchemeAction() {
 			public void apply(GameDetails details) {
@@ -57,13 +59,13 @@ public class Scheme implements Serializable {
 			public void apply(GameDetails details) {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 5);
 				details.setVillainDeckContentsForCardType(CardType.bystander, 18);
-				//details.addExtra();
+				details.addNote("Place 3 scheme twists next to the scheme");
 			}});
 		schemeActions.put("virus",  new SchemeAction() {
 			public void apply(GameDetails details) {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
 				if (details.getNumPlayers() < 5) {
-					//details.addExtra();
+					details.addNote(String.format("Use only %d Wounds cards", details.getNumPlayers() * 6));
 				}
 			}});
 	}

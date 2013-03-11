@@ -2,7 +2,6 @@ package net.threedoubloons.legendaryrandomiser;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -32,6 +31,8 @@ public class GameDetails implements Serializable {
 	private Scheme scheme;
 	private HashMap<CardType, Integer> villainDeckContents = new HashMap<CardType, Integer>();
 	private ArrayList<Hero> heroes = new ArrayList<Hero>();
+	private ArrayList<String> notes = new ArrayList<String>();
+	private ArrayList<String> errors = new ArrayList<String>();
 	
 	public int getNumPlayers() {
 		return numPlayers;
@@ -71,19 +72,31 @@ public class GameDetails implements Serializable {
 		return Mastermind.nullMastermind;
 	}
 	
-	public final ArrayList<Villain> getVillains() {
+	public final Iterable<Villain> getVillains() {
 		return villains;
 	}
 	
-	public final ArrayList<Henchman> getHenchmen() {
+	public final Iterable<Henchman> getHenchmen() {
 		return henchmen;
 	}
 	
-	public final ArrayList<Hero> getHeroes() {
+	public final Iterable<Hero> getHeroes() {
 		return heroes;
 	}
 	
-	public final Collection<Map.Entry<CardType, Integer>> getVillainsDeckContents() {
+	public final Iterable<String> getNotes() {
+		return notes;
+	}
+	
+	public final Iterable<String> getErrors() {
+		return errors;
+	}
+	
+	public int getNumNotes() {
+		return notes.size() + errors.size();
+	}
+	
+	public final Iterable<Map.Entry<CardType, Integer>> getVillainsDeckContents() {
 		return villainDeckContents.entrySet();
 	}
 	
@@ -92,6 +105,8 @@ public class GameDetails implements Serializable {
 	}
 	
 	public void randomiseAll() {
+		notes.clear();
+		errors.clear();
 		addRandomMastermind();
 		applyPlayerCount();
 		addRandomScheme();
@@ -114,6 +129,9 @@ public class GameDetails implements Serializable {
 		setNumHeroes(numHeroesPerPlayer[numPlayers]);
 		setVillainDeckContentsForCardType(CardType.bystander, numBystanderPerPlayer[numPlayers]);
 		setVillainDeckContentsForCardType(CardType.masterStrike, numPlayers > 1 ? 5 : 1);
+		if (numPlayers == 1) {
+			addNote("Use only 3 henchman cards");
+		}
 	}
 	
 	public void addRandomScheme() {
@@ -224,5 +242,13 @@ public class GameDetails implements Serializable {
 
 	public final Scheme getScheme() {
 		return scheme;
+	}
+	
+	public void addNote(String note) {
+		notes.add(note);
+	}
+	
+	public void addError(String note) {
+		errors.add(note);
 	}
 }
