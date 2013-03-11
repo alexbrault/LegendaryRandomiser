@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.support.v4.app.NavUtils;
 
 public class GameDetailsActivity extends Activity {
 	GameDetails details;
@@ -109,7 +108,7 @@ public class GameDetailsActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.game_details, menu);
+		//getMenuInflater().inflate(R.menu.game_details, menu);
 		return true;
 	}
 
@@ -124,7 +123,8 @@ public class GameDetailsActivity extends Activity {
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask(this);
+			//NavUtils.navigateUpFromSameTask(this);
+			finish();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
