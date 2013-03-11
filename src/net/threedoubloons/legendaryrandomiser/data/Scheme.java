@@ -25,7 +25,7 @@ public class Scheme implements Serializable {
 			}});
 		schemeActions.put("invasion",  new SchemeAction() {
 			public void apply(GameDetails details) {
-				//details.setNumHeroes(4);
+				details.setNumHeroes(6);
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
 				details.setVillainDeckContentsForCardType(CardType.hero, 12);
 				details.addPreferredVillain(Villain.skrulls);
@@ -38,7 +38,7 @@ public class Scheme implements Serializable {
 			public void apply(GameDetails details) {
 				switch(details.getNumPlayers()) {
 				case 2:
-					//details.setNumHeroes(4);
+					details.setNumHeroes(4);
 					// FALLTHROUGH
 				case 3:
 					details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);

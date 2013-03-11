@@ -12,5 +12,6 @@
     <string name="also_leading_label">and</string>
     <string name="scheme_label">who is planning</string>
     <string name="villaindeck_label">Add the following cards to the Villain deck:</string>
+    <string name="heroes_label">You will fight with the help of the following</string>
 
 </resources>

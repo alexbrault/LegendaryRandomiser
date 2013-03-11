@@ -9,6 +9,7 @@ import java.util.Random;
 
 import net.threedoubloons.legendaryrandomiser.data.CardType;
 import net.threedoubloons.legendaryrandomiser.data.Henchman;
+import net.threedoubloons.legendaryrandomiser.data.Hero;
 import net.threedoubloons.legendaryrandomiser.data.Mastermind;
 import net.threedoubloons.legendaryrandomiser.data.Scheme;
 import net.threedoubloons.legendaryrandomiser.data.Villain;
@@ -22,12 +23,15 @@ public class GameDetails implements Serializable {
 	private final static int[] numVillainsPerPlayer = {0, 1, 2, 3, 3, 4};
 	private int numHenchmen = 1;
 	private final static int[] numHenchmenPerPlayer = {0, 1, 1, 1, 2, 2};
+	private int numHeroes = 1;
+	private final static int[] numHeroesPerPlayer = {0, 3, 5, 5, 5, 6};
 	private final static int[] numBystanderPerPlayer = {0, 1, 2, 8, 8, 12};
 	private Mastermind mastermind;
 	private ArrayList<Villain> villains = new ArrayList<Villain>();
 	private ArrayList<Henchman> henchmen = new ArrayList<Henchman>();
 	private Scheme scheme;
 	private HashMap<CardType, Integer> villainDeckContents = new HashMap<CardType, Integer>();
+	private ArrayList<Hero> heroes = new ArrayList<Hero>();
 	
 	public int getNumPlayers() {
 		return numPlayers;
@@ -53,6 +57,14 @@ public class GameDetails implements Serializable {
 		this.numHenchmen = numHenchmen;
 	}
 	
+	public int getNumHeroes() {
+		return numHeroes;
+	}
+
+	public void setNumHeroes(int numHeroes) {
+		this.numHeroes = numHeroes;
+	}
+
 	public final Mastermind getMastermind() {
 		if (mastermind != null)
 			return mastermind;
@@ -65,6 +77,10 @@ public class GameDetails implements Serializable {
 	
 	public final ArrayList<Henchman> getHenchmen() {
 		return henchmen;
+	}
+	
+	public final ArrayList<Hero> getHeroes() {
+		return heroes;
 	}
 	
 	public final Collection<Map.Entry<CardType, Integer>> getVillainsDeckContents() {
@@ -83,6 +99,7 @@ public class GameDetails implements Serializable {
 		addAlwaysLeads();
 		addVillains();
 		addHenchmen();
+		addHeroes();
 	}
 
 	public void addRandomMastermind() {
@@ -94,6 +111,7 @@ public class GameDetails implements Serializable {
 	private void applyPlayerCount() {
 		numVillains = numVillainsPerPlayer[numPlayers];
 		numHenchmen = numHenchmenPerPlayer[numPlayers];
+		setNumHeroes(numHeroesPerPlayer[numPlayers]);
 		setVillainDeckContentsForCardType(CardType.bystander, numBystanderPerPlayer[numPlayers]);
 		setVillainDeckContentsForCardType(CardType.masterStrike, numPlayers > 1 ? 5 : 1);
 	}
@@ -186,6 +204,22 @@ public class GameDetails implements Serializable {
 			v = Henchman.all[vPosition];
 		} while (henchmen.contains(v));
 		henchmen.add(v);
+	}
+
+	private void addHeroes() {
+		while (heroes.size() < numHeroes) {
+			addRandomHero();
+		}
+	}
+	
+	private void addRandomHero() {
+		int vPosition;
+		Hero h;
+		do {
+			vPosition = r.nextInt(Hero.all.length);
+			h = Hero.all[vPosition];
+		} while (heroes.contains(h));
+		heroes.add(h);
 	}
 
 	public final Scheme getScheme() {

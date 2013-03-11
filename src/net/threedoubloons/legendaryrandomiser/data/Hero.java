@@ -30,7 +30,6 @@ public class Hero implements Serializable {
 		return affiliationPictureId;
 	}
 
-	public final static Hero ironMan = new Hero("Iron Man", R.drawable.ironman, R.drawable.affiliation_avengers);
 	public final static Hero blackWidow = new Hero("Black Widow", R.drawable.black_widow, R.drawable.affiliation_avengers);
 	public final static Hero captain = new Hero("Captain America", R.drawable.captain_a, R.drawable.affiliation_avengers);
 	public final static Hero cyclops = new Hero("Cyclops", R.drawable.cyclops, R.drawable.affiliation_xmen);
@@ -39,11 +38,13 @@ public class Hero implements Serializable {
 	public final static Hero gambit = new Hero("Gambit", R.drawable.gambit, R.drawable.affiliation_xmen);
 	public final static Hero hawkeye = new Hero("Hawkeye", R.drawable.hawkeye, R.drawable.affiliation_avengers);
 	public final static Hero hulk = new Hero("Hulk", R.drawable.hulk, R.drawable.affiliation_avengers);
+	public final static Hero ironMan = new Hero("Iron Man", R.drawable.ironman, R.drawable.affiliation_avengers);
+	public final static Hero nickFury = new Hero("Nick Fury", R.drawable.nick_fury, R.drawable.affiliation_shield);
 	public final static Hero rogue = new Hero("Rogue", R.drawable.rogue, R.drawable.affiliation_xmen);
-	public final static Hero spiderman = new Hero("Spiderman", R.drawable.spiderman, 0); // R.drawable.affiliation_spiderfriends
+	public final static Hero spiderman = new Hero("Spiderman", R.drawable.spiderman,  R.drawable.affiliation_spiderfriends);
 	public final static Hero storm = new Hero("Storm", R.drawable.storm, R.drawable.affiliation_xmen);
 	public final static Hero thor = new Hero("Thor", R.drawable.thor, R.drawable.affiliation_avengers);
 	public final static Hero wolverine = new Hero("Wolverine", R.drawable.wolverine, R.drawable.affiliation_xmen);
 	
-	public final static Hero[] all = {ironMan, blackWidow, captain, cyclops, deadpool, emmaFrost, gambit, hawkeye, hulk, rogue, spiderman, storm, thor, wolverine};
+	public final static Hero[] all = {blackWidow, captain, cyclops, deadpool, emmaFrost, gambit, hawkeye, hulk, ironMan, nickFury, rogue, spiderman, storm, thor, wolverine};
 }

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import net.threedoubloons.legendaryrandomiser.data.CardType;
 import net.threedoubloons.legendaryrandomiser.data.Henchman;
+import net.threedoubloons.legendaryrandomiser.data.Hero;
 import net.threedoubloons.legendaryrandomiser.data.Mastermind;
 import net.threedoubloons.legendaryrandomiser.data.Villain;
 import android.os.Bundle;
@@ -65,6 +66,14 @@ public class GameDetailsActivity extends Activity {
 			TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
 			v.setText(String.format("%d %s", card.getValue(), card.getKey().getName()));
 			v.setCompoundDrawablesWithIntrinsicBounds(card.getKey().getPictureId(), 0, 0, 0);
+			list.addView(v);
+		}
+		
+		list = (LinearLayout)findViewById(R.id.heroes_list);
+		for (Hero h : details.getHeroes()) {
+			TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
+			v.setText(h.getName());
+			v.setCompoundDrawablesWithIntrinsicBounds(h.getPictureId(), 0, h.getAffiliationPictureId(), 0);
 			list.addView(v);
 		}
 	}
