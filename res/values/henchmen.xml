@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hand_ninja">Hand Ninjas</string>
+    <string name="sentinel">Sentinels</string>
+    <string name="doombots">Doombot Legion</string>
+    <string name="mutates">Savage Land Mutates</string>
+    
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="skrulls">Skrulls</string>
+    <string name="spiderfoes">Spider-foes</string>
+    <string name="frost_giants">Enemies of Asgard</string>
+    <string name="brotherhood">Brotherhood</string>
+    <string name="hydra">Hydra</string>
+    <string name="masters_of_evil">Masters of Evil</string>
+    <string name="radiation">Radiation</string>
+    
+</resources>

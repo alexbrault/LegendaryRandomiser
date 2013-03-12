@@ -110,13 +110,18 @@ public class GameDetails implements Serializable {
 		errors.clear();
 		addRandomMastermind();
 		applyPlayerCount();
-		Scheme.initialiseAllList(Sets.CoreSet);
+		initialiseLists();
 		addRandomScheme();
 		applyScheme();
 		addAlwaysLeads();
 		addVillains();
 		addHenchmen();
 		addHeroes();
+	}
+
+	private void initialiseLists() {
+		Scheme.initialiseAllList(Sets.CoreSet);
+		Henchman.initialiseAllList(Sets.CoreSet);
 	}
 
 	public void addRandomMastermind() {
@@ -215,8 +220,8 @@ public class GameDetails implements Serializable {
 		int vPosition;
 		Henchman v;
 		do {
-			vPosition = r.nextInt(Henchman.all.length);
-			v = Henchman.all[vPosition];
+			vPosition = r.nextInt(Henchman.getAll().size());
+			v = Henchman.getAll().get(vPosition);
 		} while (henchmen.contains(v));
 		henchmen.add(v);
 	}
