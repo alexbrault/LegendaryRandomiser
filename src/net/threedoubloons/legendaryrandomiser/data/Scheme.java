@@ -1,9 +1,14 @@
 package net.threedoubloons.legendaryrandomiser.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import net.threedoubloons.legendaryrandomiser.GameDetails;
+import net.threedoubloons.legendaryrandomiser.R;
 
 public class Scheme implements Serializable {
 	private static final long serialVersionUID = 10206070375160723L;
@@ -70,16 +75,16 @@ public class Scheme implements Serializable {
 			}});
 	}
 	
-	public Scheme(String name, String action) {
+	public Scheme(int name, String action) {
 		super();
 		this.name = name;
 		this.action = action;
 	}
 
-	private final String name;
+	private final int name;
 	private final String action;
 
-	public String getName() {
+	public int getName() {
 		return name;
 	}
 	
@@ -87,15 +92,37 @@ public class Scheme implements Serializable {
 		schemeActions.get(action).apply(details);
 	}
 	
-	public final static Scheme breakout = new Scheme("a Negative Zone Prison Breakout", "breakout");
-	public final static Scheme robbery = new Scheme("a Midtown Bank Robbery", "robbery");
-	public final static Scheme invasion = new Scheme("a Secret Invasion of the Skrull Shapeshifters", "invasion");
-	public final static Scheme portals = new Scheme("to open Portals to the Dark Dimension", "portals");
-	public final static Scheme civilWar = new Scheme("a Super Hero Civil War", "civilwar");
-	public final static Scheme cosmicCube = new Scheme("to Unleash the Power of the Cosmic Cube", "cosmiccube");
-	public final static Scheme killbots = new Scheme("to Replace Earth's Leaders with Killbots", "killbots");
-	public final static Scheme virus = new Scheme("to release the Legacy Virus", "virus");
+	public final static Scheme breakout = new Scheme(R.string.breakout, "breakout");
+	public final static Scheme robbery = new Scheme(R.string.robbery, "robbery");
+	public final static Scheme invasion = new Scheme(R.string.invasion, "invasion");
+	public final static Scheme portals = new Scheme(R.string.portals, "portals");
+	public final static Scheme civilWar = new Scheme(R.string.civilwar, "civilwar");
+	public final static Scheme cosmicCube = new Scheme(R.string.cosmiccube, "cosmiccube");
+	public final static Scheme killbots = new Scheme(R.string.killbots, "killbots");
+	public final static Scheme virus = new Scheme(R.string.virus, "virus");
+
+	private static List<Scheme> all;
+	private static List<Scheme> allSP;
+	public static void initialiseAllList(long sets) {
+		List<Scheme> all = new ArrayList<Scheme>();
+		List<Scheme> allSP = new ArrayList<Scheme>();
+		if ((sets & Sets.CoreSet) == Sets.CoreSet) {
+			all.addAll(Arrays.asList(coreSet));
+			allSP.addAll(Arrays.asList(coreSetSP));
+		}
+		
+		Scheme.all = Collections.unmodifiableList(all);
+		Scheme.allSP = Collections.unmodifiableList(allSP);
+	}
 	
-	public final static Scheme[] all = {breakout, robbery, invasion, portals, civilWar, cosmicCube, killbots, virus};
-	public final static Scheme[] allSinglePlayer = {robbery, invasion, portals, cosmicCube, killbots, virus};
+	public final static List<Scheme> getAll(int numPlayers) {
+		if (numPlayers == 1) {
+			return allSP;
+		} else {
+			return all;
+		}
+	}
+	
+	public final static Scheme[] coreSet = {breakout, robbery, invasion, portals, civilWar, cosmicCube, killbots, virus};
+	public final static Scheme[] coreSetSP = {robbery, invasion, portals, cosmicCube, killbots, virus};
 }

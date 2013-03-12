@@ -11,6 +11,7 @@ import net.threedoubloons.legendaryrandomiser.data.Henchman;
 import net.threedoubloons.legendaryrandomiser.data.Hero;
 import net.threedoubloons.legendaryrandomiser.data.Mastermind;
 import net.threedoubloons.legendaryrandomiser.data.Scheme;
+import net.threedoubloons.legendaryrandomiser.data.Sets;
 import net.threedoubloons.legendaryrandomiser.data.Villain;
 
 public class GameDetails implements Serializable {
@@ -109,6 +110,7 @@ public class GameDetails implements Serializable {
 		errors.clear();
 		addRandomMastermind();
 		applyPlayerCount();
+		Scheme.initialiseAllList(Sets.CoreSet);
 		addRandomScheme();
 		applyScheme();
 		addAlwaysLeads();
@@ -136,13 +138,8 @@ public class GameDetails implements Serializable {
 	
 	public void addRandomScheme() {
 		if (scheme != null) return;
-		if (numPlayers != 1) {
-			int mPosition = r.nextInt(Scheme.all.length);
-			scheme = Scheme.all[mPosition];
-		} else {
-			int mPosition = r.nextInt(Scheme.allSinglePlayer.length);
-			scheme = Scheme.allSinglePlayer[mPosition];
-		}
+		int mPosition = r.nextInt(Scheme.getAll(numPlayers).size());
+		scheme = Scheme.getAll(numPlayers).get(mPosition);
 	}
 	
 	private void applyScheme() {

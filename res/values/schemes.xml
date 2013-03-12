@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="breakout">a <b>Negative Zone Prison Breakout</b></string>
+    <string name="robbery">a <b>Midtown Bank Robbery</b></string>
+    <string name="invasion">a <b>Secret Invasion of the Skrull Shapeshifters</b></string>
+    <string name="portals">to open <b>Portals to the Dark Dimension</b></string>
+    <string name="civilwar">a <b>Super Hero Civil War</b></string>
+    <string name="cosmiccube">to <b>Unleash the Power of the Cosmic Cube</b></string>
+    <string name="killbots">to <b>Replace Earth\'s Leaders with Killbots</b></string>
+    <string name="virus">to release <b>the Legacy Virus</b></string>
+    
+</resources>
