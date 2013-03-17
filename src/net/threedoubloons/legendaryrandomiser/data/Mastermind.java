@@ -1,15 +1,20 @@
 package net.threedoubloons.legendaryrandomiser.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import net.threedoubloons.legendaryrandomiser.R;
 
 public class Mastermind implements Serializable {
 	private static final long serialVersionUID = -8346554204948014704L;
-	private final String name;
+	private final int name;
 	private final int pictureId;
 	private final Villain alwaysLeads;
-	public String getName() {
+	
+	public int getName() {
 		return name;
 	}
 	public int getPictureId() {
@@ -18,18 +23,31 @@ public class Mastermind implements Serializable {
 	public Villain getAlwaysLeads() {
 		return alwaysLeads;
 	}
-	public Mastermind(String name, int pictureId, Villain alwaysLeads) {
+	public Mastermind(int name, int pictureId, Villain alwaysLeads) {
 		super();
 		this.name = name;
 		this.pictureId = pictureId;
 		this.alwaysLeads = alwaysLeads;
 	}
 
-	public final static Mastermind[] all = {
-		new Mastermind("Red Skull", R.drawable.red_skull, Villain.hydra), 
-		new Mastermind("Loki", R.drawable.loki, Villain.enemiesOfAsgard), 
-		new Mastermind("Dr. Doom", R.drawable.drdoom, Henchman.doombots), 
-		new Mastermind("Magneto", R.drawable.magneto, Villain.brotherhood)
+	private final static Mastermind[] coreSet = {
+		new Mastermind(R.string.red_skull, R.drawable.red_skull, Villain.hydra), 
+		new Mastermind(R.string.loki, R.drawable.loki, Villain.enemiesOfAsgard), 
+		new Mastermind(R.string.dr_doom, R.drawable.drdoom, Henchman.doombots), 
+		new Mastermind(R.string.magneto, R.drawable.magneto, Villain.brotherhood)
 	};
-	public final static Mastermind nullMastermind = new Mastermind("NULL", 0, null);
+
+	private static List<Mastermind> all;
+	public static void initialiseAllList(long sets) {
+		List<Mastermind> all = new ArrayList<Mastermind>();
+		if ((sets & Sets.CoreSet) == Sets.CoreSet) {
+			all.addAll(Arrays.asList(coreSet));
+		}
+		
+		Mastermind.all = Collections.unmodifiableList(all);
+	}
+	
+	public final static List<Mastermind> getAll() {
+		return all;
+	}
 }

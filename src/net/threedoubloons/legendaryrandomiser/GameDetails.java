@@ -68,9 +68,7 @@ public class GameDetails implements Serializable {
 	}
 
 	public final Mastermind getMastermind() {
-		if (mastermind != null)
-			return mastermind;
-		return Mastermind.nullMastermind;
+		return mastermind;
 	}
 	
 	public final Iterable<Villain> getVillains() {
@@ -108,9 +106,9 @@ public class GameDetails implements Serializable {
 	public void randomiseAll() {
 		notes.clear();
 		errors.clear();
+		initialiseLists();
 		addRandomMastermind();
 		applyPlayerCount();
-		initialiseLists();
 		addRandomScheme();
 		applyScheme();
 		addAlwaysLeads();
@@ -120,14 +118,16 @@ public class GameDetails implements Serializable {
 	}
 
 	private void initialiseLists() {
+		Mastermind.initialiseAllList(Sets.CoreSet);
 		Scheme.initialiseAllList(Sets.CoreSet);
+		Villain.initialiseAllList(Sets.CoreSet);
 		Henchman.initialiseAllList(Sets.CoreSet);
 	}
 
 	public void addRandomMastermind() {
 		if (mastermind != null) return;
-		int mPosition = r.nextInt(Mastermind.all.length);
-		mastermind = Mastermind.all[mPosition];
+		int mPosition = r.nextInt(Mastermind.getAll().size());
+		mastermind = Mastermind.getAll().get(mPosition);
 	}
 	
 	private void applyPlayerCount() {
@@ -201,11 +201,11 @@ public class GameDetails implements Serializable {
 	}
 	
 	private void addRandomVillain() {
-		int vPosition;
+		int mPosition;
 		Villain v;
 		do {
-			vPosition = r.nextInt(Villain.all.length);
-			v = Villain.all[vPosition];
+			mPosition = r.nextInt(Villain.getAll().size());
+			v = Villain.getAll().get(mPosition);
 		} while (villains.contains(v));
 		villains.add(v);
 	}
@@ -220,8 +220,8 @@ public class GameDetails implements Serializable {
 		int vPosition;
 		Henchman v;
 		do {
-			vPosition = r.nextInt(Henchman.getAll().size());
-			v = Henchman.getAll().get(vPosition);
+			vPosition = r.nextInt(Henchman.getAllHenchmen().size());
+			v = Henchman.getAllHenchmen().get(vPosition);
 		} while (henchmen.contains(v));
 		henchmen.add(v);
 	}

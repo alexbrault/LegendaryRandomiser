@@ -20,7 +20,7 @@ public class Henchman extends Villain implements Serializable {
 	public final static Henchman sentinel = new Henchman(R.string.sentinel, R.drawable.sentinel);
 	public final static Henchman mutates = new Henchman(R.string.mutates, R.drawable.mutates);
 	
-	public final static Henchman[] coreSet = {handNinja, doombots, sentinel, mutates};
+	private final static Henchman[] coreSet = {handNinja, doombots, sentinel, mutates};
 
 	private static List<Henchman> all;
 	public static void initialiseAllList(long sets) {
@@ -32,7 +32,8 @@ public class Henchman extends Villain implements Serializable {
 		Henchman.all = Collections.unmodifiableList(all);
 	}
 	
-	public final static List<Henchman> getAll() {
+	
+	public static List<Henchman> getAllHenchmen() {
 		return all;
 	}
 }
