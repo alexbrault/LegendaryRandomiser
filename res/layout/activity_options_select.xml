@@ -8,16 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".OptionsSelectActivity" >
 
-    <SeekBar
-        android:id="@+id/num_players_seek"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="121dp"
-        android:max="4"
-        android:progress="1" />
-
     <TextView
         android:id="@+id/numPlayersLabel"
         android:layout_width="wrap_content"
@@ -29,7 +19,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/numPlayers"
+        android:id="@+id/num_players"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/numPlayersLabel"
@@ -44,8 +34,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
         android:onClick="randomiseGame"
         android:text="@string/randomise" />
+
+    <SeekBar
+        android:id="@+id/num_players_seek"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:max="4"
+        android:progress="1" />
 
 </RelativeLayout>

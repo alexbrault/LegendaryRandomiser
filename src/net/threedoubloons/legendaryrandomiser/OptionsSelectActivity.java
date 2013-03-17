@@ -25,7 +25,7 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 		SeekBar numPlayersBar = (SeekBar)findViewById(R.id.num_players_seek);
 		numPlayersBar.setOnSeekBarChangeListener(this);
 		
-		numPlayers = (TextView)findViewById(R.id.numPlayers);
+		numPlayers = (TextView)findViewById(R.id.num_players);
 		numPlayers.setText(Integer.toString(options.getNumPlayers()));
 	}
 
