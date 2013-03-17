@@ -118,6 +118,7 @@ public class GameDetails implements Serializable {
 	}
 
 	private void initialiseLists() {
+		Hero.initialiseAllList(Sets.CoreSet);
 		Mastermind.initialiseAllList(Sets.CoreSet);
 		Scheme.initialiseAllList(Sets.CoreSet);
 		Villain.initialiseAllList(Sets.CoreSet);
@@ -236,8 +237,8 @@ public class GameDetails implements Serializable {
 		int vPosition;
 		Hero h;
 		do {
-			vPosition = r.nextInt(Hero.all.length);
-			h = Hero.all[vPosition];
+			vPosition = r.nextInt(Hero.getAll().size());
+			h = Hero.getAll().get(vPosition);
 		} while (heroes.contains(h));
 		heroes.add(h);
 	}

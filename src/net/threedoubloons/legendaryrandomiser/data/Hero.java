@@ -1,6 +1,10 @@
 package net.threedoubloons.legendaryrandomiser.data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import net.threedoubloons.legendaryrandomiser.R;
 
@@ -46,5 +50,19 @@ public class Hero implements Serializable {
 	public final static Hero thor = new Hero("Thor", R.drawable.thor, R.drawable.affiliation_avengers);
 	public final static Hero wolverine = new Hero("Wolverine", R.drawable.wolverine, R.drawable.affiliation_xmen);
 	
-	public final static Hero[] all = {blackWidow, captain, cyclops, deadpool, emmaFrost, gambit, hawkeye, hulk, ironMan, nickFury, rogue, spiderman, storm, thor, wolverine};
+	public final static Hero[] coreSet = {blackWidow, captain, cyclops, deadpool, emmaFrost, gambit, hawkeye, hulk, ironMan, nickFury, rogue, spiderman, storm, thor, wolverine};
+
+	private static List<Hero> all;
+	public static void initialiseAllList(long sets) {
+		List<Hero> all = new ArrayList<Hero>();
+		if ((sets & Sets.CoreSet) == Sets.CoreSet) {
+			all.addAll(Arrays.asList(coreSet));
+		}
+		
+		Hero.all = Collections.unmodifiableList(all);
+	}
+	
+	public final static List<Hero> getAll() {
+		return all;
+	}
 }
