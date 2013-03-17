@@ -15,6 +15,7 @@ import net.threedoubloons.legendaryrandomiser.data.Sets;
 import net.threedoubloons.legendaryrandomiser.data.Villain;
 
 public class GameDetails implements Serializable {
+	private long activeSets = Sets.CoreSet;
 	private static final long serialVersionUID = -6690498520538188426L;
 	private static Random r = new Random();
 
@@ -118,11 +119,11 @@ public class GameDetails implements Serializable {
 	}
 
 	private void initialiseLists() {
-		Hero.initialiseAllList(Sets.CoreSet);
-		Mastermind.initialiseAllList(Sets.CoreSet);
-		Scheme.initialiseAllList(Sets.CoreSet);
-		Villain.initialiseAllList(Sets.CoreSet);
-		Henchman.initialiseAllList(Sets.CoreSet);
+		Hero.initialiseAllList(activeSets);
+		Mastermind.initialiseAllList(activeSets);
+		Scheme.initialiseAllList(activeSets);
+		Villain.initialiseAllList(activeSets);
+		Henchman.initialiseAllList(activeSets);
 	}
 
 	public void addRandomMastermind() {
