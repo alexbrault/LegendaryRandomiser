@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class GameDetailsActivity extends Activity {
+	public static final int RESULT_REDO = RESULT_FIRST_USER + 0;
 	GameDetails details;
 	
 	@Override
@@ -108,7 +109,7 @@ public class GameDetailsActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.game_details, menu);
+		getMenuInflater().inflate(R.menu.game_details, menu);
 		return true;
 	}
 
@@ -124,6 +125,10 @@ public class GameDetailsActivity extends Activity {
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
 			//NavUtils.navigateUpFromSameTask(this);
+			finish();
+			return true;
+		case R.id.reroll:
+			setResult(RESULT_REDO);
 			finish();
 			return true;
 		}
