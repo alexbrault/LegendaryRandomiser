@@ -36,6 +36,15 @@ public class GameDetails implements Serializable {
 	private ArrayList<String> notes = new ArrayList<String>();
 	private ArrayList<String> errors = new ArrayList<String>();
 	
+	public GameDetails() {
+		initialiseLists();
+	}
+	
+	public void setActiveSets(long newSets) {
+		activeSets = newSets;
+		initialiseLists();
+	}
+	
 	public int getNumPlayers() {
 		return numPlayers;
 	}
@@ -107,7 +116,6 @@ public class GameDetails implements Serializable {
 	public void randomiseAll() {
 		notes.clear();
 		errors.clear();
-		initialiseLists();
 		addRandomMastermind();
 		applyPlayerCount();
 		addRandomScheme();
