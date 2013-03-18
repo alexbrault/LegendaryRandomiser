@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="blackWidow">Black Widow</string>
+    <string name="captain">Captain America</string>
+    <string name="cyclops">Cyclops</string>
+    <string name="deadpool">Deadpool</string>
+    <string name="emmaFrost">Emma Frost</string>
+    <string name="gambit">Gambit</string>
+    <string name="hawkeye">Hawkeye</string>
+    <string name="hulk">Hulk</string>
+    <string name="ironMan">Iron Man</string>
+    <string name="nickFury">Nick Fury</string>
+    <string name="rogue">Rogue</string>
+    <string name="spiderman">Spiderman</string>
+    <string name="storm">Storm</string>
+    <string name="thor">Thor</string>
+    <string name="wolverine">Wolverine</string>
+    
+</resources>
