@@ -41,7 +41,7 @@ public class GameDetailsActivity extends Activity {
 		view.setCompoundDrawablesWithIntrinsicBounds(m.getPictureId(), 0, 0, 0);
 
 		view = (TextView)findViewById(R.id.scheme);
-		view.setText(details.getScheme().getName());
+		view.setText(details.getScheme().getLongName());
 		
 		LayoutInflater inflater = getLayoutInflater();
 		LinearLayout list;
