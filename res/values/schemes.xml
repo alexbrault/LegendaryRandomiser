@@ -9,4 +9,12 @@
     <string name="killbots">to <b>Replace Earth\'s Leaders with Killbots</b></string>
     <string name="virus">to release <b>the Legacy Virus</b></string>
     
+    <string name="breakout_short">Negative Zone Prison Breakout</string>
+    <string name="robbery_short">Midtown Bank Robbery</string>
+    <string name="invasion_short">Secret Invasion of the Skrull Shapeshifters</string>
+    <string name="portals_short">Portals to the Dark Dimension</string>
+    <string name="civilwar_short">Super Hero Civil War</string>
+    <string name="cosmiccube_short">Unleash the Power of the Cosmic Cube</string>
+    <string name="killbots_short">Replace Earth\'s Leaders with Killbots</string>
+    <string name="virus_short">the Legacy Virus</string>
 </resources>

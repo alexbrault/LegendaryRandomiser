@@ -10,8 +10,9 @@ import java.util.List;
 import net.threedoubloons.legendaryrandomiser.GameDetails;
 import net.threedoubloons.legendaryrandomiser.R;
 
-public class Scheme implements Serializable {
+public class Scheme extends CardBase implements Serializable {
 	private static final long serialVersionUID = 10206070375160723L;
+	private final int longName;
 
 	public interface SchemeAction {
 		public void apply(GameDetails details);
@@ -75,31 +76,30 @@ public class Scheme implements Serializable {
 			}});
 	}
 	
-	public Scheme(int name, String action) {
-		super();
-		this.name = name;
+	public Scheme(int longName, int shortName, String action) {
+		super(shortName, 0);
+		this.longName = longName;
 		this.action = action;
 	}
 
-	private final int name;
 	private final String action;
-
-	public int getName() {
-		return name;
-	}
 	
+	public int getLongName() {
+		return longName;
+	}
+
 	public void applyScheme(GameDetails details) {
 		schemeActions.get(action).apply(details);
 	}
 	
-	public final static Scheme breakout = new Scheme(R.string.breakout, "breakout");
-	public final static Scheme robbery = new Scheme(R.string.robbery, "robbery");
-	public final static Scheme invasion = new Scheme(R.string.invasion, "invasion");
-	public final static Scheme portals = new Scheme(R.string.portals, "portals");
-	public final static Scheme civilWar = new Scheme(R.string.civilwar, "civilwar");
-	public final static Scheme cosmicCube = new Scheme(R.string.cosmiccube, "cosmiccube");
-	public final static Scheme killbots = new Scheme(R.string.killbots, "killbots");
-	public final static Scheme virus = new Scheme(R.string.virus, "virus");
+	public final static Scheme breakout = new Scheme(R.string.breakout, R.string.breakout_short, "breakout");
+	public final static Scheme robbery = new Scheme(R.string.robbery, R.string.robbery_short, "robbery");
+	public final static Scheme invasion = new Scheme(R.string.invasion, R.string.invasion_short, "invasion");
+	public final static Scheme portals = new Scheme(R.string.portals, R.string.portals_short, "portals");
+	public final static Scheme civilWar = new Scheme(R.string.civilwar, R.string.civilwar_short, "civilwar");
+	public final static Scheme cosmicCube = new Scheme(R.string.cosmiccube, R.string.cosmiccube_short, "cosmiccube");
+	public final static Scheme killbots = new Scheme(R.string.killbots, R.string.killbots_short, "killbots");
+	public final static Scheme virus = new Scheme(R.string.virus, R.string.virus_short, "virus");
 
 	private static List<Scheme> all;
 	private static List<Scheme> allSP;

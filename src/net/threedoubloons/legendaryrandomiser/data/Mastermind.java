@@ -8,25 +8,15 @@ import java.util.List;
 
 import net.threedoubloons.legendaryrandomiser.R;
 
-public class Mastermind implements Serializable {
+public class Mastermind extends CardBase implements Serializable {
 	private static final long serialVersionUID = -8346554204948014704L;
-	private final int name;
-	private final int pictureId;
 	private final Villain alwaysLeads;
 	
-	public int getName() {
-		return name;
-	}
-	public int getPictureId() {
-		return pictureId;
-	}
 	public Villain getAlwaysLeads() {
 		return alwaysLeads;
 	}
 	public Mastermind(int name, int pictureId, Villain alwaysLeads) {
-		super();
-		this.name = name;
-		this.pictureId = pictureId;
+		super(name, pictureId);
 		this.alwaysLeads = alwaysLeads;
 	}
 

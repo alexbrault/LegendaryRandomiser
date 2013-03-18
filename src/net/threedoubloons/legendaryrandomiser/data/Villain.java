@@ -8,20 +8,11 @@ import java.util.List;
 
 import net.threedoubloons.legendaryrandomiser.R;
 
-public class Villain implements Serializable {
+public class Villain extends CardBase implements Serializable {
 	private static final long serialVersionUID = 4309878817795983831L;
-	private int name;
-	private int pictureId;
-	public int getName() {
-		return name;
-	}
-	public int getPictureId() {
-		return pictureId;
-	}
+	
 	public Villain(int name, int pictureId) {
-		super();
-		this.name = name;
-		this.pictureId = pictureId;
+		super(name, pictureId);
 	}
 	
 	public final static Villain skrulls = new Villain(R.string.skrulls, R.drawable.skrulls);
