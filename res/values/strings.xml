@@ -14,5 +14,7 @@
     <string name="heroes_label">Joining your side are these heroes</string>
     <string name="notes_label">Additional notes</string>
     <string name="reroll_action_label">Reroll</string>
+    <string name="mastermind_setup_label">Mastermind:</string>
+    <string name="scheme_setup_label">Scheme:</string>
 
 </resources>

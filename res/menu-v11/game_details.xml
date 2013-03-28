@@ -5,6 +5,6 @@
         android:orderInCategory="100"
         android:showAsAction="never"
         android:title="@string/action_settings"/ -->
-    <item android:id="@+id/reroll" android:showAsAction="always" android:title="@string/reroll_action_label" android:icon="@drawable/ic_menu_random_old"></item>
+    <item android:id="@+id/reroll" android:showAsAction="always" android:title="@string/reroll_action_label" android:icon="@drawable/action_reroll"></item>
 
 </menu>

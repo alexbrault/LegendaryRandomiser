@@ -7,7 +7,9 @@ import net.threedoubloons.legendaryrandomiser.data.Henchman;
 import net.threedoubloons.legendaryrandomiser.data.Hero;
 import net.threedoubloons.legendaryrandomiser.data.Mastermind;
 import net.threedoubloons.legendaryrandomiser.data.Villain;
+import android.os.Build;
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -100,9 +102,11 @@ public class GameDetailsActivity extends Activity {
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */
+	@SuppressLint("NewApi")
 	private void setupActionBar() {
-
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			getActionBar().setDisplayHomeAsUpEnabled(true);
+		}
 
 	}
 
