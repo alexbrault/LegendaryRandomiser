@@ -153,8 +153,15 @@ public class GameDetails implements Serializable {
 	
 	public void addRandomScheme() {
 		if (scheme != null) return;
-		int mPosition = r.nextInt(Scheme.getAll(numPlayers).size());
-		scheme = Scheme.getAll(numPlayers).get(mPosition);
+		int mPosition;
+		Scheme scheme;
+		boolean isAcceptable;
+		do {
+			mPosition = r.nextInt(Scheme.getAll().size());
+			scheme = Scheme.getAll().get(mPosition);
+			isAcceptable = numPlayers == 1 ? scheme.isSPAcceptable() : true; 
+		} while (isAcceptable);
+		this.scheme = scheme;
 	}
 	
 	private void applyScheme() {

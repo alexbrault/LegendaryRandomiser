@@ -13,6 +13,7 @@ import net.threedoubloons.legendaryrandomiser.R;
 public class Scheme extends CardBase implements Serializable {
 	private static final long serialVersionUID = 10206070375160723L;
 	private final int longName;
+	private final boolean isSPAcceptable;
 
 	public interface SchemeAction {
 		public void apply(GameDetails details);
@@ -77,9 +78,14 @@ public class Scheme extends CardBase implements Serializable {
 	}
 	
 	public Scheme(int longName, int shortName, String action) {
+		this(longName, shortName, action, true);
+	}
+	
+	public Scheme(int longName, int shortName, String action, boolean isSPAcceptable) {
 		super(shortName, 0);
 		this.longName = longName;
 		this.action = action;
+		this.isSPAcceptable = isSPAcceptable;
 	}
 
 	private final String action;
@@ -87,42 +93,37 @@ public class Scheme extends CardBase implements Serializable {
 	public int getLongName() {
 		return longName;
 	}
+	
+	public boolean isSPAcceptable() {
+		return isSPAcceptable;
+	}
 
 	public void applyScheme(GameDetails details) {
 		schemeActions.get(action).apply(details);
 	}
 	
-	public final static Scheme breakout = new Scheme(R.string.breakout, R.string.breakout_short, "breakout");
+	public final static Scheme breakout = new Scheme(R.string.breakout, R.string.breakout_short, "breakout", false);
 	public final static Scheme robbery = new Scheme(R.string.robbery, R.string.robbery_short, "robbery");
 	public final static Scheme invasion = new Scheme(R.string.invasion, R.string.invasion_short, "invasion");
 	public final static Scheme portals = new Scheme(R.string.portals, R.string.portals_short, "portals");
-	public final static Scheme civilWar = new Scheme(R.string.civilwar, R.string.civilwar_short, "civilwar");
+	public final static Scheme civilWar = new Scheme(R.string.civilwar, R.string.civilwar_short, "civilwar", false);
 	public final static Scheme cosmicCube = new Scheme(R.string.cosmiccube, R.string.cosmiccube_short, "cosmiccube");
 	public final static Scheme killbots = new Scheme(R.string.killbots, R.string.killbots_short, "killbots");
 	public final static Scheme virus = new Scheme(R.string.virus, R.string.virus_short, "virus");
 
 	private static List<Scheme> all;
-	private static List<Scheme> allSP;
 	public static void initialiseAllList(long sets) {
 		List<Scheme> all = new ArrayList<Scheme>();
-		List<Scheme> allSP = new ArrayList<Scheme>();
 		if ((sets & Sets.CoreSet) == Sets.CoreSet) {
 			all.addAll(Arrays.asList(coreSet));
-			allSP.addAll(Arrays.asList(coreSetSP));
 		}
 		
 		Scheme.all = Collections.unmodifiableList(all);
-		Scheme.allSP = Collections.unmodifiableList(allSP);
 	}
 	
-	public final static List<Scheme> getAll(int numPlayers) {
-		if (numPlayers == 1) {
-			return allSP;
-		} else {
-			return all;
-		}
+	public final static List<Scheme> getAll() {
+		return all;
 	}
-	
+
 	public final static Scheme[] coreSet = {breakout, robbery, invasion, portals, civilWar, cosmicCube, killbots, virus};
-	public final static Scheme[] coreSetSP = {robbery, invasion, portals, cosmicCube, killbots, virus};
 }
