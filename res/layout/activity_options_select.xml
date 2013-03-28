@@ -47,4 +47,21 @@
         android:max="4"
         android:progress="1" />
 
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/randomiseButton"
+        android:layout_alignLeft="@+id/num_players_seek"
+        android:layout_alignRight="@+id/num_players_seek"
+        android:layout_below="@+id/numPlayersLabel" >
+
+        <include
+            layout="@layout/advanced_options_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </include>
+    </ScrollView>
+
 </RelativeLayout>

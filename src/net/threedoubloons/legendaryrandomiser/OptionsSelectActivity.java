@@ -1,15 +1,21 @@
 package net.threedoubloons.legendaryrandomiser;
 
+import net.threedoubloons.legendaryrandomiser.data.CardListAdapter;
+import net.threedoubloons.legendaryrandomiser.data.Mastermind;
+import net.threedoubloons.legendaryrandomiser.data.Scheme;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-public class OptionsSelectActivity extends Activity implements OnSeekBarChangeListener {
+public class OptionsSelectActivity extends Activity implements OnSeekBarChangeListener, OnItemSelectedListener {
 	private static final int RANDOMISE_GAME = 0;
 	public static final String GAME_OPTIONS = "net.threedoubloons.legendaryrandomiser.GAME_OPTIONS";
 	private GameDetails options;
@@ -27,6 +33,15 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 		
 		numPlayers = (TextView)findViewById(R.id.num_players);
 		numPlayers.setText(Integer.toString(options.getNumPlayers()));
+		
+		Spinner s;
+		s = (Spinner)findViewById(R.id.mastermind_spinner);
+		s.setAdapter(new CardListAdapter<Mastermind>(Mastermind.getAll(), this));
+		s.setOnItemSelectedListener(this);
+		
+		s = (Spinner)findViewById(R.id.scheme_spinner);
+		s.setAdapter(new CardListAdapter<Scheme>(Scheme.getAll(), this));
+		s.setOnItemSelectedListener(this);
 	}
 
 	@Override
@@ -70,5 +85,32 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int pos,
+			long id) {
+		String tag = (String)parent.getTag();
+		if ("mastermind".equals(tag)) {
+			Object selected = parent.getItemAtPosition(pos);
+			if (selected instanceof CardListAdapter.RandomiseThisAction) {
+				options.setMastermind(-1);
+				parent.setSelection(options.addRandomMastermind() + 1);
+			} else {
+				options.setMastermind(pos - 1);
+			}
+		} else if ("scheme".equals(tag)) {
+			Object selected = parent.getItemAtPosition(pos);
+			if (selected instanceof CardListAdapter.RandomiseThisAction) {
+				options.setScheme(-1);
+				parent.setSelection(options.addRandomScheme() + 1);
+			} else {
+				options.setScheme(pos - 1);
+			}
+		}
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
 	}
 }
