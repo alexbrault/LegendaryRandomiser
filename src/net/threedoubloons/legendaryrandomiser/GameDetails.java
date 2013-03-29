@@ -23,10 +23,10 @@ public class GameDetails implements Serializable {
 	private int numVillains = 2;
 	private int numHenchmen = 1;
 	private int numHeroes = 1;
-	private int mastermind = -1;
+	private Mastermind mastermind;
 	private ArrayList<Villain> villains = new ArrayList<Villain>();
 	private ArrayList<Henchman> henchmen = new ArrayList<Henchman>();
-	private int scheme = -1;
+	private Scheme scheme;
 	private HashMap<CardType, Integer> villainDeckContents = new HashMap<CardType, Integer>();
 	private ArrayList<Hero> heroes = new ArrayList<Hero>();
 	private ArrayList<String> notes = new ArrayList<String>();
@@ -79,19 +79,23 @@ public class GameDetails implements Serializable {
 	}
 	
 	public void setMastermind(Mastermind m) {
-		mastermind = Mastermind.getAll().indexOf(m);
+		mastermind = m;
 	}
 
 	public final Mastermind getMastermind() {
-		return Mastermind.getAll().get(mastermind);
+		return mastermind;
 	}
 	
 	public void setMastermind(int m) {
-		mastermind = m;
+		if (m == -1) {
+			mastermind = null;
+		} else {
+			mastermind = Mastermind.getAll().get(m);
+		}
 	}
 	
 	public int getMastermindPosition() {
-		return mastermind;
+		return Mastermind.getAll().indexOf(mastermind);
 	}
 	
 	public final Iterable<Villain> getVillains() {
@@ -116,6 +120,10 @@ public class GameDetails implements Serializable {
 	
 	public int getNumNotes() {
 		return notes.size() + errors.size();
+	}
+	
+	public void removeVillainAtPosition(int pos) {
+		villains.remove(pos);
 	}
 	
 	public final Iterable<Map.Entry<CardType, Integer>> getVillainsDeckContents() {
@@ -155,10 +163,10 @@ public class GameDetails implements Serializable {
 	}
 
 	public int addRandomMastermind() {
-		if (mastermind != -1) return mastermind;
+		if (mastermind != null) return getMastermindPosition();
 		int mPosition = r.nextInt(Mastermind.getAll().size());
-		mastermind = mPosition;
-		return mastermind;
+		mastermind = Mastermind.getAll().get(mPosition);
+		return mPosition;
 	}
 	
 	private void applyPlayerCount() {
@@ -173,7 +181,7 @@ public class GameDetails implements Serializable {
 	}
 	
 	public int addRandomScheme() {
-		if (scheme != -1) return scheme;
+		if (scheme != null) return getSchemePosition();
 		int mPosition;
 		Scheme scheme;
 		boolean isAcceptable;
@@ -182,8 +190,8 @@ public class GameDetails implements Serializable {
 			scheme = Scheme.getAll().get(mPosition);
 			isAcceptable = numPlayers == 1 ? scheme.isSPAcceptable() : true; 
 		} while (!isAcceptable);
-		this.scheme = mPosition;
-		return this.scheme;
+		this.scheme = Scheme.getAll().get(mPosition);
+		return mPosition;
 	}
 	
 	private void applyScheme() {
@@ -239,7 +247,7 @@ public class GameDetails implements Serializable {
 		}
 	}
 	
-	private int addRandomVillain() {
+	public int addRandomVillain() {
 		int mPosition;
 		Villain v;
 		do {
@@ -248,6 +256,11 @@ public class GameDetails implements Serializable {
 		} while (villains.contains(v));
 		villains.add(v);
 		return mPosition;
+	}
+	
+	public void addVillain(int vp) {
+		Villain v = Villain.getAll().get(vp);
+		villains.add(v);
 	}
 
 	private void addHenchmen() {
@@ -285,15 +298,23 @@ public class GameDetails implements Serializable {
 	}
 
 	public final Scheme getScheme() {
-		return Scheme.getAll().get(scheme);
-	}
-	
-	public int getSchemePosition() {
 		return scheme;
 	}
 	
+	public int getSchemePosition() {
+		return Scheme.getAll().indexOf(scheme);
+	}
+
+	public void setScheme(Scheme s) {
+		scheme = s;
+	}
+	
 	public void setScheme(int position) {
-		scheme = position;
+		if (position == -1) {
+			scheme = null;
+		} else {
+			scheme = Scheme.getAll().get(position);
+		}
 	}
 	
 	public void addNote(String note) {
