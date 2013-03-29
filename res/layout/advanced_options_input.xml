@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView1"
-        android:tag="mastermind" />
+        android:tag="Mastermind" />
 
     <TextView
         android:id="@+id/textView2"
@@ -33,6 +33,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textView2"
-        android:tag="scheme" />
+        android:tag="Scheme" />
 
 </RelativeLayout>

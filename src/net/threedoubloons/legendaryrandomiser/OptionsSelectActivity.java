@@ -90,17 +90,20 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
 			long id) {
+		Object selected;
 		String tag = (String)parent.getTag();
-		if ("mastermind".equals(tag)) {
-			Object selected = parent.getItemAtPosition(pos);
+		SpinnerTag t = SpinnerTag.valueOf(SpinnerTag.class, tag);
+		switch(t.getCategory()) {
+		case Mastermind:
+			selected = parent.getItemAtPosition(pos);
 			if (selected instanceof CardListAdapter.RandomiseThisAction) {
 				options.setMastermind(-1);
 				parent.setSelection(options.addRandomMastermind() + 1);
 			} else {
 				options.setMastermind(pos - 1);
 			}
-		} else if ("scheme".equals(tag)) {
-			Object selected = parent.getItemAtPosition(pos);
+		case Scheme:
+			selected = parent.getItemAtPosition(pos);
 			if (selected instanceof CardListAdapter.RandomiseThisAction) {
 				options.setScheme(-1);
 				parent.setSelection(options.addRandomScheme() + 1);
@@ -112,5 +115,38 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
+	}
+	
+	private static enum SpinnerTag {
+		Mastermind(SpinnerCategory.Mastermind),
+		Scheme(SpinnerCategory.Scheme),
+		Villain0(SpinnerCategory.Villain),
+		Villain1(SpinnerCategory.Villain),
+		Villain2(SpinnerCategory.Villain),
+		Villain3(SpinnerCategory.Villain),
+		Henchman0(SpinnerCategory.Henchman),
+		Henchman1(SpinnerCategory.Henchman),
+		Henchman2(SpinnerCategory.Henchman),
+		Hero0(SpinnerCategory.Hero),
+		Hero1(SpinnerCategory.Hero),
+		Hero2(SpinnerCategory.Hero),
+		Hero3(SpinnerCategory.Hero),
+		Hero4(SpinnerCategory.Hero),
+		Hero5(SpinnerCategory.Hero);
+		private final SpinnerCategory category;
+		SpinnerTag(SpinnerCategory cat) {
+			category = cat;
+		}
+		public SpinnerCategory getCategory() {
+			return category;
+		}
+	}
+	
+	private static enum SpinnerCategory {
+		Mastermind,
+		Scheme,
+		Villain,
+		Henchman,
+		Hero,
 	}
 }
