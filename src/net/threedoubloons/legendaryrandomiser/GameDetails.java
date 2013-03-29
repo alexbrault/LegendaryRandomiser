@@ -13,6 +13,7 @@ import net.threedoubloons.legendaryrandomiser.data.Mastermind;
 import net.threedoubloons.legendaryrandomiser.data.Scheme;
 import net.threedoubloons.legendaryrandomiser.data.Sets;
 import net.threedoubloons.legendaryrandomiser.data.Villain;
+import net.threedoubloons.legendaryrandomiser.util.CollectionsEx;
 
 public class GameDetails implements Serializable {
 	private long activeSets = Sets.CoreSet;
@@ -141,7 +142,9 @@ public class GameDetails implements Serializable {
 		applyPlayerCount();
 		addRandomScheme();
 		applyScheme();
-		addAlwaysLeads();
+		if (!addAlwaysLeads()) {
+			addError("Mastermind could not lead his preferred troops");
+		}
 		addVillains();
 		addHenchmen();
 		addHeroes();
@@ -151,6 +154,30 @@ public class GameDetails implements Serializable {
 	private void checkInconsistencies() {
 		if (numPlayers == 1 && !getScheme().isSPAcceptable()) {
 			addError("Scheme is not designed for singleplayer games");
+		}
+		
+		if (villains.size() > getNumVillains()) {
+			addError("Too many villains");
+		}
+		
+		if (henchmen.size() > getNumHenchmen()) {
+			addError("Too many henchmen");
+		}
+		
+		if (heroes.size() > getNumHeroes()) {
+			addError("Too many heroes");
+		}
+		
+		if (CollectionsEx.hasDuplicate(villains)) {
+			addError("Duplicate villains");
+		}
+		
+		if (CollectionsEx.hasDuplicate(henchmen)) {
+			addError("Duplicate henchmen");
+		}
+		
+		if (CollectionsEx.hasDuplicate(heroes)) {
+			addError("Duplicate heroes");
 		}
 	}
 
