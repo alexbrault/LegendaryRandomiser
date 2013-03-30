@@ -20,12 +20,27 @@ public abstract class CardBase implements Serializable {
 	}
 	
 	@Override
-	public boolean equals(Object o) {
-		if (this.getClass() != o.getClass())
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + name;
+		result = prime * result + pictureId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		
-		CardBase other = (CardBase)o; 
-		
-		return this.name == other.name && this.pictureId == other.pictureId;
+		if (obj.getClass() != this.getClass())
+			return false;
+		CardBase other = (CardBase) obj;
+		if (name != other.name)
+			return false;
+		if (pictureId != other.pictureId)
+			return false;
+		return true;
 	}
 }
