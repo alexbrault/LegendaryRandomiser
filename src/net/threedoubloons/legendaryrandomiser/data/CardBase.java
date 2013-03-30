@@ -18,4 +18,14 @@ public abstract class CardBase implements Serializable {
 	public final int getPictureId() {
 		return pictureId;
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this.getClass() != o.getClass())
+			return false;
+		
+		CardBase other = (CardBase)o; 
+		
+		return this.name == other.name && this.pictureId == other.pictureId;
+	}
 }

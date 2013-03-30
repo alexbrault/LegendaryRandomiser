@@ -285,9 +285,17 @@ public class GameDetails implements Serializable {
 		return mPosition;
 	}
 	
-	public void addVillain(int vp) {
-		Villain v = Villain.getAll().get(vp);
-		villains.add(v);
+	public boolean addVillain(Villain selected) {
+		if (selected == null) {
+			return true;
+		}
+		
+		if (villains.contains(selected)) {
+			return false;
+		}
+		
+		villains.add(selected);
+		return true;
 	}
 
 	private void addHenchmen() {

@@ -15,6 +15,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class OptionsSelectActivity extends Activity implements OnSeekBarChangeListener, OnItemSelectedListener {
 	private static final int RANDOMISE_GAME = 0;
@@ -119,7 +120,10 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 			if (selected instanceof CardListAdapter.RandomiseThisAction) {
 				options.addRandomVillain();
 			} else if (selected != null) {
-				options.addVillain(pos - 1);
+				boolean isDuplicate = !options.addVillain((Villain)selected);
+				if (isDuplicate) {
+					Toast.makeText(this, "Villain already chosen", Toast.LENGTH_SHORT).show();
+				}
 			}
 			parent.setSelection(0);
 			break;
