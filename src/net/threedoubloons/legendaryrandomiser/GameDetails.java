@@ -167,18 +167,6 @@ public class GameDetails implements Serializable {
 		if (heroes.size() > getNumHeroes()) {
 			addError("Too many heroes");
 		}
-		
-		if (CollectionsEx.hasDuplicate(villains)) {
-			addError("Duplicate villains");
-		}
-		
-		if (CollectionsEx.hasDuplicate(henchmen)) {
-			addError("Duplicate henchmen");
-		}
-		
-		if (CollectionsEx.hasDuplicate(heroes)) {
-			addError("Duplicate heroes");
-		}
 	}
 
 	private void initialiseLists() {
