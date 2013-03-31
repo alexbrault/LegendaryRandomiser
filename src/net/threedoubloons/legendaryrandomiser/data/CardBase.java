@@ -1,12 +1,14 @@
 package net.threedoubloons.legendaryrandomiser.data;
 
+import net.threedoubloons.legendaryrandomiser.R;
+
 public abstract class CardBase {
 	private final int name;
 	private final int pictureId;
 	private final int expansionSymbol;
 	
 	protected CardBase(int name, int pictureId) {
-		this(name, pictureId, 0);
+		this(name, pictureId, R.drawable.ic_exp_core);
 	}
 	
 	protected CardBase(int name, int pictureId, int expansionSymbol) {
