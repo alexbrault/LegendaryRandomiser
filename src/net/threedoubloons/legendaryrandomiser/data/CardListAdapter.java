@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
@@ -53,11 +54,11 @@ public class CardListAdapter<T extends CardBase> implements SpinnerAdapter {
 
 	@Override
 	public View getView(int pos, View view, ViewGroup parent) {
-		if (!(view instanceof TextView)) {
+		if (!(view instanceof LinearLayout)) {
 			view = inflater.inflate(R.layout.legendary_item_label, null);
 		}
 		
-		TextView v = (TextView)view;
+		TextView v = (TextView)view.findViewById(R.id.lil_label);
 		
 		if (pos == 0) {
 			v.setText("No preference");
@@ -66,7 +67,7 @@ public class CardListAdapter<T extends CardBase> implements SpinnerAdapter {
 		} else if (pos == list.size() + 1) {
 			v.setText("Randomise now");
 			v.setTextColor(Color.BLUE);
-			v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_random,	0, 0, 0);
+			v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_random, 0, 0, 0);
 		} else {
 			CardBase card = list.get(pos - 1);
 			v.setText(card.getName());

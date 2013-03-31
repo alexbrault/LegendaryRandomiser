@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,48 +36,58 @@ public class GameDetailsActivity extends Activity {
 		}
 		
 		details.randomiseAll();
-		TextView view;
+		TextView label;
+		View v;
 		
-		view = (TextView)findViewById(R.id.mastermind);		
+		v = findViewById(R.id.mastermind);
+		label = (TextView)v.findViewById(R.id.lil_label);
 		Mastermind m = details.getMastermind();
-		view.setText(m.getName());
-		view.setCompoundDrawablesWithIntrinsicBounds(m.getPictureId(), 0, 0, 0);
+		label.setText(m.getName());
+		label.setCompoundDrawablesWithIntrinsicBounds(m.getPictureId(), 0, 0, 0);
 
-		view = (TextView)findViewById(R.id.scheme);
-		view.setText(details.getScheme().getLongName());
+		v = findViewById(R.id.scheme);
+		label = (TextView)v.findViewById(R.id.lil_label);
+		label.setText(details.getScheme().getLongName());
 		
 		LayoutInflater inflater = getLayoutInflater();
 		LinearLayout list;
 		
 		list = (LinearLayout)findViewById(R.id.villains_list);
 		for (Villain villain : details.getVillains()) {
-			TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
-			v.setText(villain.getName());
-			v.setCompoundDrawablesWithIntrinsicBounds(villain.getPictureId(), 0, 0, 0);
+			v = inflater.inflate(R.layout.legendary_item_label, null);
+			label = (TextView)v.findViewById(R.id.lil_label);
+			label.setText(villain.getName());
+			label.setCompoundDrawablesWithIntrinsicBounds(villain.getPictureId(), 0, 0, 0);
 			list.addView(v);
 		}
 
 		list = (LinearLayout)findViewById(R.id.henchmen_list);
 		for (Henchman h : details.getHenchmen()) {
-			TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
-			v.setText(h.getName());
-			v.setCompoundDrawablesWithIntrinsicBounds(h.getPictureId(), 0, 0, 0);
+			v = inflater.inflate(R.layout.legendary_item_label, null);
+			label = (TextView)v.findViewById(R.id.lil_label);
+			label.setText(h.getName());
+			label.setCompoundDrawablesWithIntrinsicBounds(h.getPictureId(), 0, 0, 0);
 			list.addView(v);
 		}
 		
 		list = (LinearLayout)findViewById(R.id.villaindeck_list);
 		for (Map.Entry<CardType, Integer> card : details.getVillainsDeckContents()) {
-			TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
-			v.setText(String.format("%d %s", card.getValue(), card.getKey().getName()));
-			v.setCompoundDrawablesWithIntrinsicBounds(card.getKey().getPictureId(), 0, 0, 0);
+			v = inflater.inflate(R.layout.legendary_item_label, null);
+			label = (TextView)v.findViewById(R.id.lil_label);
+			label.setText(String.format("%d %s", card.getValue(), card.getKey().getName()));
+			label.setCompoundDrawablesWithIntrinsicBounds(card.getKey().getPictureId(), 0, 0, 0);
 			list.addView(v);
 		}
 		
 		list = (LinearLayout)findViewById(R.id.heroes_list);
 		for (Hero h : details.getHeroes()) {
-			TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
-			v.setText(h.getName());
-			v.setCompoundDrawablesWithIntrinsicBounds(h.getPictureId(), 0, h.getAffiliationPictureId(), 0);
+			v = inflater.inflate(R.layout.legendary_item_label, null);
+			label = (TextView)v.findViewById(R.id.lil_label);
+			label.setText(h.getName());
+			label.setCompoundDrawablesWithIntrinsicBounds(h.getPictureId(), 0, 0, 0);
+			ImageView affiliation = (ImageView)v.findViewById(R.id.lil_affiliation_icon);
+			affiliation.setImageResource(h.getAffiliationPictureId());
+			
 			list.addView(v);
 		}
 		
@@ -84,16 +95,18 @@ public class GameDetailsActivity extends Activity {
 			findViewById(R.id.notes_layout).setVisibility(View.VISIBLE);
 			list = (LinearLayout)findViewById(R.id.notes_list);
 			for (String h : details.getNotes()) {
-				TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
-				v.setText(h);
-				v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.bullet, 0, 0, 0);
+				v = inflater.inflate(R.layout.legendary_item_label, null);
+				label = (TextView)v.findViewById(R.id.lil_label);
+				label.setText(h);
+				label.setCompoundDrawablesWithIntrinsicBounds(R.drawable.bullet, 0, 0, 0);
 				list.addView(v);
 			}
 			for (String h : details.getErrors()) {
-				TextView v = (TextView)inflater.inflate(R.layout.legendary_item_label, null);
-				v.setText(h);
-				v.setTextColor(getResources().getColor(R.color.error_message));
-				v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.bullet_important, 0, 0, 0);
+				v = inflater.inflate(R.layout.legendary_item_label, null);
+				label = (TextView)v.findViewById(R.id.lil_label);
+				label.setText(h);
+				label.setTextColor(getResources().getColor(R.color.error_message));
+				label.setCompoundDrawablesWithIntrinsicBounds(R.drawable.bullet_important, 0, 0, 0);
 				list.addView(v);
 			}
 		}

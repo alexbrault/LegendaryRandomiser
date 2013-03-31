@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:drawableLeft="@drawable/missing_img"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+<TextView
+    android:id="@+id/lil_label"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:layout_toLeftOf="@+id/lil_affiliation_icon"
     android:drawablePadding="16dip"
     android:gravity="left|center_vertical"
     android:text=""
     android:textAppearance="?android:attr/textAppearanceLarge" >
 
 </TextView>
+
+<ImageView
+    android:id="@+id/lil_affiliation_icon"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_toLeftOf="@+id/lil_expansion_icon"
+    android:contentDescription="Affiliation Icon" />
+
+<ImageView
+    android:id="@+id/lil_expansion_icon"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:contentDescription="Expansion Icon" />
+
+</RelativeLayout>
