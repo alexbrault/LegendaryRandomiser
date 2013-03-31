@@ -160,7 +160,7 @@ public class GameDetails implements Serializable {
 			mPosition = r.nextInt(Scheme.getAll().size());
 			scheme = Scheme.getAll().get(mPosition);
 			isAcceptable = numPlayers == 1 ? scheme.isSPAcceptable() : true; 
-		} while (isAcceptable);
+		} while (!isAcceptable);
 		this.scheme = scheme;
 	}
 	
