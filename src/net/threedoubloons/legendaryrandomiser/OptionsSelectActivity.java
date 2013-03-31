@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -32,7 +33,7 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.options_select, menu);
+		getMenuInflater().inflate(R.menu.options_select, menu);
 		return true;
 	}
 
@@ -55,6 +56,18 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 			}
 		}
 		super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.action_settings:
+			Intent i = new Intent();
+			i.setClass(getApplicationContext(), SettingsActivity.class);
+			startActivity(i);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

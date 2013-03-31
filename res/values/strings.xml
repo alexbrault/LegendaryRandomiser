@@ -16,5 +16,6 @@
     <string name="reroll_action_label">Reroll</string>
     <string name="mastermind_setup_label">Mastermind:</string>
     <string name="scheme_setup_label">Scheme:</string>
+    <string name="pref_sets_title">Sets available</string>
 
 </resources>

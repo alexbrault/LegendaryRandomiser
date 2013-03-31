@@ -30,6 +30,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="net.threedoubloons.legendaryrandomiser.OptionsSelect" />
         </activity>
+        <activity android:name="net.threedoubloons.legendaryrandomiser.SettingsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="net.threedoubloons.legendaryrandomiser.OptionsSelect" />
+        </activity>
     </application>
 
 </manifest>
