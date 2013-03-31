@@ -3,9 +3,16 @@ package net.threedoubloons.legendaryrandomiser.data;
 public abstract class CardBase {
 	private final int name;
 	private final int pictureId;
+	private final int expansionSymbol;
+	
 	protected CardBase(int name, int pictureId) {
+		this(name, pictureId, 0);
+	}
+	
+	protected CardBase(int name, int pictureId, int expansionSymbol) {
 		this.name = name;
 		this.pictureId = pictureId;
+		this.expansionSymbol = expansionSymbol;
 	}
 
 	public final int getName() {
@@ -14,5 +21,9 @@ public abstract class CardBase {
 
 	public final int getPictureId() {
 		return pictureId;
+	}
+
+	public int getExpansionSymbol() {
+		return expansionSymbol;
 	}
 }
