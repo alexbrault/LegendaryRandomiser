@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
-    <MultiSelectListPreference android:entryValues="@array/pref_sets_values" android:entries="@array/pref_sets_labels" android:key="prefs_sets" android:title="@string/pref_sets_title" android:defaultValue="@array/pref_sets_default"/>
-    
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:threed="http://schemas.android.com/apk/res/net.threedoubloons.legendaryrandomiser" >
+    <net.threedoubloons.legendaryrandomiser.SetsListPreference 
+        android:entryValues="@array/pref_sets_values" 
+       	android:entries="@array/pref_sets_labels"
+        android:key="prefs_sets" 
+        android:title="@string/pref_sets_title" 
+        android:defaultValue="0x0000000000000001"
+        threed:entryIcons="@array/pref_sets_icons"
+        threed:alwaysOn="0x0000000000000001"
+        >
+        
+    </net.threedoubloons.legendaryrandomiser.SetsListPreference>
 
 </PreferenceScreen>

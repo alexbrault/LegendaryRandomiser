@@ -12,4 +12,10 @@
         <item >core</item>
     </string-array>
     
+    <array
+        name="pref_sets_icons">
+        <item>@drawable/ic_exp_core</item>
+        <item>@drawable/ic_exp_core</item>
+    </array>
+    
 </resources>
