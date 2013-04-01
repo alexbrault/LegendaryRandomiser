@@ -27,11 +27,17 @@ public class Mastermind extends CardBase implements Serializable {
 		new Mastermind(R.string.magneto, R.drawable.magneto, Villain.brotherhood)
 	};
 
+	private final static Mastermind[] darkCity = {};
+
 	private static List<Mastermind> all;
 	public static void initialiseAllList(long sets) {
 		List<Mastermind> all = new ArrayList<Mastermind>();
-		if ((sets & Sets.CoreSet) == Sets.CoreSet) {
+		if ((sets & Sets.CoreSet) != 0) {
 			all.addAll(Arrays.asList(coreSet));
+		}
+
+		if ((sets & Sets.DarkCity) != 0) {
+			all.addAll(Arrays.asList(darkCity));
 		}
 		
 		Mastermind.all = Collections.unmodifiableList(all);

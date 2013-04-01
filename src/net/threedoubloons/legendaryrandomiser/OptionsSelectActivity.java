@@ -1,8 +1,10 @@
 package net.threedoubloons.legendaryrandomiser;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,7 +13,9 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 public class OptionsSelectActivity extends Activity implements OnSeekBarChangeListener {
+	private static final String PREFS_SETS = "prefs_sets";
 	private static final int RANDOMISE_GAME = 0;
+	private static final int CHANGE_SETTINGS = 1;
 	public static final String GAME_OPTIONS = "net.threedoubloons.legendaryrandomiser.GAME_OPTIONS";
 	private GameDetails options;
 	private TextView numPlayers;
@@ -22,6 +26,7 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 		setContentView(R.layout.activity_options_select);
 		
 		options = new GameDetails();
+		loadSettings();
 		
 		SeekBar numPlayersBar = (SeekBar)findViewById(R.id.num_players_seek);
 		numPlayersBar.setOnSeekBarChangeListener(this);
@@ -54,8 +59,15 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 				i.putExtra(GAME_OPTIONS, options);
 				startActivityForResult(i, RANDOMISE_GAME);
 			}
+		case CHANGE_SETTINGS:
+			loadSettings();
 		}
 		super.onActivityResult(requestCode, resultCode, data);
+	}
+
+	private void loadSettings() {
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		options.setActiveSets(sharedPreferences.getLong(PREFS_SETS, 0L));
 	}
 
 	@Override
@@ -64,7 +76,7 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 		case R.id.action_settings:
 			Intent i = new Intent();
 			i.setClass(getApplicationContext(), SettingsActivity.class);
-			startActivity(i);
+			startActivityForResult(i, CHANGE_SETTINGS);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
