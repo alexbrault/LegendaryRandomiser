@@ -211,7 +211,7 @@ public class SetsListPreference extends DialogPreference {
             dest.writeLong(value);
         }
         
-        public static final Parcelable.Creator<SavedState> CREATOR =
+        /*public static final Parcelable.Creator<SavedState> CREATOR =
                 new Parcelable.Creator<SavedState>() {
             public SavedState createFromParcel(Parcel in) {
                 return new SavedState(in);
@@ -220,6 +220,6 @@ public class SetsListPreference extends DialogPreference {
             public SavedState[] newArray(int size) {
                 return new SavedState[size];
             }
-        };
+        };*/
     }
 }
