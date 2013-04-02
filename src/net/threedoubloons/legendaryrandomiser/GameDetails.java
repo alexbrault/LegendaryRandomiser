@@ -16,18 +16,18 @@ import net.threedoubloons.legendaryrandomiser.data.Sets;
 import net.threedoubloons.legendaryrandomiser.data.Villain;
 
 public class GameDetails implements Serializable {
-	private EnumSet<Sets> activeSets = Sets.make(Sets.CoreSet);
 	private static final long serialVersionUID = -6690498520538188426L;
 	private static Random r = new Random();
-
-	private int numPlayers = 2;
-	private int numVillains = 2;
 	private final static int[] numVillainsPerPlayer = {0, 1, 2, 3, 3, 4};
-	private int numHenchmen = 1;
 	private final static int[] numHenchmenPerPlayer = {0, 1, 1, 1, 2, 2};
-	private int numHeroes = 1;
 	private final static int[] numHeroesPerPlayer = {0, 3, 5, 5, 5, 6};
 	private final static int[] numBystanderPerPlayer = {0, 1, 2, 8, 8, 12};
+
+	private EnumSet<Sets> activeSets = Sets.make(Sets.CoreSet);
+	private int numPlayers = 2;
+	private int numVillains = 2;
+	private int numHenchmen = 1;
+	private int numHeroes = 1;
 	private Mastermind mastermind;
 	private ArrayList<Villain> villains = new ArrayList<Villain>();
 	private ArrayList<Henchman> henchmen = new ArrayList<Henchman>();
