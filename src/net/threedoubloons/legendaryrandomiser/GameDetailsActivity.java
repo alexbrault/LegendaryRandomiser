@@ -15,8 +15,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class GameDetailsActivity extends Activity {
@@ -133,7 +136,11 @@ public class GameDetailsActivity extends Activity {
 				label.setCompoundDrawablesWithIntrinsicBounds(R.drawable.bullet_important, 0, 0, 0);
 				list.addView(v);
 			}
+		} else {
+			findViewById(R.id.notes_layout).setVisibility(View.GONE);
 		}
+		
+		((ScrollView)findViewById(R.id.scroll)).smoothScrollTo(0, 0);
 	}
 
 	/**
@@ -169,11 +176,19 @@ public class GameDetailsActivity extends Activity {
 			finish();
 			return true;
 		case R.id.reroll:
-			//setResult(RESULT_REDO);
-//			finish();
-//			startActivity(getIntent());
-			randomiseDetails();
-			setupContents();
+			Animation start = AnimationUtils.loadAnimation(this, R.anim.slide_out);
+			final Animation end = AnimationUtils.loadAnimation(this, R.anim.slide_in);
+			start.setAnimationListener(new Animation.AnimationListener() {
+				public void onAnimationStart(Animation animation) {}
+				public void onAnimationRepeat(Animation animation) {}
+				@Override
+				public void onAnimationEnd(Animation animation) {
+					randomiseDetails();
+					setupContents();
+					findViewById(R.id.scroll).startAnimation(end);
+				}
+			});
+			findViewById(R.id.scroll).startAnimation(start);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
