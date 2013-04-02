@@ -2,6 +2,7 @@ package net.threedoubloons.legendaryrandomiser;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -15,7 +16,7 @@ import net.threedoubloons.legendaryrandomiser.data.Sets;
 import net.threedoubloons.legendaryrandomiser.data.Villain;
 
 public class GameDetails implements Serializable {
-	private long activeSets = Sets.CoreSet;
+	private EnumSet<Sets> activeSets = Sets.make(Sets.CoreSet);
 	private static final long serialVersionUID = -6690498520538188426L;
 	private static Random r = new Random();
 
@@ -41,7 +42,7 @@ public class GameDetails implements Serializable {
 	}
 	
 	public void setActiveSets(long newSets) {
-		activeSets = newSets;
+		activeSets = Sets.make(newSets);
 		initialiseLists();
 	}
 	

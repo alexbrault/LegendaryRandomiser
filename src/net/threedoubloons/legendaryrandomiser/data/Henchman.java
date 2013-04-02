@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.List;
 
 import net.threedoubloons.legendaryrandomiser.R;
@@ -23,9 +24,9 @@ public class Henchman extends Villain implements Serializable {
 	private final static Henchman[] coreSet = {handNinja, doombots, sentinel, mutates};
 
 	private static List<Henchman> all;
-	public static void initialiseAllList(long sets) {
+	public static void initialiseAllList(EnumSet<Sets> activeSets) {
 		List<Henchman> all = new ArrayList<Henchman>();
-		if ((sets & Sets.CoreSet) == Sets.CoreSet) {
+		if (activeSets.contains(Sets.CoreSet)) {
 			all.addAll(Arrays.asList(coreSet));
 		}
 		

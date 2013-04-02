@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 
@@ -112,9 +113,9 @@ public class Scheme extends CardBase implements Serializable {
 	public final static Scheme virus = new Scheme(R.string.virus, R.string.virus_short, "virus");
 
 	private static List<Scheme> all;
-	public static void initialiseAllList(long sets) {
+	public static void initialiseAllList(EnumSet<Sets> activeSets) {
 		List<Scheme> all = new ArrayList<Scheme>();
-		if ((sets & Sets.CoreSet) == Sets.CoreSet) {
+		if (activeSets.contains(Sets.CoreSet)) {
 			all.addAll(Arrays.asList(coreSet));
 		}
 		

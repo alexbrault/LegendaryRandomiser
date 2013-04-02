@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.List;
 
 import net.threedoubloons.legendaryrandomiser.R;
@@ -26,9 +27,9 @@ public class Villain extends CardBase implements Serializable {
 	public final static Villain[] coreSet = {skrulls, spiderfoes, enemiesOfAsgard, brotherhood, hydra, mastersOfEvil, radiation};
 
 	private static List<Villain> all;
-	public static void initialiseAllList(long sets) {
+	public static void initialiseAllList(EnumSet<Sets> activeSets) {
 		List<Villain> all = new ArrayList<Villain>();
-		if ((sets & Sets.CoreSet) == Sets.CoreSet) {
+		if (activeSets.contains(Sets.CoreSet)) {
 			all.addAll(Arrays.asList(coreSet));
 		}
 		

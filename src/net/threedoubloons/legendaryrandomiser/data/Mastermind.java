@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.List;
 
 import net.threedoubloons.legendaryrandomiser.R;
@@ -30,13 +31,13 @@ public class Mastermind extends CardBase implements Serializable {
 	private final static Mastermind[] darkCity = {};
 
 	private static List<Mastermind> all;
-	public static void initialiseAllList(long sets) {
+	public static void initialiseAllList(EnumSet<Sets> activeSets) {
 		List<Mastermind> all = new ArrayList<Mastermind>();
-		if ((sets & Sets.CoreSet) != 0) {
+		if (activeSets.contains(Sets.CoreSet)) {
 			all.addAll(Arrays.asList(coreSet));
 		}
 
-		if ((sets & Sets.DarkCity) != 0) {
+		if (activeSets.contains(Sets.DarkCity)) {
 			all.addAll(Arrays.asList(darkCity));
 		}
 		

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.List;
 
 import net.threedoubloons.legendaryrandomiser.R;
@@ -41,9 +42,9 @@ public class Hero extends CardBase implements Serializable {
 	public final static Hero[] coreSet = {blackWidow, captain, cyclops, deadpool, emmaFrost, gambit, hawkeye, hulk, ironMan, nickFury, rogue, spiderman, storm, thor, wolverine};
 
 	private static List<Hero> all;
-	public static void initialiseAllList(long sets) {
+	public static void initialiseAllList(EnumSet<Sets> activeSets) {
 		List<Hero> all = new ArrayList<Hero>();
-		if ((sets & Sets.CoreSet) == Sets.CoreSet) {
+		if (activeSets.contains(Sets.CoreSet)) {
 			all.addAll(Arrays.asList(coreSet));
 		}
 		
