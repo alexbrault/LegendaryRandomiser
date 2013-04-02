@@ -29,16 +29,30 @@ public class GameDetails implements Serializable {
 	private int numHenchmen = 1;
 	private int numHeroes = 1;
 	private Mastermind mastermind;
+	private Scheme scheme;
 	private ArrayList<Villain> villains = new ArrayList<Villain>();
 	private ArrayList<Henchman> henchmen = new ArrayList<Henchman>();
-	private Scheme scheme;
-	private HashMap<CardType, Integer> villainDeckContents = new HashMap<CardType, Integer>();
 	private ArrayList<Hero> heroes = new ArrayList<Hero>();
-	private ArrayList<String> notes = new ArrayList<String>();
-	private ArrayList<String> errors = new ArrayList<String>();
+	private transient HashMap<CardType, Integer> villainDeckContents = new HashMap<CardType, Integer>();
+	private transient ArrayList<String> notes = new ArrayList<String>();
+	private transient ArrayList<String> errors = new ArrayList<String>();
 	
 	public GameDetails() {
 		initialiseLists();
+	}
+
+	public GameDetails(GameDetails other) {
+		super();
+		this.activeSets = other.activeSets;
+		this.numPlayers = other.numPlayers;
+		this.numVillains = other.numVillains;
+		this.numHenchmen = other.numHenchmen;
+		this.numHeroes = other.numHeroes;
+		this.mastermind = other.mastermind;
+		this.scheme = other.scheme;
+		this.villains = new ArrayList<Villain>(other.villains);
+		this.henchmen = new ArrayList<Henchman>(other.henchmen);
+		this.heroes = new ArrayList<Hero>(other.heroes);
 	}
 	
 	public void setActiveSets(long newSets) {
