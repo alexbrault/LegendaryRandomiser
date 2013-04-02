@@ -30,12 +30,20 @@ public class GameDetailsActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		details = (GameDetails)getIntent().getSerializableExtra(OptionsSelectActivity.GAME_OPTIONS);
+		randomiseDetails();
+		setupContents();
+	}
+
+	private void randomiseDetails() {
+		details = new GameDetails((GameDetails)getIntent().getSerializableExtra(OptionsSelectActivity.GAME_OPTIONS));
 		if (details == null) {
 			details = new GameDetails();
 		}
 		
 		details.randomiseAll();
+	}
+
+	private void setupContents() {
 		TextView label;
 		View v;
 		ImageView expansion;
@@ -58,6 +66,7 @@ public class GameDetailsActivity extends Activity {
 		LinearLayout list;
 		
 		list = (LinearLayout)findViewById(R.id.villains_list);
+		list.removeAllViews();
 		for (Villain villain : details.getVillains()) {
 			v = inflater.inflate(R.layout.legendary_item_label, null);
 			label = (TextView)v.findViewById(R.id.lil_label);
@@ -69,6 +78,7 @@ public class GameDetailsActivity extends Activity {
 		}
 
 		list = (LinearLayout)findViewById(R.id.henchmen_list);
+		list.removeAllViews();
 		for (Henchman h : details.getHenchmen()) {
 			v = inflater.inflate(R.layout.legendary_item_label, null);
 			label = (TextView)v.findViewById(R.id.lil_label);
@@ -80,6 +90,7 @@ public class GameDetailsActivity extends Activity {
 		}
 		
 		list = (LinearLayout)findViewById(R.id.villaindeck_list);
+		list.removeAllViews();
 		for (Map.Entry<CardType, Integer> card : details.getVillainsDeckContents()) {
 			v = inflater.inflate(R.layout.legendary_item_label, null);
 			label = (TextView)v.findViewById(R.id.lil_label);
@@ -89,6 +100,7 @@ public class GameDetailsActivity extends Activity {
 		}
 		
 		list = (LinearLayout)findViewById(R.id.heroes_list);
+		list.removeAllViews();
 		for (Hero h : details.getHeroes()) {
 			v = inflater.inflate(R.layout.legendary_item_label, null);
 			label = (TextView)v.findViewById(R.id.lil_label);
@@ -102,9 +114,10 @@ public class GameDetailsActivity extends Activity {
 			list.addView(v);
 		}
 		
+		list = (LinearLayout)findViewById(R.id.notes_list);
+		list.removeAllViews();
 		if (details.getNumNotes() > 0) {
 			findViewById(R.id.notes_layout).setVisibility(View.VISIBLE);
-			list = (LinearLayout)findViewById(R.id.notes_list);
 			for (String h : details.getNotes()) {
 				v = inflater.inflate(R.layout.legendary_item_label, null);
 				label = (TextView)v.findViewById(R.id.lil_label);
@@ -156,8 +169,11 @@ public class GameDetailsActivity extends Activity {
 			finish();
 			return true;
 		case R.id.reroll:
-			setResult(RESULT_REDO);
-			finish();
+			//setResult(RESULT_REDO);
+//			finish();
+//			startActivity(getIntent());
+			randomiseDetails();
+			setupContents();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
