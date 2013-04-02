@@ -23,7 +23,7 @@
     android:layout_height="wrap_content"
     android:layout_centerVertical="true"
     android:layout_toLeftOf="@+id/lil_expansion_icon"
-    android:contentDescription="Affiliation Icon" />
+    android:contentDescription="@string/lil_affiliation_icon_desc" />
 
 <ImageView
     android:id="@+id/lil_expansion_icon"
@@ -31,6 +31,6 @@
     android:layout_height="wrap_content"
     android:layout_alignParentRight="true"
     android:layout_centerVertical="true"
-    android:contentDescription="Expansion Icon" />
+    android:contentDescription="@string/lil_expansion_icon_desc" />
 
 </RelativeLayout>

@@ -4,10 +4,6 @@
         <item >Core set</item>
         <!-- item >Dark City</item-->
     </string-array>
-    <string-array name="pref_sets_values">
-        <item >core</item>
-        <!-- item >dark_city</item-->
-    </string-array>
     
     <array
         name="pref_sets_icons">

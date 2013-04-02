@@ -8,10 +8,11 @@ import android.os.Parcelable;
 import android.preference.DialogPreference;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class SetsListPreference extends DialogPreference {
@@ -19,7 +20,8 @@ public class SetsListPreference extends DialogPreference {
 	private Drawable[] entryIcons;
 	private long alwaysOn = 0;
 	private long value;
-	private long newValue;
+	private long oldValue;
+	private SetEntry[] fullEntries;
 
 	public SetsListPreference(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -56,6 +58,11 @@ public class SetsListPreference extends DialogPreference {
 			icns.recycle();
 		}
 		a.recycle();
+		
+		fullEntries = new SetEntry[entries.length];
+		for (int i = 0; i < entries.length; ++i) {
+			fullEntries[i] = new SetEntry(entries[i], entryIcons[i]);
+		}
 	}
     
     /**
@@ -120,48 +127,34 @@ public class SetsListPreference extends DialogPreference {
 	@Override
 	protected View onCreateDialogView() {
 		View content = super.onCreateDialogView();
-		LinearLayout l = (LinearLayout)content.findViewById(R.id.list);
-		LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		newValue = value;
-		
-		for (int i = 0; i < entries.length;++i) {
-			long mask = 1L << i;
-			View v = inflater.inflate(R.layout.set_label, null);
-			TextView label = (TextView)v.findViewById(R.id.label);
-			CheckBox check = (CheckBox)v.findViewById(R.id.value);
-			v.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					v.findViewById(R.id.value).performClick();
+		final ListView l = (ListView)content;	
+		l.setAdapter(new ArrayAdapter<SetEntry>(getContext(), R.layout.set_label, fullEntries) {
+
+			@Override
+			public View getView(int position, View convertView, ViewGroup parent) {
+				View v = super.getView(position, convertView, parent);
+				l.setItemChecked(position, isChecked(position));
+				TextView tv = (TextView)v;
+				if (isAlwaysOn(position)) {
+					v.setEnabled(false);
+					v.setClickable(true);
+				} else {
+					v.setEnabled(true);
+					v.setClickable(false);
 				}
-			});
-			
-			label.setText(entries[i]);
-			label.setCompoundDrawablesWithIntrinsicBounds(entryIcons[i], null, null, null);
-			
-			check.setTag(i);
-			check.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					int idx = (Integer)v.getTag();
-					CheckBox c = (CheckBox)v;
-					if (c.isChecked()) {
-						newValue = newValue | (1L << idx);
-					} else {
-						newValue = newValue & ~(1L << idx);
-					}
-				}
-			});
-			check.setChecked((value & mask) != 0);
-			
-			if ((alwaysOn & mask) != 0) {
-				v.setEnabled(false);
-				label.setEnabled(false);
-				check.setEnabled(false);
+				tv.setCompoundDrawablesWithIntrinsicBounds(getItem(position).icon, null, null, null);
+				return v;
 			}
-			
-			l.addView(v);
-		}
+		});
+		
+		l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				boolean checked = l.isItemChecked(position);
+				setChecked(position, checked);
+			}
+		});
 		
 		return content;
 	}
@@ -170,13 +163,13 @@ public class SetsListPreference extends DialogPreference {
     protected void onDialogClosed(boolean positiveResult) {
         super.onDialogClosed(positiveResult);
         
-        if (positiveResult && (newValue != value)) {
-            if (callChangeListener(newValue)) {
-                setValue(newValue);
+        if (positiveResult && (oldValue != value)) {
+            if (callChangeListener(value)) {
+                setValue(value);
             }
         }
         
-        newValue = value;
+        oldValue = value;
     }
 
     
@@ -210,16 +203,36 @@ public class SetsListPreference extends DialogPreference {
             super.writeToParcel(dest, flags);
             dest.writeLong(value);
         }
-        
-        /*public static final Parcelable.Creator<SavedState> CREATOR =
-                new Parcelable.Creator<SavedState>() {
-            public SavedState createFromParcel(Parcel in) {
-                return new SavedState(in);
-            }
-            
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-        };*/
+    }
+    
+    private void setChecked(int position, boolean checked) {
+    	if (checked) {
+    		value = value | (1L << position);
+    	} else {
+    		value = value & ~(1L << position);
+    	}
+    }
+    
+    public boolean isChecked(int position) {
+    	return (value & (1L << position)) != 0;
+    }
+    
+    public boolean isAlwaysOn(int position) {
+    	return (alwaysOn & (1L << position)) != 0;
+    }
+    
+    private static class SetEntry {
+    	public CharSequence name;
+    	public Drawable icon;
+    	
+    	public SetEntry(CharSequence name, Drawable icon) {
+    		this.name = name;
+    		this.icon = icon;
+    	}
+
+		@Override
+		public String toString() {
+			return name.toString();
+		}
     }
 }

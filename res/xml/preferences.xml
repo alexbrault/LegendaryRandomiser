@@ -2,7 +2,6 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:threed="http://schemas.android.com/apk/res/net.threedoubloons.legendaryrandomiser" >
     <net.threedoubloons.legendaryrandomiser.SetsListPreference 
-        android:entryValues="@array/pref_sets_values" 
        	android:entries="@array/pref_sets_labels"
         android:key="prefs_sets" 
         android:title="@string/pref_sets_title" 
@@ -12,5 +11,4 @@
         >
         
     </net.threedoubloons.legendaryrandomiser.SetsListPreference>
-
 </PreferenceScreen>
