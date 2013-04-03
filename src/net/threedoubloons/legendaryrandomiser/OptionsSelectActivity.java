@@ -67,7 +67,8 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 
 	private void loadSettings() {
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-		options.setActiveSets(sharedPreferences.getLong(PREFS_SETS, 0L));
+		long defaultSets = Long.decode(getResources().getString(R.string.default_sets));		
+		options.setActiveSets(sharedPreferences.getLong(PREFS_SETS, defaultSets));
 	}
 
 	@Override

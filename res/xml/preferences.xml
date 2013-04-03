@@ -7,7 +7,7 @@
         android:title="@string/pref_sets_title" 
         android:defaultValue="0x0000000000000001"
         threed:entryIcons="@array/pref_sets_icons"
-        threed:alwaysOn="0x0000000000000001"
+        threed:alwaysOn="@string/default_sets"
         >
         
     </net.threedoubloons.legendaryrandomiser.SetsListPreference>
