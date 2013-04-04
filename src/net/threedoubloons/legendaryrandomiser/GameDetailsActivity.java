@@ -33,8 +33,18 @@ public class GameDetailsActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		randomiseDetails();
+		if (savedInstanceState == null) {
+			randomiseDetails();
+		} else {
+			details = (GameDetails)savedInstanceState.getSerializable(OptionsSelectActivity.GAME_OPTIONS);
+		}
 		setupContents();
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putSerializable(OptionsSelectActivity.GAME_OPTIONS, details);
 	}
 
 	private void randomiseDetails() {
