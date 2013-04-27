@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -161,6 +162,15 @@ public class GameDetailsActivity extends Activity {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		setContentView(R.layout.activity_game_details);
+		setupContents();
+		// Show the Up button in the action bar.
+		//setupActionBar();
 	}
 
 	@Override
