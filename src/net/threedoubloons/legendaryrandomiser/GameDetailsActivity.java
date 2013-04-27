@@ -3,7 +3,6 @@ package net.threedoubloons.legendaryrandomiser;
 import java.util.Map;
 
 import net.threedoubloons.legendaryrandomiser.data.CardType;
-import net.threedoubloons.legendaryrandomiser.data.Henchman;
 import net.threedoubloons.legendaryrandomiser.data.Hero;
 import net.threedoubloons.legendaryrandomiser.data.Mastermind;
 import net.threedoubloons.legendaryrandomiser.data.Villain;
@@ -36,7 +35,7 @@ public class GameDetailsActivity extends Activity {
 		if (savedInstanceState == null) {
 			randomiseDetails();
 		} else {
-			details = (GameDetails)savedInstanceState.getSerializable(OptionsSelectActivity.GAME_OPTIONS);
+			details = (GameDetails)savedInstanceState.getParcelable(OptionsSelectActivity.GAME_OPTIONS);
 		}
 		setupContents();
 	}
@@ -44,11 +43,11 @@ public class GameDetailsActivity extends Activity {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putSerializable(OptionsSelectActivity.GAME_OPTIONS, details);
+		outState.putParcelable(OptionsSelectActivity.GAME_OPTIONS, details);
 	}
 
 	private void randomiseDetails() {
-		details = new GameDetails((GameDetails)getIntent().getSerializableExtra(OptionsSelectActivity.GAME_OPTIONS));
+		details = new GameDetails((GameDetails)getIntent().getParcelableExtra(OptionsSelectActivity.GAME_OPTIONS));
 		if (details == null) {
 			details = new GameDetails();
 		}
@@ -65,15 +64,15 @@ public class GameDetailsActivity extends Activity {
 		label = (TextView)v.findViewById(R.id.lil_label);
 		expansion = (ImageView)v.findViewById(R.id.lil_expansion_icon);
 		Mastermind m = details.getMastermind();
-		label.setText(m.getName());
-		label.setCompoundDrawablesWithIntrinsicBounds(m.getPictureId(), 0, 0, 0);
-		expansion.setImageResource(m.getExpansionSymbol());
+		label.setText(m.getCard().getName());
+		label.setCompoundDrawablesWithIntrinsicBounds(m.getCard().getPictureId(), 0, 0, 0);
+		expansion.setImageResource(m.getCard().getExpansionSymbol());
 
 		v = findViewById(R.id.scheme);
 		label = (TextView)v.findViewById(R.id.lil_label);
 		expansion = (ImageView)v.findViewById(R.id.lil_expansion_icon);
 		label.setText(details.getScheme().getLongName());
-		expansion.setImageResource(details.getScheme().getExpansionSymbol());
+		expansion.setImageResource(details.getScheme().getCard().getExpansionSymbol());
 		
 		LayoutInflater inflater = getLayoutInflater();
 		LinearLayout list;
@@ -84,21 +83,21 @@ public class GameDetailsActivity extends Activity {
 			v = inflater.inflate(R.layout.legendary_item_label, null);
 			label = (TextView)v.findViewById(R.id.lil_label);
 			expansion = (ImageView)v.findViewById(R.id.lil_expansion_icon);
-			label.setText(villain.getName());
-			label.setCompoundDrawablesWithIntrinsicBounds(villain.getPictureId(), 0, 0, 0);
-			expansion.setImageResource(villain.getExpansionSymbol());
+			label.setText(villain.getCard().getName());
+			label.setCompoundDrawablesWithIntrinsicBounds(villain.getCard().getPictureId(), 0, 0, 0);
+			expansion.setImageResource(villain.getCard().getExpansionSymbol());
 			list.addView(v);
 		}
 
 		list = (LinearLayout)findViewById(R.id.henchmen_list);
 		list.removeAllViews();
-		for (Henchman h : details.getHenchmen()) {
+		for (Villain h : details.getHenchmen()) {
 			v = inflater.inflate(R.layout.legendary_item_label, null);
 			label = (TextView)v.findViewById(R.id.lil_label);
 			expansion = (ImageView)v.findViewById(R.id.lil_expansion_icon);
-			label.setText(h.getName());
-			label.setCompoundDrawablesWithIntrinsicBounds(h.getPictureId(), 0, 0, 0);
-			expansion.setImageResource(h.getExpansionSymbol());
+			label.setText(h.getCard().getName());
+			label.setCompoundDrawablesWithIntrinsicBounds(h.getCard().getPictureId(), 0, 0, 0);
+			expansion.setImageResource(h.getCard().getExpansionSymbol());
 			list.addView(v);
 		}
 		
@@ -119,10 +118,10 @@ public class GameDetailsActivity extends Activity {
 			label = (TextView)v.findViewById(R.id.lil_label);
 			ImageView affiliation = (ImageView)v.findViewById(R.id.lil_affiliation_icon);
 			expansion = (ImageView)v.findViewById(R.id.lil_expansion_icon);
-			label.setText(h.getName());
-			label.setCompoundDrawablesWithIntrinsicBounds(h.getPictureId(), 0, 0, 0);
+			label.setText(h.getCard().getName());
+			label.setCompoundDrawablesWithIntrinsicBounds(h.getCard().getPictureId(), 0, 0, 0);
 			affiliation.setImageResource(h.getAffiliationPictureId());
-			expansion.setImageResource(h.getExpansionSymbol());
+			expansion.setImageResource(h.getCard().getExpansionSymbol());
 			
 			list.addView(v);
 		}

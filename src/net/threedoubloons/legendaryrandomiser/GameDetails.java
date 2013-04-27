@@ -1,6 +1,5 @@
 package net.threedoubloons.legendaryrandomiser;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -8,15 +7,15 @@ import java.util.Map;
 import java.util.Random;
 
 import net.threedoubloons.legendaryrandomiser.data.CardType;
-import net.threedoubloons.legendaryrandomiser.data.Henchman;
 import net.threedoubloons.legendaryrandomiser.data.Hero;
 import net.threedoubloons.legendaryrandomiser.data.Mastermind;
 import net.threedoubloons.legendaryrandomiser.data.Scheme;
 import net.threedoubloons.legendaryrandomiser.data.Sets;
 import net.threedoubloons.legendaryrandomiser.data.Villain;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class GameDetails implements Serializable {
-	private static final long serialVersionUID = -6690498520538188426L;
+public class GameDetails implements Parcelable {
 	private static Random r = new Random();
 	private final static int[] numVillainsPerPlayer = {0, 1, 2, 3, 3, 4};
 	private final static int[] numHenchmenPerPlayer = {0, 1, 1, 1, 2, 2};
@@ -28,10 +27,10 @@ public class GameDetails implements Serializable {
 	private int numVillains = 2;
 	private int numHenchmen = 1;
 	private int numHeroes = 1;
-	private Mastermind mastermind;
-	private Scheme scheme;
+	private Mastermind mastermind = Mastermind.none;
+	private Scheme scheme = Scheme.none;
 	private ArrayList<Villain> villains = new ArrayList<Villain>();
-	private ArrayList<Henchman> henchmen = new ArrayList<Henchman>();
+	private ArrayList<Villain> henchmen = new ArrayList<Villain>();
 	private ArrayList<Hero> heroes = new ArrayList<Hero>();
 	private transient HashMap<CardType, Integer> villainDeckContents = new HashMap<CardType, Integer>();
 	private transient ArrayList<String> notes = new ArrayList<String>();
@@ -51,10 +50,39 @@ public class GameDetails implements Serializable {
 		this.mastermind = other.mastermind;
 		this.scheme = other.scheme;
 		this.villains = new ArrayList<Villain>(other.villains);
-		this.henchmen = new ArrayList<Henchman>(other.henchmen);
+		this.henchmen = new ArrayList<Villain>(other.henchmen);
 		this.heroes = new ArrayList<Hero>(other.heroes);
 	}
 	
+	public GameDetails(Parcel in) {
+		activeSets = Sets.make(in.readLong());
+		numPlayers = in.readInt();
+		
+		mastermind = Mastermind.get(in.readString());
+		scheme = Scheme.get(in.readString());
+		
+		applyPlayerCount();
+		applyScheme();
+		
+		int arrSize = in.readInt();
+		villains = new ArrayList<Villain>(arrSize);
+		for (int i = 0; i < arrSize; ++i) {
+			villains.add(Villain.get(in.readString()));
+		}
+		
+		arrSize = in.readInt();
+		henchmen = new ArrayList<Villain>(arrSize);
+		for (int i = 0; i < arrSize; ++i) {
+			henchmen.add(Villain.get(in.readString()));
+		}
+
+		arrSize = in.readInt();
+		heroes = new ArrayList<Hero>(arrSize);
+		for (int i = 0; i < arrSize; ++i) {
+			heroes.add(Hero.get(in.readString()));
+		}
+	}
+
 	public void setActiveSets(long newSets) {
 		activeSets = Sets.make(newSets);
 		initialiseLists();
@@ -100,7 +128,7 @@ public class GameDetails implements Serializable {
 		return villains;
 	}
 	
-	public final Iterable<Henchman> getHenchmen() {
+	public final Iterable<Villain> getHenchmen() {
 		return henchmen;
 	}
 	
@@ -146,11 +174,10 @@ public class GameDetails implements Serializable {
 		Mastermind.initialiseAllList(activeSets);
 		Scheme.initialiseAllList(activeSets);
 		Villain.initialiseAllList(activeSets);
-		Henchman.initialiseAllList(activeSets);
 	}
 
 	public void addRandomMastermind() {
-		if (mastermind != null) return;
+		if (mastermind != Mastermind.none) return;
 		int mPosition = r.nextInt(Mastermind.getAll().size());
 		mastermind = Mastermind.getAll().get(mPosition);
 	}
@@ -167,7 +194,7 @@ public class GameDetails implements Serializable {
 	}
 	
 	public void addRandomScheme() {
-		if (scheme != null) return;
+		if (scheme != Scheme.none) return;
 		int mPosition;
 		Scheme scheme;
 		boolean isAcceptable;
@@ -193,7 +220,7 @@ public class GameDetails implements Serializable {
 			return false;
 		}
 		
-		if (preferred instanceof Henchman) {
+		if (preferred.isHenchman()) {
 			return addPreferredHenchman(preferred);
 		} else {
 			return addPreferredVillain(preferred);
@@ -222,7 +249,7 @@ public class GameDetails implements Serializable {
 			return false;
 		}
 		
-		henchmen.add((Henchman)preferred);
+		henchmen.add(preferred);
 		return true;
 	}
 
@@ -250,10 +277,10 @@ public class GameDetails implements Serializable {
 	
 	private void addRandomHenchman() {
 		int vPosition;
-		Henchman v;
+		Villain v;
 		do {
-			vPosition = r.nextInt(Henchman.getAllHenchmen().size());
-			v = Henchman.getAllHenchmen().get(vPosition);
+			vPosition = r.nextInt(Villain.getAllHenchmen().size());
+			v = Villain.getAllHenchmen().get(vPosition);
 		} while (henchmen.contains(v));
 		henchmen.add(v);
 	}
@@ -285,4 +312,44 @@ public class GameDetails implements Serializable {
 	public void addError(String note) {
 		errors.add(note);
 	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeLong(Sets.unmake(activeSets));
+		dest.writeInt(numPlayers);
+		
+		dest.writeString(mastermind.name());
+		dest.writeString(scheme.name());
+		
+		dest.writeInt(villains.size());
+		for (Villain v : villains) {
+			dest.writeString(v.name());
+		}
+		
+		dest.writeInt(henchmen.size());
+		for (Villain h : henchmen) {
+			dest.writeString(h.name());
+		}
+
+		dest.writeInt(heroes.size());
+		for (Hero h : heroes) {
+			dest.writeString(h.name());
+		}
+	}
+	
+	 public static final Parcelable.Creator<GameDetails> CREATOR
+		     = new Parcelable.Creator<GameDetails>() {
+		 public GameDetails createFromParcel(Parcel in) {
+		     return new GameDetails(in);
+		 }
+		
+		 public GameDetails[] newArray(int size) {
+		     return new GameDetails[size];
+		 }
+	 };
 }

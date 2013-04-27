@@ -1,6 +1,5 @@
 package net.threedoubloons.legendaryrandomiser.data;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,14 +10,72 @@ import java.util.List;
 import net.threedoubloons.legendaryrandomiser.GameDetails;
 import net.threedoubloons.legendaryrandomiser.R;
 
-public class Scheme extends CardBase implements Serializable {
-	private static final long serialVersionUID = 10206070375160723L;
+public enum Scheme implements ICardBase {
+	none(0, 0),
+	breakout(R.string.breakout, R.string.breakout_short, R.drawable.ic_exp_core, false),
+	robbery(R.string.robbery, R.string.robbery_short),
+	invasion(R.string.invasion, R.string.invasion_short),
+	portals(R.string.portals, R.string.portals_short),
+	civilWar(R.string.civilwar, R.string.civilwar_short, R.drawable.ic_exp_core, false),
+	cosmicCube(R.string.cosmiccube, R.string.cosmiccube_short),
+	killbots(R.string.killbots, R.string.killbots_short),
+	virus(R.string.virus, R.string.virus_short),
+	;
+	private final CardBase card;
 	private final int longName;
 	private final boolean isSPAcceptable;
+
+	@Override
+	public CardBase getCard() {
+		return card;
+	}
+	
+	public static Scheme get(String name) {
+		return Enum.valueOf(Scheme.class, name);
+	}
+		
+	private Scheme(int longName, int shortName) {
+		this(longName, shortName,  R.drawable.ic_exp_core, true);
+	}
+	
+	private Scheme(int longName, int shortName, int expansionSymbol, boolean isSPAcceptable) {
+		card = new CardBase(shortName, 0, expansionSymbol);
+		this.longName = longName;
+		this.isSPAcceptable = isSPAcceptable;
+	}
+	
+	public int getLongName() {
+		return longName;
+	}
+	
+	public boolean isSPAcceptable() {
+		return isSPAcceptable;
+	}
+
+	public void applyScheme(GameDetails details) {
+		schemeActions.get(name()).apply(details);
+	}
+
+	private static List<Scheme> all;
+	public static void initialiseAllList(EnumSet<Sets> activeSets) {
+		List<Scheme> all = new ArrayList<Scheme>();
+		if (activeSets.contains(Sets.CoreSet)) {
+			all.addAll(Arrays.asList(coreSet));
+		}
+		
+		Scheme.all = Collections.unmodifiableList(all);
+	}
+	
+	public final static List<Scheme> getAll() {
+		return all;
+	}
+
+	public final static Scheme[] coreSet = {breakout, robbery, invasion, portals, civilWar, cosmicCube, killbots, virus};
 
 	public interface SchemeAction {
 		public void apply(GameDetails details);
 	}
+	
 	private static HashMap<String, SchemeAction> schemeActions = new HashMap<String, SchemeAction>();
 	static {
 		schemeActions.put("robbery", new SchemeAction(){
@@ -44,7 +101,7 @@ public class Scheme extends CardBase implements Serializable {
 			public void apply(GameDetails details) {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 7);
 			}});
-		schemeActions.put("civilwar",  new SchemeAction() {
+		schemeActions.put("civilWar",  new SchemeAction() {
 			public void apply(GameDetails details) {
 				switch(details.getNumPlayers()) {
 				case 2:
@@ -77,54 +134,4 @@ public class Scheme extends CardBase implements Serializable {
 				}
 			}});
 	}
-	
-	public Scheme(int longName, int shortName, String action) {
-		this(longName, shortName, action, true);
-	}
-	
-	public Scheme(int longName, int shortName, String action, boolean isSPAcceptable) {
-		super(shortName, 0);
-		this.longName = longName;
-		this.action = action;
-		this.isSPAcceptable = isSPAcceptable;
-	}
-
-	private final String action;
-	
-	public int getLongName() {
-		return longName;
-	}
-	
-	public boolean isSPAcceptable() {
-		return isSPAcceptable;
-	}
-
-	public void applyScheme(GameDetails details) {
-		schemeActions.get(action).apply(details);
-	}
-	
-	public final static Scheme breakout = new Scheme(R.string.breakout, R.string.breakout_short, "breakout", false);
-	public final static Scheme robbery = new Scheme(R.string.robbery, R.string.robbery_short, "robbery");
-	public final static Scheme invasion = new Scheme(R.string.invasion, R.string.invasion_short, "invasion");
-	public final static Scheme portals = new Scheme(R.string.portals, R.string.portals_short, "portals");
-	public final static Scheme civilWar = new Scheme(R.string.civilwar, R.string.civilwar_short, "civilwar", false);
-	public final static Scheme cosmicCube = new Scheme(R.string.cosmiccube, R.string.cosmiccube_short, "cosmiccube");
-	public final static Scheme killbots = new Scheme(R.string.killbots, R.string.killbots_short, "killbots");
-	public final static Scheme virus = new Scheme(R.string.virus, R.string.virus_short, "virus");
-
-	private static List<Scheme> all;
-	public static void initialiseAllList(EnumSet<Sets> activeSets) {
-		List<Scheme> all = new ArrayList<Scheme>();
-		if (activeSets.contains(Sets.CoreSet)) {
-			all.addAll(Arrays.asList(coreSet));
-		}
-		
-		Scheme.all = Collections.unmodifiableList(all);
-	}
-	
-	public final static List<Scheme> getAll() {
-		return all;
-	}
-
-	public final static Scheme[] coreSet = {breakout, robbery, invasion, portals, civilWar, cosmicCube, killbots, virus};
 }

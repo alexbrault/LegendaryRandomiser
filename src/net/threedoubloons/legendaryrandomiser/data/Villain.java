@@ -1,6 +1,5 @@
 package net.threedoubloons.legendaryrandomiser.data;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,35 +8,71 @@ import java.util.List;
 
 import net.threedoubloons.legendaryrandomiser.R;
 
-public class Villain extends CardBase implements Serializable {
-	private static final long serialVersionUID = 4309878817795983831L;
+public enum Villain implements ICardBase {
+	none(0, 0),
+	skrulls(R.string.skrulls, R.drawable.skrulls),
+	spiderfoes(R.string.spiderfoes, R.drawable.spiderfoes),
+	enemiesOfAsgard(R.string.frost_giants, R.drawable.enemies_of_asgard),
+	brotherhood(R.string.brotherhood, R.drawable.brotherhood),
+	hydra(R.string.hydra, R.drawable.hydra),
+	mastersOfEvil(R.string.masters_of_evil, R.drawable.masters),
+	radiation(R.string.radiation, R.drawable.radiation),
 	
-	public Villain(int name, int pictureId) {
-		super(name, pictureId);
+
+
+	handNinja(R.string.hand_ninja, R.drawable.hand_ninja, true),
+	doombots(R.string.doombots, R.drawable.doombots, true),
+	sentinel(R.string.sentinel, R.drawable.sentinel, true),
+	mutates(R.string.mutates, R.drawable.mutates, true),
+	;
+	
+	private CardBase card;
+	private boolean isHenchman;
+	
+	private Villain(int name, int pictureId) {
+		this(name, pictureId, false);
 	}
 	
-	public final static Villain skrulls = new Villain(R.string.skrulls, R.drawable.skrulls);
-	public final static Villain spiderfoes = new Villain(R.string.spiderfoes, R.drawable.spiderfoes);
-	public final static Villain enemiesOfAsgard = new Villain(R.string.frost_giants, R.drawable.enemies_of_asgard);
-	public final static Villain brotherhood = new Villain(R.string.brotherhood, R.drawable.brotherhood);
-	public final static Villain hydra = new Villain(R.string.hydra, R.drawable.hydra);
-	public final static Villain mastersOfEvil = new Villain(R.string.masters_of_evil, R.drawable.masters);
-	public final static Villain radiation = new Villain(R.string.radiation, R.drawable.radiation);
+	private Villain(int name, int pictureId, boolean isHenchman) {
+		card = new CardBase(name, pictureId);
+		this.isHenchman = isHenchman;
+	}
 	
-	public final static Villain[] coreSet = {skrulls, spiderfoes, enemiesOfAsgard, brotherhood, hydra, mastersOfEvil, radiation};
+	public CardBase getCard() {
+		return card;
+	}
+	
+	public boolean isHenchman() {
+		return isHenchman;
+	}
+	
 
-	private static List<Villain> all;
+	public static Villain get(String name) {
+		return Enum.valueOf(Villain.class, name);
+	}
+	
+	public final static Villain[] coreSetVillains = {skrulls, spiderfoes, enemiesOfAsgard, brotherhood, hydra, mastersOfEvil, radiation};
+	private final static Villain[] coreSetHenchmen = {handNinja, doombots, sentinel, mutates};
+
+	private static List<Villain> allVillain;
+	private static List<Villain> allHenchmen;
 	public static void initialiseAllList(EnumSet<Sets> activeSets) {
-		List<Villain> all = new ArrayList<Villain>();
+		List<Villain> allV = new ArrayList<Villain>();
+		List<Villain> allH = new ArrayList<Villain>();
 		if (activeSets.contains(Sets.CoreSet)) {
-			all.addAll(Arrays.asList(coreSet));
+			allV.addAll(Arrays.asList(coreSetVillains));
+			allH.addAll(Arrays.asList(coreSetHenchmen));
 		}
 		
-		Villain.all = Collections.unmodifiableList(all);
+		Villain.allVillain = Collections.unmodifiableList(allV);
+		Villain.allHenchmen = Collections.unmodifiableList(allH);
 	}
 	
 	public static List<Villain> getAll() {
-		return all;
+		return allVillain;
 	}
-	
+
+	public static List<Villain> getAllHenchmen() {
+		return allHenchmen;
+	}
 }

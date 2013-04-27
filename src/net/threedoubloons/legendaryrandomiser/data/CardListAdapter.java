@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
-public class CardListAdapter<T extends CardBase> implements SpinnerAdapter {
+public class CardListAdapter<T extends ICardBase> implements SpinnerAdapter {
 	private List<T> list;
 	private LayoutInflater inflater;
 	public class RandomiseThisAction{}
@@ -44,7 +44,7 @@ public class CardListAdapter<T extends CardBase> implements SpinnerAdapter {
 			return -1;
 		if (pos == list.size() + 1) 
 			return -2;
-		return list.get(pos - 1).getPictureId();
+		return list.get(pos - 1).getCard().getPictureId();
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class CardListAdapter<T extends CardBase> implements SpinnerAdapter {
 			v.setTextColor(Color.BLUE);
 			v.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icon_random, 0, 0, 0);
 		} else {
-			CardBase card = list.get(pos - 1);
+			CardBase card = list.get(pos).getCard();
 			v.setText(card.getName());
 			v.setTextColor(Color.BLACK);
 			v.setCompoundDrawablesWithIntrinsicBounds(card.getPictureId(), 0, 0, 0);
