@@ -78,6 +78,9 @@ public enum Scheme implements ICardBase {
 	
 	private static HashMap<String, SchemeAction> schemeActions = new HashMap<String, SchemeAction>();
 	static {
+		schemeActions.put("none", new SchemeAction() {
+			public void apply(GameDetails details) {}
+		});
 		schemeActions.put("robbery", new SchemeAction(){
 			public void apply(GameDetails details) {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
