@@ -7,6 +7,8 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 
+import android.util.Log;
+
 import net.threedoubloons.legendaryrandomiser.GameDetails;
 import net.threedoubloons.legendaryrandomiser.R;
 
@@ -76,11 +78,24 @@ public enum Scheme implements ICardBase {
 		public void apply(GameDetails details);
 	}
 	
-	private static HashMap<String, SchemeAction> schemeActions = new HashMap<String, SchemeAction>();
+	private static HashMap<String, SchemeAction> schemeActions = new HashMap<String, SchemeAction>() {
+		private static final long serialVersionUID = 1L;
+		public SchemeAction get(Object key) {
+			SchemeAction act = super.get(key);
+			if (act == null) {
+				if (!key.equals("none")) {
+					Log.e("Scheme", String.format("No action for this key: %s", key));
+				}
+				return new SchemeAction() {
+					public void apply(GameDetails details) {}
+				};
+			}
+			return act;
+		}
+		
+	};
+	
 	static {
-		schemeActions.put("none", new SchemeAction() {
-			public void apply(GameDetails details) {}
-		});
 		schemeActions.put("robbery", new SchemeAction(){
 			public void apply(GameDetails details) {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
@@ -119,7 +134,7 @@ public enum Scheme implements ICardBase {
 					break;
 				}
 			}});
-		schemeActions.put("cosmiccube",  new SchemeAction() {
+		schemeActions.put("cosmicCube",  new SchemeAction() {
 			public void apply(GameDetails details) {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
 			}});
