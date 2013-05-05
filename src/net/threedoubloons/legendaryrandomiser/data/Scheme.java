@@ -7,8 +7,6 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 
-import android.util.Log;
-
 import net.threedoubloons.legendaryrandomiser.GameDetails;
 import net.threedoubloons.legendaryrandomiser.R;
 
@@ -55,7 +53,10 @@ public enum Scheme implements ICardBase {
 	}
 
 	public void applyScheme(GameDetails details) {
-		schemeActions.get(name()).apply(details);
+		SchemeAction action = schemeActions.get(name());
+		if (action != null) {
+			action.apply(details);
+		}
 	}
 
 	private static List<Scheme> all;
@@ -78,23 +79,7 @@ public enum Scheme implements ICardBase {
 		public void apply(GameDetails details);
 	}
 	
-	private static HashMap<String, SchemeAction> schemeActions = new HashMap<String, SchemeAction>() {
-		private static final long serialVersionUID = 1L;
-		public SchemeAction get(Object key) {
-			SchemeAction act = super.get(key);
-			if (act == null) {
-				if (!key.equals("none")) {
-					Log.e("Scheme", String.format("No action for this key: %s", key));
-				}
-				return new SchemeAction() {
-					public void apply(GameDetails details) {}
-				};
-			}
-			return act;
-		}
-		
-	};
-	
+	private static HashMap<String, SchemeAction> schemeActions = new HashMap<String, SchemeAction>();	
 	static {
 		schemeActions.put("robbery", new SchemeAction(){
 			public void apply(GameDetails details) {
