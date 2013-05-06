@@ -20,5 +20,8 @@
     <string name="lil_expansion_icon_desc">Expansion Icon</string>
     <string name="lil_affiliation_icon_desc">Affiliation Icon</string>
     <string name="default_sets">0x0000000000000001</string>
+    <string name="colour_content_description">Colour</string>
+    <string name="show_colours_action_label">Show hero colours</string>
+    <string name="show_affiliation_action_label">Show affiliation</string>
 
 </resources>
