@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="3dp"
     android:orientation="horizontal" >
 
 <TextView
@@ -17,49 +18,6 @@
 
 </TextView>
 
-<RelativeLayout
-        android:id="@+id/hl_colours"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-	    android:layout_centerVertical="true"
-	    android:layout_toLeftOf="@+id/lil_expansion_icon"
-	    android:visibility="gone" >
-        
-        <ImageView
-            android:id="@+id/hl_common0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:contentDescription="@string/colour_content_description"
-            android:src="@drawable/ic_colour_strength" />
-
-        <ImageView
-            android:id="@+id/hl_common1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/colour_content_description"
-            android:layout_toRightOf="@id/hl_common0"
-            android:src="@drawable/ic_colour_strength" />
-
-        <ImageView
-            android:id="@+id/hl_uncommon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/hl_common0"
-            android:contentDescription="@string/colour_content_description"
-            android:src="@drawable/ic_colour_strength" />
-
-        <ImageView
-            android:id="@+id/hl_rare"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/hl_uncommon"
-            android:layout_below="@id/hl_common1"
-            android:contentDescription="@string/colour_content_description"
-            android:src="@drawable/ic_colour_strength" />
-
-    </RelativeLayout>
 <ImageView
     android:id="@+id/lil_affiliation_icon"
     android:layout_width="wrap_content"
@@ -76,4 +34,46 @@
     android:layout_centerVertical="true"
     android:contentDescription="@string/lil_expansion_icon_desc" />
 
+<RelativeLayout
+        android:id="@+id/hl_colours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_below="@id/lil_label"
+	    android:visibility="gone"
+	    >
+        
+        <ImageView
+            android:id="@+id/hl_common0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/hl_common1"
+            android:contentDescription="@string/colour_content_description"
+            android:src="@drawable/ic_colour_strength" />
+
+        <ImageView
+            android:id="@+id/hl_common1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/colour_content_description"
+            android:layout_toLeftOf="@+id/hl_uncommon"
+            android:src="@drawable/ic_colour_strength" />
+
+        <ImageView
+            android:id="@+id/hl_uncommon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/hl_rare"
+            android:contentDescription="@string/colour_content_description"
+            android:src="@drawable/ic_colour_strength" />
+
+        <ImageView
+            android:id="@+id/hl_rare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+            android:contentDescription="@string/colour_content_description"
+            android:src="@drawable/ic_colour_strength" />
+
+    </RelativeLayout>
 </RelativeLayout>

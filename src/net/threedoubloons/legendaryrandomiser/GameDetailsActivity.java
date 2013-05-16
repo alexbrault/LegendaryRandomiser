@@ -12,7 +12,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,10 +25,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class GameDetailsActivity extends Activity {
-	private static final String SHOW_COLOURS_KEY = "net.threedoubloons.legendaryrandomiser.ShowColours";
-	public static final int RESULT_REDO = RESULT_FIRST_USER + 0;
 	GameDetails details;
-	private boolean showColours = false;
 	private List<View> heroViews = new ArrayList<View>();
 	
 	@Override
@@ -38,10 +34,7 @@ public class GameDetailsActivity extends Activity {
 		setContentView(R.layout.activity_game_details);
 		// Show the Up button in the action bar.
 		setupActionBar();
-		
-		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-		showColours = prefs.getBoolean(SHOW_COLOURS_KEY, false);
-		
+				
 		if (savedInstanceState == null) {
 			randomiseDetails();
 		} else {
@@ -54,14 +47,6 @@ public class GameDetailsActivity extends Activity {
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putParcelable(OptionsSelectActivity.GAME_OPTIONS, details);
-	}
-
-	@Override
-	protected void onStop() {
-		SharedPreferences prefs = getPreferences(MODE_PRIVATE);
-		prefs.edit().putBoolean(SHOW_COLOURS_KEY, showColours).commit();
-		
-		super.onStop();
 	}
 
 	private void randomiseDetails() {
@@ -152,6 +137,8 @@ public class GameDetailsActivity extends Activity {
 			colour.setImageResource(h.getCardColour(2));
 			colour = (ImageView)v.findViewById(R.id.hl_rare);
 			colour.setImageResource(h.getCardColour(3));
+
+			v.findViewById(R.id.hl_colours).setVisibility(View.VISIBLE);
 			
 			list.addView(v);
 		}
@@ -179,21 +166,8 @@ public class GameDetailsActivity extends Activity {
 			findViewById(R.id.notes_layout).setVisibility(View.GONE);
 		}
 		
-		showChosenElements();
 		
 		((ScrollView)findViewById(R.id.scroll)).smoothScrollTo(0, 0);
-	}
-
-	private void showChosenElements() {
-		for (View v : heroViews) {
-			if (showColours) {
-				v.findViewById(R.id.lil_affiliation_icon).setVisibility(View.GONE);
-				v.findViewById(R.id.hl_colours).setVisibility(View.VISIBLE);
-			} else {
-				v.findViewById(R.id.lil_affiliation_icon).setVisibility(View.VISIBLE);
-				v.findViewById(R.id.hl_colours).setVisibility(View.GONE);
-			}
-		}
 	}
 
 	/**
@@ -220,11 +194,6 @@ public class GameDetailsActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.game_details, menu);
-		if (showColours) {
-			MenuItem item = menu.findItem(R.id.show_colours);
-			item.setIcon(R.drawable.affiliation_shield);
-			item.setTitle(R.string.show_affiliation_action_label);
-		}
 		return true;
 	}
 
@@ -236,7 +205,7 @@ public class GameDetailsActivity extends Activity {
 			// activity, the Up button is shown. Use NavUtils to allow users
 			// to navigate up one level in the application structure. For
 			// more details, see the Navigation pattern on Android Design:
-			//
+			//R.java was modified manually! Reverting to generated version!
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
 			//NavUtils.navigateUpFromSameTask(this);
@@ -256,20 +225,6 @@ public class GameDetailsActivity extends Activity {
 				}
 			});
 			findViewById(R.id.scroll).startAnimation(start);
-			return true;
-		case R.id.show_colours:
-			showColours = !showColours;
-			
-			if (showColours) {
-				item.setIcon(R.drawable.affiliation_shield);
-				item.setTitle(R.string.show_affiliation_action_label);
-			} else {
-				item.setIcon(R.drawable.ic_colour_strength);
-				item.setTitle(R.string.show_colours_action_label);
-			}
-			
-			showChosenElements();
-			
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
