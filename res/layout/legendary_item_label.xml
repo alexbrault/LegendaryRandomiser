@@ -3,14 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="right"
-    android:gravity="right"
-    android:ignoreGravity="@+id/lil_label"
     android:orientation="horizontal" >
 
     <TextView
         android:id="@+id/lil_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_gravity="left"
+        android:layout_toLeftOf="@+id/lil_icons"
         android:drawablePadding="16dip"
         android:gravity="left|center_vertical"
         android:textAppearance="?android:attr/textAppearanceLarge" >
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:layout_gravity="right|center_vertical"
         android:gravity="right" >
 
         <ImageView
@@ -78,7 +80,7 @@
                 android:src="@drawable/ic_colour_strength" />
         </RelativeLayout>
     </RelativeLayout>
-
+    
     <View
         android:layout_width="match_parent"
         android:layout_height="6dp"
