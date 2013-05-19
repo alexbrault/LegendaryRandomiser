@@ -2,23 +2,22 @@ package net.threedoubloons.legendaryrandomiser.data;
 
 import java.io.Serializable;
 
-import net.threedoubloons.legendaryrandomiser.R;
 
 public class CardBase implements Serializable {
 	private static final long serialVersionUID = 9170258208807528519L;
 	
 	private final int name;
 	private final int pictureId;
-	private final int expansionSymbol;
+	private final Sets expansion;
 	
 	public CardBase(int name, int pictureId) {
-		this(name, pictureId, R.drawable.ic_exp_core);
+		this(name, pictureId, Sets.CoreSet);
 	}
 	
-	public CardBase(int name, int pictureId, int expansionSymbol) {
+	public CardBase(int name, int pictureId, Sets expansion) {
 		this.name = name;
 		this.pictureId = pictureId;
-		this.expansionSymbol = expansionSymbol;
+		this.expansion = expansion;
 	}
 
 	public final int getName() {
@@ -30,7 +29,11 @@ public class CardBase implements Serializable {
 	}
 
 	public int getExpansionSymbol() {
-		return expansionSymbol;
+		return expansion.getSymbol();
+	}
+	
+	public Sets getExpansion() {
+		return expansion;
 	}
 }
 

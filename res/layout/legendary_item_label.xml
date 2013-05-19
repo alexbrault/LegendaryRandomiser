@@ -39,7 +39,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignRight="@+id/hl_colours"
-            android:contentDescription="@string/lil_expansion_icon_desc" />
+            android:clickable="true"
+            android:contentDescription="@string/lil_expansion_icon_desc"
+            android:onClick="showExpansion" />
 
         <RelativeLayout
             android:id="@+id/hl_colours"

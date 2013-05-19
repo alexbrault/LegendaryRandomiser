@@ -12,11 +12,11 @@ import net.threedoubloons.legendaryrandomiser.R;
 
 public enum Scheme implements ICardBase {
 	none(0, 0),
-	breakout(R.string.breakout, R.string.breakout_short, R.drawable.ic_exp_core, false),
+	breakout(R.string.breakout, R.string.breakout_short, Sets.CoreSet, false),
 	robbery(R.string.robbery, R.string.robbery_short),
 	invasion(R.string.invasion, R.string.invasion_short),
 	portals(R.string.portals, R.string.portals_short),
-	civilWar(R.string.civilwar, R.string.civilwar_short, R.drawable.ic_exp_core, false),
+	civilWar(R.string.civilwar, R.string.civilwar_short, Sets.CoreSet, false),
 	cosmicCube(R.string.cosmiccube, R.string.cosmiccube_short),
 	killbots(R.string.killbots, R.string.killbots_short),
 	virus(R.string.virus, R.string.virus_short),
@@ -35,10 +35,10 @@ public enum Scheme implements ICardBase {
 	}
 		
 	private Scheme(int longName, int shortName) {
-		this(longName, shortName,  R.drawable.ic_exp_core, true);
+		this(longName, shortName,  Sets.CoreSet, true);
 	}
 	
-	private Scheme(int longName, int shortName, int expansionSymbol, boolean isSPAcceptable) {
+	private Scheme(int longName, int shortName, Sets expansionSymbol, boolean isSPAcceptable) {
 		card = new CardBase(shortName, 0, expansionSymbol);
 		this.longName = longName;
 		this.isSPAcceptable = isSPAcceptable;

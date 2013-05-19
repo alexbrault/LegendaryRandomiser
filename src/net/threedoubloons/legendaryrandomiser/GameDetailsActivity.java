@@ -7,6 +7,7 @@ import java.util.Map;
 import net.threedoubloons.legendaryrandomiser.data.CardType;
 import net.threedoubloons.legendaryrandomiser.data.Hero;
 import net.threedoubloons.legendaryrandomiser.data.Mastermind;
+import net.threedoubloons.legendaryrandomiser.data.Sets;
 import net.threedoubloons.legendaryrandomiser.data.Villain;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GameDetailsActivity extends Activity {
 	GameDetails details;
@@ -70,12 +72,14 @@ public class GameDetailsActivity extends Activity {
 		label.setText(m.getCard().getName());
 		label.setCompoundDrawablesWithIntrinsicBounds(m.getCard().getPictureId(), 0, 0, 0);
 		expansion.setImageResource(m.getCard().getExpansionSymbol());
+		expansion.setTag(m.getCard().getExpansion());
 
 		v = findViewById(R.id.scheme);
 		label = (TextView)v.findViewById(R.id.lil_label);
 		expansion = (ImageView)v.findViewById(R.id.lil_expansion_icon);
 		label.setText(details.getScheme().getLongName());
 		expansion.setImageResource(details.getScheme().getCard().getExpansionSymbol());
+		expansion.setTag(details.getScheme().getCard().getExpansion());
 		
 		LayoutInflater inflater = getLayoutInflater();
 		LinearLayout list;
@@ -89,6 +93,7 @@ public class GameDetailsActivity extends Activity {
 			label.setText(villain.getCard().getName());
 			label.setCompoundDrawablesWithIntrinsicBounds(villain.getCard().getPictureId(), 0, 0, 0);
 			expansion.setImageResource(villain.getCard().getExpansionSymbol());
+			expansion.setTag(villain.getCard().getExpansion());
 			list.addView(v);
 		}
 
@@ -101,6 +106,7 @@ public class GameDetailsActivity extends Activity {
 			label.setText(h.getCard().getName());
 			label.setCompoundDrawablesWithIntrinsicBounds(h.getCard().getPictureId(), 0, 0, 0);
 			expansion.setImageResource(h.getCard().getExpansionSymbol());
+			expansion.setTag(h.getCard().getExpansion());
 			list.addView(v);
 		}
 		
@@ -127,6 +133,7 @@ public class GameDetailsActivity extends Activity {
 			label.setCompoundDrawablesWithIntrinsicBounds(h.getCard().getPictureId(), 0, 0, 0);
 			affiliation.setImageResource(h.getAffiliationPictureId());
 			expansion.setImageResource(h.getCard().getExpansionSymbol());
+			expansion.setTag(h.getCard().getExpansion());
 			
 			ImageView colour;
 			colour = (ImageView)v.findViewById(R.id.hl_common0);
@@ -178,7 +185,16 @@ public class GameDetailsActivity extends Activity {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 			getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
-
+	}
+	
+	public void showExpansion(View v) {
+		Object tag = v.getTag();
+		if (tag instanceof Sets) {
+			Sets set = (Sets)tag;
+			if (set.getName() != 0) {
+				Toast.makeText(this, set.getName(), Toast.LENGTH_SHORT).show();
+			}
+		}
 	}
 
 	@Override

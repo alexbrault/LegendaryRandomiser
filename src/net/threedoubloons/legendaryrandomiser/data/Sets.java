@@ -2,14 +2,32 @@ package net.threedoubloons.legendaryrandomiser.data;
 
 import java.util.EnumSet;
 
+import net.threedoubloons.legendaryrandomiser.R;
+
 public enum Sets {
-	CoreSet,
-	DarkCity;	
+	CoreSet(R.drawable.ic_exp_core, R.string.set_core),
+	DarkCity(0, R.string.set_darkcity);	
+	
+	private final int symbol;
+	private final int name;
+	
+	private Sets(int symbol, int name) {
+		this.symbol = symbol;
+		this.name = name;
+	}
 	
 	public long mask() {
 		return (1L << ordinal());
 	}
 	
+	public int getSymbol() {
+		return symbol;
+	}
+
+	public int getName() {
+		return name;
+	}
+
 	public static EnumSet<Sets> make(long flags) {
 		EnumSet<Sets> sets = EnumSet.noneOf(Sets.class);
 		
