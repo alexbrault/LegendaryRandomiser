@@ -19,7 +19,11 @@ public enum Mastermind implements ICardBase {
 	private final CardBase card;
 	
 	private Mastermind(int name, int pictureId, Villain alwaysLeads) {
-		card = new CardBase(name, pictureId);
+		this(name, pictureId, alwaysLeads, Sets.CoreSet);
+	}
+	
+	private Mastermind(int name, int pictureId, Villain alwaysLeads, Sets set) {
+		card = new CardBase(name, pictureId, set);
 		this.alwaysLeads = alwaysLeads;
 	}
 	

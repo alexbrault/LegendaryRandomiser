@@ -56,7 +56,11 @@ public enum Hero implements ICardBase {
 	private final int[] cardColours;
 		
 	private Hero(int name, int pictureId, int affiliationPictureId, int[] cardColours) {
-		card = new CardBase(name, pictureId);
+		this(name, pictureId, affiliationPictureId, cardColours, Sets.CoreSet);
+	}
+	
+	private Hero(int name, int pictureId, int affiliationPictureId, int[] cardColours, Sets set) {
+		card = new CardBase(name, pictureId, set);
 		this.affiliationPictureId = affiliationPictureId;
 		this.cardColours = cardColours;
 	}

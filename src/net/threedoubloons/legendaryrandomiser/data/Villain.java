@@ -30,11 +30,15 @@ public enum Villain implements ICardBase {
 	private boolean isHenchman;
 	
 	private Villain(int name, int pictureId) {
-		this(name, pictureId, false);
+		this(name, pictureId, false, Sets.CoreSet);
+	}
+
+	private Villain(int name, int pictureId, boolean isHenchman) {
+		this(name, pictureId, isHenchman, Sets.CoreSet);
 	}
 	
-	private Villain(int name, int pictureId, boolean isHenchman) {
-		card = new CardBase(name, pictureId);
+	private Villain(int name, int pictureId, boolean isHenchman, Sets set) {
+		card = new CardBase(name, pictureId, set);
 		this.isHenchman = isHenchman;
 	}
 	
