@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hand_ninja">Hand Ninjas</string>
-    <string name="sentinel">Sentinels</string>
-    <string name="doombots">Doombot Legion</string>
-    <string name="mutates">Savage Land Mutates</string>
+    <string name="hen_hand_ninja">Hand Ninjas</string>
+    <string name="hen_sentinel">Sentinels</string>
+    <string name="hen_doombots">Doombot Legion</string>
+    <string name="hen_mutates">Savage Land Mutates</string>
     
+    <string name="hen_goons">Maggia Goons</string>
+    <string name="hen_phalanx">Phalanx</string>
 </resources>

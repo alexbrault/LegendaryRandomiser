@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="red_skull">Red Skull</string>
-    <string name="magneto">Magneto</string>
-    <string name="dr_doom">Dr. Doom</string>
-    <string name="loki">Loki</string>
+    <string name="mm_red_skull">Red Skull</string>
+    <string name="mm_magneto">Magneto</string>
+    <string name="mm_dr_doom">Dr. Doom</string>
+    <string name="mm_loki">Loki</string>
     
+    <string name="mm_apocalypse">Apocalypse</string>
+    <string name="mm_kingpin">Kingpin</string>
+    <string name="mm_mephisto">Mephisto</string>
+    <string name="mm_mr_sinister">Mr. Sinister</string>
+    <string name="mm_stryfe">Stryfe</string>
 </resources>

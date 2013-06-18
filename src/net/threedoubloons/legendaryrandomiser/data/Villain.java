@@ -9,31 +9,31 @@ import net.threedoubloons.legendaryrandomiser.R;
 
 public enum Villain implements ICardBase {
 	none(0, 0),
-	skrulls(R.string.skrulls, R.drawable.skrulls),
-	spiderfoes(R.string.spiderfoes, R.drawable.spiderfoes),
-	enemiesOfAsgard(R.string.frost_giants, R.drawable.enemies_of_asgard),
-	brotherhood(R.string.brotherhood, R.drawable.brotherhood),
-	hydra(R.string.hydra, R.drawable.hydra),
-	mastersOfEvil(R.string.masters_of_evil, R.drawable.masters),
-	radiation(R.string.radiation, R.drawable.radiation),
+	skrulls(R.string.vil_skrulls, R.drawable.skrulls),
+	spiderfoes(R.string.vil_spiderfoes, R.drawable.spiderfoes),
+	enemiesOfAsgard(R.string.vil_frost_giants, R.drawable.enemies_of_asgard),
+	brotherhood(R.string.vil_brotherhood, R.drawable.brotherhood),
+	hydra(R.string.vil_hydra, R.drawable.hydra),
+	mastersOfEvil(R.string.vil_masters_of_evil, R.drawable.masters),
+	radiation(R.string.vil_radiation, R.drawable.radiation),
 	
 	// Dark City
-	emissariesOfEvil(0, R.drawable.missing_img, false, Sets.DarkCity),
-	fourHorsemen(0, R.drawable.missing_img, false, Sets.DarkCity),
-	marauders(0, R.drawable.missing_img, false, Sets.DarkCity),
-	mlf(0, R.drawable.missing_img, false, Sets.DarkCity),
-	streetsOfNY(0, R.drawable.missing_img, false, Sets.DarkCity),
-	underworld(0, R.drawable.missing_img, false, Sets.DarkCity),
+	emissariesOfEvil(R.string.vil_emissaries_of_evil, R.drawable.missing_img, false, Sets.DarkCity),
+	fourHorsemen(R.string.vil_four_horsemen, R.drawable.missing_img, false, Sets.DarkCity),
+	marauders(R.string.vil_marauders, R.drawable.missing_img, false, Sets.DarkCity),
+	mlf(R.string.vil_mlf, R.drawable.missing_img, false, Sets.DarkCity),
+	streetsOfNY(R.string.vil_streets_ny, R.drawable.missing_img, false, Sets.DarkCity),
+	underworld(R.string.vil_underworld, R.drawable.missing_img, false, Sets.DarkCity),
 
 
-	handNinja(R.string.hand_ninja, R.drawable.hand_ninja, true),
-	doombots(R.string.doombots, R.drawable.doombots, true),
-	sentinel(R.string.sentinel, R.drawable.sentinel, true),
-	mutates(R.string.mutates, R.drawable.mutates, true),
+	handNinja(R.string.hen_hand_ninja, R.drawable.hand_ninja, true),
+	doombots(R.string.hen_doombots, R.drawable.doombots, true),
+	sentinel(R.string.hen_sentinel, R.drawable.sentinel, true),
+	mutates(R.string.hen_mutates, R.drawable.mutates, true),
 	
 	//Dark city
-	maggiaGoons(0, R.drawable.missing_img, true, Sets.DarkCity),
-	phalanx(0, R.drawable.missing_img, true, Sets.DarkCity),
+	maggiaGoons(R.string.hen_goons, R.drawable.missing_img, true, Sets.DarkCity),
+	phalanx(R.string.hen_phalanx, R.drawable.missing_img, true, Sets.DarkCity),
 	;
 	
 	private CardBase card;

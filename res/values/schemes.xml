@@ -1,20 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="breakout">a <b>Negative Zone Prison Breakout</b></string>
-    <string name="robbery">a <b>Midtown Bank Robbery</b></string>
-    <string name="invasion">a <b>Secret Invasion of the Skrull Shapeshifters</b></string>
-    <string name="portals">to open <b>Portals to the Dark Dimension</b></string>
-    <string name="civilwar">a <b>Super Hero Civil War</b></string>
-    <string name="cosmiccube">to <b>Unleash the Power of the Cosmic Cube</b></string>
-    <string name="killbots">to <b>Replace Earth\'s Leaders with Killbots</b></string>
-    <string name="virus">to release <b>the Legacy Virus</b></string>
+    <string name="sc_breakout">a <b>Negative Zone Prison Breakout</b></string>
+    <string name="sc_breakout_short">Negative Zone Prison Breakout</string>
     
-    <string name="breakout_short">Negative Zone Prison Breakout</string>
-    <string name="robbery_short">Midtown Bank Robbery</string>
-    <string name="invasion_short">Secret Invasion of the Skrull Shapeshifters</string>
-    <string name="portals_short">Portals to the Dark Dimension</string>
-    <string name="civilwar_short">Super Hero Civil War</string>
-    <string name="cosmiccube_short">Unleash the Power of the Cosmic Cube</string>
-    <string name="killbots_short">Replace Earth\'s Leaders with Killbots</string>
-    <string name="virus_short">the Legacy Virus</string>
+    <string name="sc_robbery">a <b>Midtown Bank Robbery</b></string>
+    <string name="sc_robbery_short">Midtown Bank Robbery</string>
+    
+    <string name="sc_invasion">a <b>Secret Invasion of the Skrull Shapeshifters</b></string>
+    <string name="sc_invasion_short">Secret Invasion of the Skrull Shapeshifters</string>
+    
+    <string name="sc_portals">to open <b>Portals to the Dark Dimension</b></string>
+    <string name="sc_portals_short">Portals to the Dark Dimension</string>
+    
+    <string name="sc_civilwar">a <b>Super Hero Civil War</b></string>
+    <string name="sc_civilwar_short">Super Hero Civil War</string>
+    
+    <string name="sc_cosmiccube">to <b>Unleash the Power of the Cosmic Cube</b></string>
+    <string name="sc_cosmiccube_short">Unleash the Power of the Cosmic Cube</string>
+    
+    <string name="sc_killbots">to <b>Replace Earth\'s Leaders with Killbots</b></string>
+    <string name="sc_killbots_short">Replace Earth\'s Leaders with Killbots</string>
+    
+    <string name="sc_virus">to release <b>the Legacy Virus</b></string>
+    <string name="sc_virus_short">the Legacy Virus</string>
+    
+    
+    <string name="sc_baby">to <b>Capture Baby Hope</b></string>
+    <string name="sc_baby_short">Capture Baby Hope</string>
+    
+    <string name="sc_helicarrier">to <b>Detonate the Helicarrier</b></string>
+    <string name="sc_helicarrier_short">Detonate the Helicarrier</string>
+    
+    <string name="sc_save_humans">to force us to <b>Save Humanity</b></string>
+    <string name="sc_save_humans_short">Save Humanity</string>
+    
+    <string name="sc_earthquake">to use a <b>Massive Earthquake Generator</b></string>
+    <string name="sc_earthquake_short">Massive Earthquake Generator</string>
+    
+    <string name="sc_crime_wave">an <b>Organized Crimewave</b></string>
+    <string name="sc_crime_wave_short">Organized Crimewave</string>
+    
+    <string name="sc_plutonium">to <b>Steal the Weaponized Plutonium</b></string>
+    <string name="sc_plutonium_short">Steal the Weaponized Plutonium</string>
+    
+    <string name="sc_demon_citizens">to <b>Transform Citizens into Demons</b></string>
+    <string name="sc_demon_citizens_short">Transform Citizens into Demons</string>
+    
+    <string name="sc_xcutioner">the <b>X-Cutioner\'s Song</b></string>
+    <string name="sc_xcutioner_short">X-Cutioner\'s Song</string>
+    
 </resources>

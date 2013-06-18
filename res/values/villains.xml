@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="skrulls">Skrulls</string>
-    <string name="spiderfoes">Spider-foes</string>
-    <string name="frost_giants">Enemies of Asgard</string>
-    <string name="brotherhood">Brotherhood</string>
-    <string name="hydra">Hydra</string>
-    <string name="masters_of_evil">Masters of Evil</string>
-    <string name="radiation">Radiation</string>
+    <string name="vil_skrulls">Skrulls</string>
+    <string name="vil_spiderfoes">Spider-foes</string>
+    <string name="vil_frost_giants">Enemies of Asgard</string>
+    <string name="vil_brotherhood">Brotherhood</string>
+    <string name="vil_hydra">Hydra</string>
+    <string name="vil_masters_of_evil">Masters of Evil</string>
+    <string name="vil_radiation">Radiation</string>
+    
+    <string name="vil_streets_ny">Streets of New York</string>
+    <string name="vil_underworld">Underworld</string>
+    <string name="vil_mlf">MLF</string>
+    <string name="vil_marauders">Marauders</string>
+    <string name="vil_emissaries_of_evil">Emissaries of Evil</string>
+    <string name="vil_four_horsemen">Four Horsemen</string>
     
 </resources>

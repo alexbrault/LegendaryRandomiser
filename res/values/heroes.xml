@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="blackWidow">Black Widow</string>
-    <string name="captain">Captain America</string>
-    <string name="cyclops">Cyclops</string>
-    <string name="deadpool">Deadpool</string>
-    <string name="emmaFrost">Emma Frost</string>
-    <string name="gambit">Gambit</string>
-    <string name="hawkeye">Hawkeye</string>
-    <string name="hulk">Hulk</string>
-    <string name="ironMan">Iron Man</string>
-    <string name="nickFury">Nick Fury</string>
-    <string name="rogue">Rogue</string>
-    <string name="spiderman">Spiderman</string>
-    <string name="storm">Storm</string>
-    <string name="thor">Thor</string>
-    <string name="wolverine">Wolverine</string>
+    <string name="hero_blackWidow">Black Widow</string>
+    <string name="hero_captain">Captain America</string>
+    <string name="hero_cyclops">Cyclops</string>
+    <string name="hero_deadpool">Deadpool</string>
+    <string name="hero_emmaFrost">Emma Frost</string>
+    <string name="hero_gambit">Gambit</string>
+    <string name="hero_hawkeye">Hawkeye</string>
+    <string name="hero_hulk">Hulk</string>
+    <string name="hero_ironMan">Iron Man</string>
+    <string name="hero_nickFury">Nick Fury</string>
+    <string name="hero_rogue">Rogue</string>
+    <string name="hero_spiderman">Spiderman</string>
+    <string name="hero_storm">Storm</string>
+    <string name="hero_thor">Thor</string>
+    <string name="hero_wolverine">Wolverine</string>
     
+    <string name="hero_angel">Angel</string>
+    <string name="hero_blade">Blade</string>
+    <string name="hero_bishop">Bishop</string>
+    <string name="hero_cable">Cable</string>
+    <string name="hero_colossus">Colossus</string>
+    <string name="hero_daredevil">Daredevil</string>
+    <string name="hero_domino">Domino</string>
+    <string name="hero_electra">Elektra</string>
+    <string name="hero_forge">Forge</string>
+    <string name="hero_ghost_rider">Ghost Rider</string>
+    <string name="hero_iceman">Iceman</string>
+    <string name="hero_ironfist">Iron Fist</string>
+    <string name="hero_jean_grey">Jean Grey</string>
+    <string name="hero_nightcrawler">Nightcrawler</string>
+    <string name="hero_profx">Professor X</string>
+    <string name="hero_punisher">The Punisher</string>
 </resources>
