@@ -2,13 +2,13 @@
 <resources>
     <string-array name="pref_sets_labels">
         <item >@string/set_core</item>
-        <!-- item >@string/set_darkcity</item-->
+        <item >@string/set_darkcity</item>
     </string-array>
     
     <array
         name="pref_sets_icons">
         <item>@drawable/ic_exp_core</item>
-        <!--item>@drawable/ic_exp_darkcity</item-->
+        <item>@drawable/ic_exp_darkcity</item>
     </array>
     
     <string name="set_core">Core Set</string>
