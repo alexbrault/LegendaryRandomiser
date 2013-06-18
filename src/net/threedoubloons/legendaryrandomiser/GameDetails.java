@@ -32,6 +32,7 @@ public class GameDetails implements Parcelable {
 	private ArrayList<Villain> villains = new ArrayList<Villain>();
 	private ArrayList<Villain> henchmen = new ArrayList<Villain>();
 	private ArrayList<Hero> heroes = new ArrayList<Hero>();
+	private ArrayList<Hero> reservedHeroes = new ArrayList<Hero>();
 	private transient HashMap<CardType, Integer> villainDeckContents = new HashMap<CardType, Integer>();
 	private transient ArrayList<String> notes = new ArrayList<String>();
 	private transient ArrayList<String> errors = new ArrayList<String>();
@@ -80,6 +81,12 @@ public class GameDetails implements Parcelable {
 		heroes = new ArrayList<Hero>(arrSize);
 		for (int i = 0; i < arrSize; ++i) {
 			heroes.add(Hero.get(in.readString()));
+		}
+
+		arrSize = in.readInt();
+		reservedHeroes = new ArrayList<Hero>(arrSize);
+		for (int i = 0; i < arrSize; ++i) {
+			reservedHeroes.add(Hero.get(in.readString()));
 		}
 	}
 
@@ -291,14 +298,23 @@ public class GameDetails implements Parcelable {
 		}
 	}
 	
-	private void addRandomHero() {
+	public Hero getRandomHero() {
 		int vPosition;
 		Hero h;
 		do {
 			vPosition = r.nextInt(Hero.getAll().size());
 			h = Hero.getAll().get(vPosition);
-		} while (heroes.contains(h));
-		heroes.add(h);
+		} while (heroes.contains(h) || reservedHeroes.contains(h));
+		
+		return h;
+	}
+	
+	public void reserveHero(Hero h) {
+		reservedHeroes.add(h);
+	}
+	
+	private void addRandomHero() {
+		heroes.add(getRandomHero());
 	}
 
 	public final Scheme getScheme() {
@@ -338,6 +354,11 @@ public class GameDetails implements Parcelable {
 
 		dest.writeInt(heroes.size());
 		for (Hero h : heroes) {
+			dest.writeString(h.name());
+		}
+
+		dest.writeInt(reservedHeroes.size());
+		for (Hero h : reservedHeroes) {
 			dest.writeString(h.name());
 		}
 	}

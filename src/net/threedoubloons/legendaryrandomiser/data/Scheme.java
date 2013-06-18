@@ -82,6 +82,8 @@ public enum Scheme implements ICardBase {
 			}
 		}
 		
+		all.remove(none);
+		
 		Scheme.all = Collections.unmodifiableList(all);
 	}
 	
@@ -154,13 +156,16 @@ public enum Scheme implements ICardBase {
 			public void apply(GameDetails details) {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
 				details.setVillainDeckContentsForCardType(CardType.bystander, 0);
+				details.reserveHero(Hero.jeanGrey);
 				details.setVillainDeckContentsForCardType(CardType.makeSpecificCardType(Hero.jeanGrey), 14);
 			}});
 		schemeActions.put("xCutioner", new SchemeAction() {
 			public void apply(GameDetails details) {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
 				details.setVillainDeckContentsForCardType(CardType.bystander, 0);
-				details.setVillainDeckContentsForCardType(CardType.makeSpecificCardType(Hero.angel), 14); // TODO reserve random hero;
+				Hero h = details.getRandomHero();
+				details.reserveHero(h);
+				details.setVillainDeckContentsForCardType(CardType.makeSpecificCardType(h), 14);
 			}});
 		schemeActions.put("plutonium", new SchemeAction() {
 			public void apply(GameDetails details) {
