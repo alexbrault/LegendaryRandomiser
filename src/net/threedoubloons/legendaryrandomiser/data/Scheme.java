@@ -19,6 +19,16 @@ public enum Scheme implements ICardBase {
 	cosmicCube(R.string.cosmiccube, R.string.cosmiccube_short),
 	killbots(R.string.killbots, R.string.killbots_short),
 	virus(R.string.virus, R.string.virus_short),
+	
+	// Dark City
+	demonCitizens(0, 0, Sets.DarkCity),
+	plutonium(0, 0, Sets.DarkCity),
+	xCutioner(0, 0, Sets.DarkCity),
+	earthquake(0, 0, Sets.DarkCity),
+	saveHumans(0, 0, Sets.DarkCity),
+	babyHope(0, 0, Sets.DarkCity),
+	blowupHelicarrier(0, 0, Sets.DarkCity),
+	crimeWave(0, 0, Sets.DarkCity),
 	;
 	private final CardBase card;
 	private final int longName;
@@ -35,6 +45,10 @@ public enum Scheme implements ICardBase {
 		
 	private Scheme(int longName, int shortName) {
 		this(longName, shortName,  Sets.CoreSet, true);
+	}
+	
+	private Scheme(int longName, int shortName, Sets expansionSymbol) {
+		this(longName, shortName,  expansionSymbol, true);
 	}
 	
 	private Scheme(int longName, int shortName, Sets expansionSymbol, boolean isSPAcceptable) {
@@ -134,6 +148,49 @@ public enum Scheme implements ICardBase {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
 				if (details.getNumPlayers() < 5) {
 					details.addNote(String.format("Use only %d Wounds cards", details.getNumPlayers() * 6));
+				}
+			}});
+		schemeActions.put("demonCitizens", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				details.setVillainDeckContentsForCardType(CardType.bystander, 0);
+				details.setVillainDeckContentsForCardType(CardType.makeSpecificCardType(Hero.jeanGrey), 14);
+			}});
+		schemeActions.put("xCutioner", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				details.setVillainDeckContentsForCardType(CardType.bystander, 0);
+				details.setVillainDeckContentsForCardType(CardType.makeSpecificCardType(Hero.angel), 14); // TODO reserve random hero;
+			}});
+		schemeActions.put("plutonium", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				details.setNumVillains(details.getNumVillains() + 1);
+			}});
+		schemeActions.put("earthquake", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+			}});
+		schemeActions.put("saveHumans", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				details.addNote(String.format("Add %d bystanders to the hero deck", details.getNumPlayers() == 1 ? 12 : 24));
+			}});
+		schemeActions.put("babyHope", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				details.addNote("Place baby Hope on this scheme");
+			}});
+		schemeActions.put("blowupHelicarrier", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				details.setNumHeroes(6);
+			}});
+		schemeActions.put("crimeWave", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				if (!details.addPreferredVillain(Villain.maggiaGoons)) {
+					details.addError("Scheme requires the Maggia Goons henchman group");
 				}
 			}});
 	}

@@ -12,7 +12,14 @@ public enum Mastermind implements ICardBase {
 	redSkull(R.string.red_skull, R.drawable.red_skull, Villain.hydra), 
 	loki(R.string.loki, R.drawable.loki, Villain.enemiesOfAsgard), 
 	drDoom(R.string.dr_doom, R.drawable.drdoom, Villain.doombots), 
-	magneto(R.string.magneto, R.drawable.magneto, Villain.brotherhood)
+	magneto(R.string.magneto, R.drawable.magneto, Villain.brotherhood),
+	
+	// Dark City
+	apocalypse(0, R.drawable.missing_img, Villain.fourHorsemen),
+	kingpin(0, R.drawable.missing_img, Villain.streetsOfNY),
+	mephisto(0, R.drawable.missing_img, Villain.underworld),
+	mrSinister(0, R.drawable.missing_img, Villain.marauders),
+	stryfe(0, R.drawable.missing_img, Villain.mlf),
 	;
 	private final Villain alwaysLeads;
 	private final CardBase card;

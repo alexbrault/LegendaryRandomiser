@@ -113,6 +113,10 @@ public class GameDetailsActivity extends Activity {
 		list = (LinearLayout)findViewById(R.id.villaindeck_list);
 		list.removeAllViews();
 		for (Map.Entry<CardType, Integer> card : details.getVillainsDeckContents()) {
+			if (card.getValue() == 0) {
+				continue;
+			}
+			
 			v = inflater.inflate(R.layout.legendary_item_label, null);
 			label = (TextView)v.findViewById(R.id.lil_label);
 			label.setText(String.format("%d %s", card.getValue(), card.getKey().getName()));

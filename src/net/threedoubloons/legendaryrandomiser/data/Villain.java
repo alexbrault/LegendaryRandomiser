@@ -17,12 +17,23 @@ public enum Villain implements ICardBase {
 	mastersOfEvil(R.string.masters_of_evil, R.drawable.masters),
 	radiation(R.string.radiation, R.drawable.radiation),
 	
+	// Dark City
+	emissariesOfEvil(0, R.drawable.missing_img, false, Sets.DarkCity),
+	fourHorsemen(0, R.drawable.missing_img, false, Sets.DarkCity),
+	marauders(0, R.drawable.missing_img, false, Sets.DarkCity),
+	mlf(0, R.drawable.missing_img, false, Sets.DarkCity),
+	streetsOfNY(0, R.drawable.missing_img, false, Sets.DarkCity),
+	underworld(0, R.drawable.missing_img, false, Sets.DarkCity),
 
 
 	handNinja(R.string.hand_ninja, R.drawable.hand_ninja, true),
 	doombots(R.string.doombots, R.drawable.doombots, true),
 	sentinel(R.string.sentinel, R.drawable.sentinel, true),
 	mutates(R.string.mutates, R.drawable.mutates, true),
+	
+	//Dark city
+	maggiaGoons(0, R.drawable.missing_img, true, Sets.DarkCity),
+	phalanx(0, R.drawable.missing_img, true, Sets.DarkCity),
 	;
 	
 	private CardBase card;
