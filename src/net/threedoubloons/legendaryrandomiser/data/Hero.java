@@ -95,6 +95,8 @@ public enum Hero implements ICardBase {
 			}
 		}
 		
+		all.remove(none);
+		
 		Hero.all = Collections.unmodifiableList(all);
 	}
 	

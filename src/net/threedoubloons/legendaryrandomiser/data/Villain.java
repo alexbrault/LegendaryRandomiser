@@ -81,6 +81,9 @@ public enum Villain implements ICardBase {
 			}
 		}
 		
+		allV.remove(none);
+		allH.remove(none);
+		
 		Villain.allVillain = Collections.unmodifiableList(allV);
 		Villain.allHenchmen = Collections.unmodifiableList(allH);
 	}
