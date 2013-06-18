@@ -1,7 +1,6 @@
 package net.threedoubloons.legendaryrandomiser.data;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -62,8 +61,11 @@ public enum Scheme implements ICardBase {
 	private static List<Scheme> all;
 	public static void initialiseAllList(EnumSet<Sets> activeSets) {
 		List<Scheme> all = new ArrayList<Scheme>();
-		if (activeSets.contains(Sets.CoreSet)) {
-			all.addAll(Arrays.asList(coreSet));
+
+		for (Scheme s : values()) {
+			if (activeSets.contains(s.card.getExpansion())) {
+				all.add(s);
+			}
 		}
 		
 		Scheme.all = Collections.unmodifiableList(all);
@@ -72,8 +74,6 @@ public enum Scheme implements ICardBase {
 	public final static List<Scheme> getAll() {
 		return all;
 	}
-
-	public final static Scheme[] coreSet = {breakout, robbery, invasion, portals, civilWar, cosmicCube, killbots, virus};
 
 	public interface SchemeAction {
 		public void apply(GameDetails details);

@@ -1,7 +1,6 @@
 package net.threedoubloons.legendaryrandomiser.data;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
@@ -54,18 +53,21 @@ public enum Villain implements ICardBase {
 	public static Villain get(String name) {
 		return Enum.valueOf(Villain.class, name);
 	}
-	
-	public final static Villain[] coreSetVillains = {skrulls, spiderfoes, enemiesOfAsgard, brotherhood, hydra, mastersOfEvil, radiation};
-	private final static Villain[] coreSetHenchmen = {handNinja, doombots, sentinel, mutates};
 
 	private static List<Villain> allVillain;
 	private static List<Villain> allHenchmen;
 	public static void initialiseAllList(EnumSet<Sets> activeSets) {
 		List<Villain> allV = new ArrayList<Villain>();
 		List<Villain> allH = new ArrayList<Villain>();
-		if (activeSets.contains(Sets.CoreSet)) {
-			allV.addAll(Arrays.asList(coreSetVillains));
-			allH.addAll(Arrays.asList(coreSetHenchmen));
+		
+		for (Villain v : values()) {
+			if (activeSets.contains(v.card.getExpansion())) {
+				if (v.isHenchman()) {
+					allH.add(v);
+				} else {
+					allV.add(v);
+				}
+			}
 		}
 		
 		Villain.allVillain = Collections.unmodifiableList(allV);

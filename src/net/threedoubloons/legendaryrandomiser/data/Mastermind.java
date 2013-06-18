@@ -1,7 +1,6 @@
 package net.threedoubloons.legendaryrandomiser.data;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
@@ -40,21 +39,14 @@ public enum Mastermind implements ICardBase {
 		return Enum.valueOf(Mastermind.class, name);
 	}
 
-	private final static Mastermind[] coreSet = {
-		redSkull, loki, drDoom, magneto
-	};
-
-	private final static Mastermind[] darkCity = {};
-
 	private static List<Mastermind> all;
 	public static void initialiseAllList(EnumSet<Sets> activeSets) {
 		List<Mastermind> all = new ArrayList<Mastermind>();
-		if (activeSets.contains(Sets.CoreSet)) {
-			all.addAll(Arrays.asList(coreSet));
-		}
 
-		if (activeSets.contains(Sets.DarkCity)) {
-			all.addAll(Arrays.asList(darkCity));
+		for (Mastermind m : values()) {
+			if (activeSets.contains(m.card.getExpansion())) {
+				all.add(m);
+			}
 		}
 		
 		Mastermind.all = Collections.unmodifiableList(all);

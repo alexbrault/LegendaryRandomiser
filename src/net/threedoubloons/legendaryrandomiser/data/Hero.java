@@ -1,7 +1,6 @@
 package net.threedoubloons.legendaryrandomiser.data;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
@@ -82,14 +81,15 @@ public enum Hero implements ICardBase {
 	public static Hero get(String name) {
 		return Enum.valueOf(Hero.class, name);
 	}
-	
-	public final static Hero[] coreSet = {blackWidow, captain, cyclops, deadpool, emmaFrost, gambit, hawkeye, hulk, ironMan, nickFury, rogue, spiderman, storm, thor, wolverine};
 
 	private static List<Hero> all;
 	public static void initialiseAllList(EnumSet<Sets> activeSets) {
 		List<Hero> all = new ArrayList<Hero>();
-		if (activeSets.contains(Sets.CoreSet)) {
-			all.addAll(Arrays.asList(coreSet));
+
+		for (Hero h : values()) {
+			if (activeSets.contains(h.card.getExpansion())) {
+				all.add(h);
+			}
 		}
 		
 		Hero.all = Collections.unmodifiableList(all);
