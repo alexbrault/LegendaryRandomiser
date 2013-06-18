@@ -29,6 +29,7 @@ import android.widget.Toast;
 public class GameDetailsActivity extends Activity {
 	GameDetails details;
 	private List<View> heroViews = new ArrayList<View>();
+	private Toast toast = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +120,7 @@ public class GameDetailsActivity extends Activity {
 			
 			v = inflater.inflate(R.layout.legendary_item_label, null);
 			label = (TextView)v.findViewById(R.id.lil_label);
-			label.setText(String.format("%d %s", card.getValue(), card.getKey().getName()));
+			label.setText(String.format("%d %s", card.getValue(), getString(card.getKey().getName())));
 			label.setCompoundDrawablesWithIntrinsicBounds(card.getKey().getPictureId(), 0, 0, 0);
 			list.addView(v);
 		}
@@ -196,7 +197,12 @@ public class GameDetailsActivity extends Activity {
 		if (tag instanceof Sets) {
 			Sets set = (Sets)tag;
 			if (set.getName() != 0) {
-				Toast.makeText(this, set.getName(), Toast.LENGTH_SHORT).show();
+				if (toast == null) {
+					toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
+				}
+				
+				toast.setText(set.getName());
+				toast.show();
 			}
 		}
 	}
