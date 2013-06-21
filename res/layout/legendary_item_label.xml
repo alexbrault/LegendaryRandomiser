@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/colour_content_description"
-                android:src="@drawable/ic_colour_strength" />
+                android:src="@drawable/col_strength" />
 
             <ImageView
                 android:id="@+id/hl_common1"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/hl_common0"
                 android:contentDescription="@string/colour_content_description"
-                android:src="@drawable/ic_colour_strength" />
+                android:src="@drawable/col_strength" />
 
             <ImageView
                 android:id="@+id/hl_uncommon"
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/hl_common1"
                 android:contentDescription="@string/colour_content_description"
-                android:src="@drawable/ic_colour_strength" />
+                android:src="@drawable/col_strength" />
 
             <ImageView
                 android:id="@+id/hl_rare"
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/hl_uncommon"
                 android:contentDescription="@string/colour_content_description"
-                android:src="@drawable/ic_colour_strength" />
+                android:src="@drawable/col_strength" />
         </RelativeLayout>
     </RelativeLayout>
     

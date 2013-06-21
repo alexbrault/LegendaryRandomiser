@@ -9,17 +9,17 @@ import net.threedoubloons.legendaryrandomiser.R;
 
 public enum Mastermind implements ICardBase {
 	none(0, 0, Villain.none),
-	redSkull(R.string.mm_red_skull, R.drawable.red_skull, Villain.hydra), 
-	loki(R.string.mm_loki, R.drawable.loki, Villain.enemiesOfAsgard), 
-	drDoom(R.string.mm_dr_doom, R.drawable.drdoom, Villain.doombots), 
-	magneto(R.string.mm_magneto, R.drawable.magneto, Villain.brotherhood),
+	redSkull(R.string.mm_red_skull, R.drawable.mm_red_skull, Villain.hydra), 
+	loki(R.string.mm_loki, R.drawable.mm_loki, Villain.enemiesOfAsgard), 
+	drDoom(R.string.mm_dr_doom, R.drawable.mm_drdoom, Villain.doombots), 
+	magneto(R.string.mm_magneto, R.drawable.mm_magneto, Villain.brotherhood),
 	
 	// Dark City
-	apocalypse(R.string.mm_apocalypse, R.drawable.missing_img, Villain.fourHorsemen, Sets.DarkCity),
-	kingpin(R.string.mm_kingpin, R.drawable.missing_img, Villain.streetsOfNY, Sets.DarkCity),
-	mephisto(R.string.mm_mephisto, R.drawable.missing_img, Villain.underworld, Sets.DarkCity),
-	mrSinister(R.string.mm_mr_sinister, R.drawable.missing_img, Villain.marauders, Sets.DarkCity),
-	stryfe(R.string.mm_stryfe, R.drawable.missing_img, Villain.mlf, Sets.DarkCity),
+	apocalypse(R.string.mm_apocalypse, R.drawable.int_missing_img, Villain.fourHorsemen, Sets.DarkCity),
+	kingpin(R.string.mm_kingpin, R.drawable.int_missing_img, Villain.streetsOfNY, Sets.DarkCity),
+	mephisto(R.string.mm_mephisto, R.drawable.int_missing_img, Villain.underworld, Sets.DarkCity),
+	mrSinister(R.string.mm_mr_sinister, R.drawable.int_missing_img, Villain.marauders, Sets.DarkCity),
+	stryfe(R.string.mm_stryfe, R.drawable.int_missing_img, Villain.mlf, Sets.DarkCity),
 	;
 	private final Villain alwaysLeads;
 	private final CardBase card;

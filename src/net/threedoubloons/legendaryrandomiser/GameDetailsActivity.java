@@ -163,7 +163,7 @@ public class GameDetailsActivity extends Activity {
 				v = inflater.inflate(R.layout.legendary_item_label, null);
 				label = (TextView)v.findViewById(R.id.lil_label);
 				label.setText(h);
-				label.setCompoundDrawablesWithIntrinsicBounds(R.drawable.bullet, 0, 0, 0);
+				label.setCompoundDrawablesWithIntrinsicBounds(R.drawable.int_bullet, 0, 0, 0);
 				list.addView(v);
 			}
 			for (String h : details.getErrors()) {
@@ -171,7 +171,7 @@ public class GameDetailsActivity extends Activity {
 				label = (TextView)v.findViewById(R.id.lil_label);
 				label.setText(h);
 				label.setTextColor(getResources().getColor(R.color.error_message));
-				label.setCompoundDrawablesWithIntrinsicBounds(R.drawable.bullet_important, 0, 0, 0);
+				label.setCompoundDrawablesWithIntrinsicBounds(R.drawable.int_bullet_important, 0, 0, 0);
 				list.addView(v);
 			}
 		} else {

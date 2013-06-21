@@ -5,8 +5,8 @@ import java.util.EnumSet;
 import net.threedoubloons.legendaryrandomiser.R;
 
 public enum Sets {
-	CoreSet(R.drawable.ic_exp_core, R.string.set_core),
-	DarkCity(R.drawable.ic_exp_darkcity, R.string.set_darkcity);	
+	CoreSet(R.drawable.exp_core, R.string.set_core),
+	DarkCity(R.drawable.exp_darkcity, R.string.set_darkcity);	
 	
 	private final int symbol;
 	private final int name;

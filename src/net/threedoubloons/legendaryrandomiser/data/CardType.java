@@ -24,10 +24,10 @@ public class CardType implements Serializable {
 		return pictureId;
 	}
 	
-	public final static CardType bystander = new CardType(R.string.ct_bystander, R.drawable.bystander);
-	public final static CardType masterStrike = new CardType(R.string.ct_master_strike, R.drawable.masterstrike);
-	public final static CardType schemeTwist = new CardType(R.string.ct_scheme, R.drawable.scheme_twist);
-	public final static CardType hero = new CardType(R.string.ct_hero, R.drawable.heroes);
+	public final static CardType bystander = new CardType(R.string.ct_bystander, R.drawable.ct_bystander);
+	public final static CardType masterStrike = new CardType(R.string.ct_master_strike, R.drawable.ct_masterstrike);
+	public final static CardType schemeTwist = new CardType(R.string.ct_scheme, R.drawable.ct_scheme_twist);
+	public final static CardType hero = new CardType(R.string.ct_hero, R.drawable.ct_heroes);
 	
 	public static CardType makeSpecificCardType(ICardBase card) {
 		return new SpecificCard(card.getCard());
