@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ct_bystander">Bystander</string>
+    <string name="ct_master_strike">Master Strike</string>
+    <string name="ct_hero">Hero card</string>
+    <string name="ct_scheme">Scheme Twist</string>
+    
+</resources>
