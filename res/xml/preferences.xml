@@ -5,10 +5,10 @@
        	android:entries="@array/pref_sets_labels"
         android:key="prefs_sets" 
         android:title="@string/pref_sets_title" 
-        android:defaultValue="0x0000000000000001"
+        android:defaultValue="@string/default_sets"
         threed:entryIcons="@array/pref_sets_icons"
-        threed:alwaysOn="@string/default_sets"
         >
         
     </net.threedoubloons.legendaryrandomiser.SetsListPreference>
+    <CheckBoxPreference android:key="prefs_stayawake" android:summaryOn="@string/pref_stayawake_summary_on" android:title="@string/pref_stayawake_title"/>
 </PreferenceScreen>

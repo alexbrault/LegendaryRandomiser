@@ -23,5 +23,7 @@
     <string name="colour_content_description">Colour</string>
     <string name="show_colours_action_label">Show hero colours</string>
     <string name="show_affiliation_action_label">Show affiliation</string>
+    <string name="pref_stayawake_summary_on">Screen will not lock while you set up the game</string>
+    <string name="pref_stayawake_title">Keep screen on</string>
 
 </resources>

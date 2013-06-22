@@ -11,8 +11,10 @@ import net.threedoubloons.legendaryrandomiser.data.Sets;
 import net.threedoubloons.legendaryrandomiser.data.Villain;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -35,6 +37,11 @@ public class GameDetailsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_details);
+		
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		boolean stayAwake = sharedPreferences.getBoolean("prefs_stayawake", false);
+		findViewById(android.R.id.content).setKeepScreenOn(stayAwake);
+		
 		// Show the Up button in the action bar.
 		setupActionBar();
 				
