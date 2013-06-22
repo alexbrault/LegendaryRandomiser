@@ -1,5 +1,7 @@
 package net.threedoubloons.legendaryrandomiser;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -39,7 +41,8 @@ public class SetsListPreference extends DialogPreference {
 		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.SetsListPreference);
 		
 		entries = a.getTextArray(R.styleable.SetsListPreference_android_entries);
-		String alwaysOn_str = a.getText(R.styleable.SetsListPreference_alwaysOn).toString();
+		CharSequence alwaysOn_raw = a.getText(R.styleable.SetsListPreference_alwaysOn);
+		String alwaysOn_str = alwaysOn_raw != null ? alwaysOn_raw.toString(): "0";
 		try {
 			alwaysOn = Long.decode(alwaysOn_str).longValue();
 		} catch (NumberFormatException e) {
@@ -121,7 +124,8 @@ public class SetsListPreference extends DialogPreference {
     
     @Override
     protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
-        setValue(restoreValue ? getPersistedLong(0) : (Long)defaultValue);
+        setValue(restoreValue ? getPersistedLong(1) : (Long)defaultValue);
+		oldValue = value;
     }
 
 	@Override
@@ -167,6 +171,8 @@ public class SetsListPreference extends DialogPreference {
             if (callChangeListener(value)) {
                 setValue(value);
             }
+        } else {
+        	setValue(oldValue);
         }
         
         oldValue = value;
@@ -211,9 +217,19 @@ public class SetsListPreference extends DialogPreference {
     	} else {
     		value = value & ~(1L << position);
     	}
+    	
+    	setPositiveButtonEnabled(value != 0);
     }
     
-    public boolean isChecked(int position) {
+    private void setPositiveButtonEnabled(boolean enabled) {
+		Dialog d = getDialog();
+		if (d instanceof AlertDialog) {
+			AlertDialog dialog = (AlertDialog)d;
+			dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(enabled);
+		}
+	}
+
+	public boolean isChecked(int position) {
     	return (value & (1L << position)) != 0;
     }
     
