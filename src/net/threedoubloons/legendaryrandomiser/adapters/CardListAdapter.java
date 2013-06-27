@@ -1,8 +1,10 @@
-package net.threedoubloons.legendaryrandomiser.data;
+package net.threedoubloons.legendaryrandomiser.adapters;
 
 import java.util.List;
 
 import net.threedoubloons.legendaryrandomiser.R;
+import net.threedoubloons.legendaryrandomiser.data.CardBase;
+import net.threedoubloons.legendaryrandomiser.data.ICardBase;
 
 import android.content.Context;
 import android.database.DataSetObserver;

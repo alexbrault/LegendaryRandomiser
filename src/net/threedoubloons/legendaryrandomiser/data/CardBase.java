@@ -36,7 +36,3 @@ public class CardBase implements Serializable {
 		return expansion;
 	}
 }
-
-interface ICardBase {
-	CardBase getCard();
-}
