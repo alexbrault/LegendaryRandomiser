@@ -18,12 +18,12 @@ public enum Villain implements ICardBase {
 	radiation(R.string.vil_radiation, R.drawable.vil_radiation),
 	
 	// Dark City
-	emissariesOfEvil(R.string.vil_emissaries_of_evil, R.drawable.int_missing_img, false, Sets.DarkCity),
-	fourHorsemen(R.string.vil_four_horsemen, R.drawable.int_missing_img, false, Sets.DarkCity),
-	marauders(R.string.vil_marauders, R.drawable.int_missing_img, false, Sets.DarkCity),
-	mlf(R.string.vil_mlf, R.drawable.int_missing_img, false, Sets.DarkCity),
-	streetsOfNY(R.string.vil_streets_ny, R.drawable.int_missing_img, false, Sets.DarkCity),
-	underworld(R.string.vil_underworld, R.drawable.int_missing_img, false, Sets.DarkCity),
+	emissariesOfEvil(R.string.vil_emissaries_of_evil, R.drawable.vil_emissaries, false, Sets.DarkCity),
+	fourHorsemen(R.string.vil_four_horsemen, R.drawable.vil_4horsemen, false, Sets.DarkCity),
+	marauders(R.string.vil_marauders, R.drawable.vil_marauders, false, Sets.DarkCity),
+	mlf(R.string.vil_mlf, R.drawable.vil_mlf, false, Sets.DarkCity),
+	streetsOfNY(R.string.vil_streets_ny, R.drawable.vil_streets_of_ny, false, Sets.DarkCity),
+	underworld(R.string.vil_underworld, R.drawable.vil_underworld, false, Sets.DarkCity),
 
 
 	handNinja(R.string.hen_hand_ninja, R.drawable.hen_hand_ninja, true),
