@@ -15,11 +15,11 @@ public enum Mastermind implements ICardBase {
 	magneto(R.string.mm_magneto, R.drawable.mm_magneto, Villain.brotherhood),
 	
 	// Dark City
-	apocalypse(R.string.mm_apocalypse, R.drawable.int_missing_img, Villain.fourHorsemen, Sets.DarkCity),
-	kingpin(R.string.mm_kingpin, R.drawable.int_missing_img, Villain.streetsOfNY, Sets.DarkCity),
-	mephisto(R.string.mm_mephisto, R.drawable.int_missing_img, Villain.underworld, Sets.DarkCity),
-	mrSinister(R.string.mm_mr_sinister, R.drawable.int_missing_img, Villain.marauders, Sets.DarkCity),
-	stryfe(R.string.mm_stryfe, R.drawable.int_missing_img, Villain.mlf, Sets.DarkCity),
+	apocalypse(R.string.mm_apocalypse, R.drawable.mm_apocalypse, Villain.fourHorsemen, Sets.DarkCity),
+	kingpin(R.string.mm_kingpin, R.drawable.mm_kingpin, Villain.streetsOfNY, Sets.DarkCity),
+	mephisto(R.string.mm_mephisto, R.drawable.mm_mephisto, Villain.underworld, Sets.DarkCity),
+	mrSinister(R.string.mm_mr_sinister, R.drawable.mm_mr_sinister, Villain.marauders, Sets.DarkCity),
+	stryfe(R.string.mm_stryfe, R.drawable.mm_stryfe, Villain.mlf, Sets.DarkCity),
 	;
 	private final Villain alwaysLeads;
 	private final CardBase card;
