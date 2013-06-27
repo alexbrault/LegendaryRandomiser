@@ -96,16 +96,16 @@ public class CardListAdapter<T extends ICardBase> implements SpinnerAdapter {
 	}
 
 	@Override
-	public void registerDataSetObserver(DataSetObserver arg0) {
+	public void registerDataSetObserver(DataSetObserver obs) {
 	}
 
 	@Override
-	public void unregisterDataSetObserver(DataSetObserver arg0) {
+	public void unregisterDataSetObserver(DataSetObserver obs) {
 	}
 
 	@Override
-	public View getDropDownView(int arg0, View arg1, ViewGroup arg2) {
-		return getView(arg0, arg1, arg2);
+	public View getDropDownView(int pos, View recycled, ViewGroup parent) {
+		return getView(pos, recycled, parent);
 	}
 
 }
