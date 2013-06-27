@@ -32,8 +32,8 @@ public enum Villain implements ICardBase {
 	mutates(R.string.hen_mutates, R.drawable.hen_mutates, true),
 	
 	//Dark city
-	maggiaGoons(R.string.hen_goons, R.drawable.int_missing_img, true, Sets.DarkCity),
-	phalanx(R.string.hen_phalanx, R.drawable.int_missing_img, true, Sets.DarkCity),
+	maggiaGoons(R.string.hen_goons, R.drawable.hen_goons, true, Sets.DarkCity),
+	phalanx(R.string.hen_phalanx, R.drawable.hen_phalanx, true, Sets.DarkCity),
 	;
 	
 	private CardBase card;
