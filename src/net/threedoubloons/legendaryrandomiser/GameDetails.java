@@ -1,6 +1,7 @@
 package net.threedoubloons.legendaryrandomiser;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
@@ -131,23 +132,23 @@ public class GameDetails implements Parcelable {
 		return mastermind;
 	}
 	
-	public final Iterable<Villain> getVillains() {
+	public final Collection<Villain> getVillains() {
 		return villains;
 	}
 	
-	public final Iterable<Villain> getHenchmen() {
+	public final Collection<Villain> getHenchmen() {
 		return henchmen;
 	}
 	
-	public final Iterable<Hero> getHeroes() {
+	public final Collection<Hero> getHeroes() {
 		return heroes;
 	}
 	
-	public final Iterable<String> getNotes() {
+	public final Collection<String> getNotes() {
 		return notes;
 	}
 	
-	public final Iterable<String> getErrors() {
+	public final Collection<String> getErrors() {
 		return errors;
 	}
 	
@@ -155,7 +156,7 @@ public class GameDetails implements Parcelable {
 		return notes.size() + errors.size();
 	}
 	
-	public final Iterable<Map.Entry<CardType, Integer>> getVillainsDeckContents() {
+	public final Collection<Map.Entry<CardType, Integer>> getVillainsDeckContents() {
 		return villainDeckContents.entrySet();
 	}
 	

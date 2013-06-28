@@ -1,14 +1,11 @@
 package net.threedoubloons.legendaryrandomiser;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
+import net.threedoubloons.legendaryrandomiser.adapters.SetupCardsAdapter;
 import net.threedoubloons.legendaryrandomiser.data.CardType;
-import net.threedoubloons.legendaryrandomiser.data.Hero;
 import net.threedoubloons.legendaryrandomiser.data.Mastermind;
 import net.threedoubloons.legendaryrandomiser.data.Sets;
-import net.threedoubloons.legendaryrandomiser.data.Villain;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -22,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -30,7 +28,6 @@ import android.widget.Toast;
 
 public class GameDetailsActivity extends Activity {
 	GameDetails details;
-	private List<View> heroViews = new ArrayList<View>();
 	private Toast toast = null;
 	
 	@Override
@@ -90,34 +87,12 @@ public class GameDetailsActivity extends Activity {
 		expansion.setTag(details.getScheme().getCard().getExpansion());
 		
 		LayoutInflater inflater = getLayoutInflater();
-		LinearLayout list;
 		
-		list = (LinearLayout)findViewById(R.id.villains_list);
-		list.removeAllViews();
-		for (Villain villain : details.getVillains()) {
-			v = inflater.inflate(R.layout.legendary_item_label, null);
-			label = (TextView)v.findViewById(R.id.lil_label);
-			expansion = (ImageView)v.findViewById(R.id.lil_expansion_icon);
-			label.setText(villain.getCard().getName());
-			label.setCompoundDrawablesWithIntrinsicBounds(villain.getCard().getPictureId(), 0, 0, 0);
-			expansion.setImageResource(villain.getCard().getExpansionSymbol());
-			expansion.setTag(villain.getCard().getExpansion());
-			list.addView(v);
-		}
+		fillList((LinearLayout)findViewById(R.id.villains_list), new SetupCardsAdapter(this, details.getVillains()));
+		fillList((LinearLayout)findViewById(R.id.henchmen_list), new SetupCardsAdapter(this, details.getHenchmen()));
+		fillList((LinearLayout)findViewById(R.id.heroes_list), new SetupCardsAdapter(this, details.getHeroes()));
 
-		list = (LinearLayout)findViewById(R.id.henchmen_list);
-		list.removeAllViews();
-		for (Villain h : details.getHenchmen()) {
-			v = inflater.inflate(R.layout.legendary_item_label, null);
-			label = (TextView)v.findViewById(R.id.lil_label);
-			expansion = (ImageView)v.findViewById(R.id.lil_expansion_icon);
-			label.setText(h.getCard().getName());
-			label.setCompoundDrawablesWithIntrinsicBounds(h.getCard().getPictureId(), 0, 0, 0);
-			expansion.setImageResource(h.getCard().getExpansionSymbol());
-			expansion.setTag(h.getCard().getExpansion());
-			list.addView(v);
-		}
-		
+		LinearLayout list;
 		list = (LinearLayout)findViewById(R.id.villaindeck_list);
 		list.removeAllViews();
 		for (Map.Entry<CardType, Integer> card : details.getVillainsDeckContents()) {
@@ -129,36 +104,6 @@ public class GameDetailsActivity extends Activity {
 			label = (TextView)v.findViewById(R.id.lil_label);
 			label.setText(String.format("%d %s", card.getValue(), getString(card.getKey().getName())));
 			label.setCompoundDrawablesWithIntrinsicBounds(card.getKey().getPictureId(), 0, 0, 0);
-			list.addView(v);
-		}
-		
-		list = (LinearLayout)findViewById(R.id.heroes_list);
-		list.removeAllViews();
-		heroViews.clear();
-		for (Hero h : details.getHeroes()) {
-			v = inflater.inflate(R.layout.legendary_item_label, null);
-			heroViews.add(v);
-			label = (TextView)v.findViewById(R.id.lil_label);
-			ImageView affiliation = (ImageView)v.findViewById(R.id.lil_affiliation_icon);
-			expansion = (ImageView)v.findViewById(R.id.lil_expansion_icon);
-			label.setText(h.getCard().getName());
-			label.setCompoundDrawablesWithIntrinsicBounds(h.getCard().getPictureId(), 0, 0, 0);
-			affiliation.setImageResource(h.getAffiliationPictureId());
-			expansion.setImageResource(h.getCard().getExpansionSymbol());
-			expansion.setTag(h.getCard().getExpansion());
-			
-			ImageView colour;
-			colour = (ImageView)v.findViewById(R.id.hl_common0);
-			colour.setImageResource(h.getCardColour(0));
-			colour = (ImageView)v.findViewById(R.id.hl_common1);
-			colour.setImageResource(h.getCardColour(1));
-			colour = (ImageView)v.findViewById(R.id.hl_uncommon);
-			colour.setImageResource(h.getCardColour(2));
-			colour = (ImageView)v.findViewById(R.id.hl_rare);
-			colour.setImageResource(h.getCardColour(3));
-
-			v.findViewById(R.id.hl_colours).setVisibility(View.VISIBLE);
-			
 			list.addView(v);
 		}
 		
@@ -187,6 +132,23 @@ public class GameDetailsActivity extends Activity {
 		
 		
 		((ScrollView)findViewById(R.id.scroll)).smoothScrollTo(0, 0);
+	}
+
+	private void fillList(LinearLayout list, Adapter adapter) {
+		int adapterCount = adapter.getCount();
+		for (int i = 0; i < adapterCount; ++i) {
+			View oldView = list.getChildAt(i);
+			View newView = adapter.getView(i, oldView, null);
+			if (oldView != newView) {
+				if (oldView != null) {
+					list.removeViewAt(i);
+				}
+				
+				list.addView(newView, i);
+			}
+		}
+		
+		list.removeViews(adapterCount, list.getChildCount() - adapterCount);
 	}
 
 	/**

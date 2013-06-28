@@ -1,27 +1,27 @@
 package net.threedoubloons.legendaryrandomiser.adapters;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import net.threedoubloons.legendaryrandomiser.R;
 import net.threedoubloons.legendaryrandomiser.data.Hero;
 import net.threedoubloons.legendaryrandomiser.data.ICardBase;
-
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-public class SetupCardsAdapter implements Adapter {
+public class SetupCardsAdapter implements ListAdapter {
 	private List<ICardBase> cards;
 	private LayoutInflater inflater;
 	
-	public SetupCardsAdapter(Context context, List<ICardBase> cards) {
+	public SetupCardsAdapter(Context context, Collection<? extends ICardBase> cards) {
 		super();
 		this.cards = new ArrayList<ICardBase>(cards);
 		this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -49,7 +49,7 @@ public class SetupCardsAdapter implements Adapter {
 
 	@Override
 	public View getView(int pos, View view, ViewGroup parent) {
-		if (!(view instanceof LinearLayout)) {
+		if (!(view instanceof RelativeLayout)) {
 			view = inflater.inflate(R.layout.legendary_item_label, null);
 		}
 		
@@ -57,6 +57,7 @@ public class SetupCardsAdapter implements Adapter {
 		
 		TextView label = (TextView)view.findViewById(R.id.lil_label);
 		ImageView expansion = (ImageView)view.findViewById(R.id.lil_expansion_icon);
+		ImageView affiliation = (ImageView)view.findViewById(R.id.lil_affiliation_icon);
 		
 		label.setText(card.getCard().getName());
 		label.setCompoundDrawablesWithIntrinsicBounds(card.getCard().getPictureId(), 0, 0, 0);
@@ -66,8 +67,8 @@ public class SetupCardsAdapter implements Adapter {
 		if (card instanceof Hero) {
 			Hero h = (Hero)card;
 			
-			ImageView affiliation = (ImageView)view.findViewById(R.id.lil_affiliation_icon);
 			affiliation.setImageResource(h.getAffiliationPictureId());
+			
 			ImageView colour;
 			colour = (ImageView)view.findViewById(R.id.hl_common0);
 			colour.setImageResource(h.getCardColour(0));
@@ -77,9 +78,11 @@ public class SetupCardsAdapter implements Adapter {
 			colour.setImageResource(h.getCardColour(2));
 			colour = (ImageView)view.findViewById(R.id.hl_rare);
 			colour.setImageResource(h.getCardColour(3));
+			view.findViewById(R.id.hl_colours).setVisibility(View.VISIBLE);
+		} else {
+			view.findViewById(R.id.hl_colours).setVisibility(View.GONE);
 		}
 
-		view.findViewById(R.id.hl_colours).setVisibility(View.VISIBLE);
 
 		return view;
 	}
@@ -105,6 +108,16 @@ public class SetupCardsAdapter implements Adapter {
 
 	@Override
 	public void unregisterDataSetObserver(DataSetObserver obs) {
+	}
+
+	@Override
+	public boolean areAllItemsEnabled() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled(int position) {
+		return true;
 	}
 
 }
