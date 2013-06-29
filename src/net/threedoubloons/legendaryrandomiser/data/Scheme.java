@@ -194,7 +194,7 @@ public enum Scheme implements ICardBase {
 		schemeActions.put("crimeWave", new SchemeAction() {
 			public void apply(GameDetails details) {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
-				if (!details.addPreferredVillain(Villain.maggiaGoons)) {
+				if (!details.addPreferredHenchman(Villain.maggiaGoons)) {
 					details.addError("Scheme requires the Maggia Goons henchman group");
 				}
 			}});
