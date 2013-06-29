@@ -2,12 +2,16 @@ package net.threedoubloons.legendaryrandomiser.adapters;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 import net.threedoubloons.legendaryrandomiser.R;
 import net.threedoubloons.legendaryrandomiser.data.Hero;
 import net.threedoubloons.legendaryrandomiser.data.ICardBase;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,13 +22,29 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class SetupCardsAdapter implements ListAdapter {
-	private List<ICardBase> cards;
+	private List<SortableCardBase> cards;
 	private LayoutInflater inflater;
 	
 	public SetupCardsAdapter(Context context, Collection<? extends ICardBase> cards) {
 		super();
-		this.cards = new ArrayList<ICardBase>(cards);
+		this.cards = new ArrayList<SortableCardBase>(cards.size());
+		Resources res = context.getResources();
+		
+		for (ICardBase c : cards) {
+			this.cards.add(new SortableCardBase(res, c));
+		}
+		
 		this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		
+		sortCards();
+	}
+
+	private void sortCards() {
+		Collections.sort(this.cards, new Comparator<SortableCardBase>() {
+			public int compare(SortableCardBase lhs, SortableCardBase rhs) {
+				return lhs.key.compareTo(rhs.key);
+			}
+		});
 	}
 
 	@Override
@@ -34,12 +54,12 @@ public class SetupCardsAdapter implements ListAdapter {
 
 	@Override
 	public Object getItem(int pos) {
-		return cards.get(pos);
+		return cards.get(pos).card;
 	}
 
 	@Override
 	public long getItemId(int pos) {
-		return cards.get(pos).getCard().getPictureId();
+		return cards.get(pos).card.getCard().getPictureId();
 	}
 
 	@Override
@@ -53,7 +73,7 @@ public class SetupCardsAdapter implements ListAdapter {
 			view = inflater.inflate(R.layout.legendary_item_label, null);
 		}
 		
-		ICardBase card = cards.get(pos);
+		ICardBase card = cards.get(pos).card;
 		
 		TextView label = (TextView)view.findViewById(R.id.lil_label);
 		ImageView expansion = (ImageView)view.findViewById(R.id.lil_expansion_icon);
@@ -120,4 +140,13 @@ public class SetupCardsAdapter implements ListAdapter {
 		return true;
 	}
 
+	private static class SortableCardBase {
+		public final String key;
+		public final ICardBase card;
+		
+		public SortableCardBase(Resources res, ICardBase card) {
+			this.card = card;
+			this.key = res.getString(card.getCard().getName()).toLowerCase(Locale.US);
+		}
+	}
 }
