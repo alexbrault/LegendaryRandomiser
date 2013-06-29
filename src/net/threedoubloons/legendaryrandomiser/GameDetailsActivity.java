@@ -2,24 +2,23 @@ package net.threedoubloons.legendaryrandomiser;
 
 import java.util.Map;
 
-import net.threedoubloons.legendaryrandomiser.adapters.SetupCardsAdapter;
+import net.threedoubloons.legendaryrandomiser.containers.SetupCardListContainer;
 import net.threedoubloons.legendaryrandomiser.data.CardType;
 import net.threedoubloons.legendaryrandomiser.data.Mastermind;
 import net.threedoubloons.legendaryrandomiser.data.Sets;
-import android.os.Build;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -29,6 +28,9 @@ import android.widget.Toast;
 public class GameDetailsActivity extends Activity {
 	GameDetails details;
 	private Toast toast = null;
+	private SetupCardListContainer villainsContainer;
+	private SetupCardListContainer henchmenContainer;
+	private SetupCardListContainer heroesContainer;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,16 @@ public class GameDetailsActivity extends Activity {
 		}
 		setupContents();
 	}
+
+	@Override
+	protected void onDestroy() {
+		villainsContainer.dispose();
+		henchmenContainer.dispose();
+		heroesContainer.dispose();
+		super.onDestroy();
+	}
+
+
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
@@ -88,9 +100,9 @@ public class GameDetailsActivity extends Activity {
 		
 		LayoutInflater inflater = getLayoutInflater();
 		
-		fillList((LinearLayout)findViewById(R.id.villains_list), new SetupCardsAdapter(this, details.getVillains()));
-		fillList((LinearLayout)findViewById(R.id.henchmen_list), new SetupCardsAdapter(this, details.getHenchmen()));
-		fillList((LinearLayout)findViewById(R.id.heroes_list), new SetupCardsAdapter(this, details.getHeroes()));
+		villainsContainer = new SetupCardListContainer(this, (LinearLayout)findViewById(R.id.villains_list), details.getVillains());
+		henchmenContainer = new SetupCardListContainer(this, (LinearLayout)findViewById(R.id.henchmen_list),details.getHenchmen());
+		heroesContainer = new SetupCardListContainer(this, (LinearLayout)findViewById(R.id.heroes_list), details.getHeroes());
 
 		LinearLayout list;
 		list = (LinearLayout)findViewById(R.id.villaindeck_list);
@@ -132,23 +144,6 @@ public class GameDetailsActivity extends Activity {
 		
 		
 		((ScrollView)findViewById(R.id.scroll)).smoothScrollTo(0, 0);
-	}
-
-	private void fillList(LinearLayout list, Adapter adapter) {
-		int adapterCount = adapter.getCount();
-		for (int i = 0; i < adapterCount; ++i) {
-			View oldView = list.getChildAt(i);
-			View newView = adapter.getView(i, oldView, null);
-			if (oldView != newView) {
-				if (oldView != null) {
-					list.removeViewAt(i);
-				}
-				
-				list.addView(newView, i);
-			}
-		}
-		
-		list.removeViews(adapterCount, list.getChildCount() - adapterCount);
 	}
 
 	/**

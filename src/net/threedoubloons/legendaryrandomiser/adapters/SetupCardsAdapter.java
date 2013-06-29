@@ -24,6 +24,7 @@ import android.widget.TextView;
 public class SetupCardsAdapter implements ListAdapter {
 	private List<SortableCardBase> cards;
 	private LayoutInflater inflater;
+	private List<DataSetObserver> observers = new ArrayList<DataSetObserver>();
 	
 	public SetupCardsAdapter(Context context, Collection<? extends ICardBase> cards) {
 		super();
@@ -121,13 +122,15 @@ public class SetupCardsAdapter implements ListAdapter {
 	public boolean isEmpty() {
 		return cards.size() == 0;
 	}
-
+	
 	@Override
 	public void registerDataSetObserver(DataSetObserver obs) {
+		observers.add(obs);
 	}
 
 	@Override
 	public void unregisterDataSetObserver(DataSetObserver obs) {
+		observers.remove(obs);
 	}
 
 	@Override
