@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -25,16 +26,20 @@ import android.widget.TextView;
 public class SetupCardsAdapter implements ListAdapter {
 	private List<SortableCardBase> activeCards;
 	private List<SortableCardBase> inactiveCards;
+	private HashMap<ICardBase, SortableCardBase> allCards;
 	private LayoutInflater inflater;
 	private List<DataSetObserver> observers = new ArrayList<DataSetObserver>();
 	
 	public SetupCardsAdapter(Context context, Collection<? extends ICardBase> cards) {
 		this.activeCards = new ArrayList<SortableCardBase>(cards.size());
 		this.inactiveCards = new ArrayList<SortableCardBase>(cards.size());
+		this.allCards = new HashMap<ICardBase, SetupCardsAdapter.SortableCardBase>(cards.size());
 		Resources res = context.getResources();
 		
 		for (ICardBase c : cards) {
-			this.activeCards.add(new SortableCardBase(res, c));
+			SortableCardBase s = new SortableCardBase(res, c);
+			this.activeCards.add(s);
+			allCards.put(c, s);
 		}
 		
 		this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -53,6 +58,27 @@ public class SetupCardsAdapter implements ListAdapter {
 				return lhs.key.compareTo(rhs.key);
 			}
 		});
+	}
+	
+	public void toggleCard(ICardBase card) {
+		SortableCardBase c = allCards.get(card);
+		if (c.isActive) {
+			this.activeCards.remove(c);
+			this.inactiveCards.add(c);
+		} else {
+			this.inactiveCards.remove(c);
+			this.activeCards.add(c);
+		}
+		
+		c.isActive = !c.isActive;
+		sortCards();
+		notifyObservers();
+	}
+
+	private void notifyObservers() {
+		for (DataSetObserver obs: observers) {
+			obs.onChanged();
+		}
 	}
 
 	@Override
@@ -169,10 +195,12 @@ public class SetupCardsAdapter implements ListAdapter {
 	private static class SortableCardBase {
 		public final String key;
 		public final ICardBase card;
+		public boolean isActive;
 		
 		public SortableCardBase(Resources res, ICardBase card) {
 			this.card = card;
 			this.key = res.getString(card.getCard().getName()).toLowerCase(Locale.US);
+			isActive = true;
 		}
 	}
 }
