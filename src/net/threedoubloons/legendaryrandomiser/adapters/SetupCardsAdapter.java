@@ -13,6 +13,7 @@ import net.threedoubloons.legendaryrandomiser.data.ICardBase;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.DataSetObserver;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,17 +23,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class SetupCardsAdapter implements ListAdapter {
-	private List<SortableCardBase> cards;
+	private List<SortableCardBase> activeCards;
+	private List<SortableCardBase> inactiveCards;
 	private LayoutInflater inflater;
 	private List<DataSetObserver> observers = new ArrayList<DataSetObserver>();
 	
 	public SetupCardsAdapter(Context context, Collection<? extends ICardBase> cards) {
-		super();
-		this.cards = new ArrayList<SortableCardBase>(cards.size());
+		this.activeCards = new ArrayList<SortableCardBase>(cards.size());
+		this.inactiveCards = new ArrayList<SortableCardBase>(cards.size());
 		Resources res = context.getResources();
 		
 		for (ICardBase c : cards) {
-			this.cards.add(new SortableCardBase(res, c));
+			this.activeCards.add(new SortableCardBase(res, c));
 		}
 		
 		this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -41,7 +43,12 @@ public class SetupCardsAdapter implements ListAdapter {
 	}
 
 	private void sortCards() {
-		Collections.sort(this.cards, new Comparator<SortableCardBase>() {
+		Collections.sort(this.activeCards, new Comparator<SortableCardBase>() {
+			public int compare(SortableCardBase lhs, SortableCardBase rhs) {
+				return lhs.key.compareTo(rhs.key);
+			}
+		});
+		Collections.sort(this.inactiveCards, new Comparator<SortableCardBase>() {
 			public int compare(SortableCardBase lhs, SortableCardBase rhs) {
 				return lhs.key.compareTo(rhs.key);
 			}
@@ -50,17 +57,26 @@ public class SetupCardsAdapter implements ListAdapter {
 
 	@Override
 	public int getCount() {
-		return cards.size();
+		return activeCards.size() + inactiveCards.size();
+	}
+	
+	private ICardBase get(int pos) {
+		if (pos < activeCards.size()) {
+			return activeCards.get(pos).card;
+		} else {
+			pos -= activeCards.size();
+			return inactiveCards.get(pos).card;
+		}
 	}
 
 	@Override
 	public Object getItem(int pos) {
-		return cards.get(pos).card;
+		return get(pos);
 	}
 
 	@Override
 	public long getItemId(int pos) {
-		return cards.get(pos).card.getCard().getPictureId();
+		return get(pos).getCard().getPictureId();
 	}
 
 	@Override
@@ -74,7 +90,7 @@ public class SetupCardsAdapter implements ListAdapter {
 			view = inflater.inflate(R.layout.legendary_item_label, null);
 		}
 		
-		ICardBase card = cards.get(pos).card;
+		ICardBase card = get(pos);
 		
 		TextView label = (TextView)view.findViewById(R.id.lil_label);
 		ImageView expansion = (ImageView)view.findViewById(R.id.lil_expansion_icon);
@@ -104,6 +120,13 @@ public class SetupCardsAdapter implements ListAdapter {
 			view.findViewById(R.id.hl_colours).setVisibility(View.GONE);
 		}
 
+		if (pos < activeCards.size()) {
+			label.setEnabled(true);
+			label.setPaintFlags(label.getPaintFlags() & ~(Paint.STRIKE_THRU_TEXT_FLAG));
+		} else {
+			label.setEnabled(false);
+			label.setPaintFlags(label.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+		}
 
 		return view;
 	}
@@ -120,7 +143,7 @@ public class SetupCardsAdapter implements ListAdapter {
 
 	@Override
 	public boolean isEmpty() {
-		return cards.size() == 0;
+		return getCount() == 0;
 	}
 	
 	@Override
