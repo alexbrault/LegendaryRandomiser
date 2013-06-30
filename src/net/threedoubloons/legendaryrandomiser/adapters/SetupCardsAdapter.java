@@ -29,7 +29,7 @@ public class SetupCardsAdapter implements ListAdapter {
 	private HashMap<ICardBase, SortableCardBase> allCards;
 	private LayoutInflater inflater;
 	private List<DataSetObserver> observers = new ArrayList<DataSetObserver>();
-	
+		
 	public SetupCardsAdapter(Context context, Collection<? extends ICardBase> cards) {
 		this.activeCards = new ArrayList<SortableCardBase>(cards.size());
 		this.inactiveCards = new ArrayList<SortableCardBase>(cards.size());
@@ -117,6 +117,8 @@ public class SetupCardsAdapter implements ListAdapter {
 		}
 		
 		ICardBase card = get(pos);
+		
+		view.setTag(R.id.lil_label, card);
 		
 		TextView label = (TextView)view.findViewById(R.id.lil_label);
 		ImageView expansion = (ImageView)view.findViewById(R.id.lil_expansion_icon);

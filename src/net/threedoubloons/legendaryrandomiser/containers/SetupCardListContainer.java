@@ -2,16 +2,17 @@ package net.threedoubloons.legendaryrandomiser.containers;
 
 import java.util.Collection;
 
+import net.threedoubloons.legendaryrandomiser.R;
 import net.threedoubloons.legendaryrandomiser.adapters.SetupCardsAdapter;
 import net.threedoubloons.legendaryrandomiser.data.ICardBase;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.view.View;
-import android.widget.Adapter;
+import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 
-public class SetupCardListContainer {
-	private Adapter adapter;
+public class SetupCardListContainer implements OnClickListener {
+	private SetupCardsAdapter adapter;
 	private LinearLayout layout;
 	private Observer obs;
 	
@@ -35,11 +36,13 @@ public class SetupCardListContainer {
 				View newView = adapter.getView(i, oldView, null);
 				
 				if (oldView != newView) {
+					
 					if (oldView != null) {
 						layout.removeViewAt(i);
 					}
 					
 					layout.addView(newView, i);
+					newView.setOnClickListener(this);
 				}
 			}
 			
@@ -54,6 +57,14 @@ public class SetupCardListContainer {
 		public void onChanged() {
 			refreshData();
 			super.onChanged();
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		Object o = v.getTag(R.id.lil_label);
+		if (o instanceof ICardBase) {
+			adapter.toggleCard((ICardBase)o);
 		}
 	}
 }
