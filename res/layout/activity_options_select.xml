@@ -46,5 +46,14 @@
         android:layout_marginTop="41dp"
         android:max="4"
         android:progress="1" />
-
+    
+    <CheckBox
+        android:id="@+id/aos_use_advanced_setup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/num_players_seek"
+        android:text="@string/use_advanced_setup_rules"
+        android:visibility="gone"
+        android:onClick="checkAdvancedRules" />
+    
 </RelativeLayout>

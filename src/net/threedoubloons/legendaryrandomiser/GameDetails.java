@@ -37,6 +37,7 @@ public class GameDetails implements Parcelable {
 	private transient HashMap<CardType, Integer> villainDeckContents = new HashMap<CardType, Integer>();
 	private transient ArrayList<String> notes = new ArrayList<String>();
 	private transient ArrayList<String> errors = new ArrayList<String>();
+	private boolean useAdvancedRules = false;
 	
 	public GameDetails() {
 		initialiseLists();
@@ -54,6 +55,7 @@ public class GameDetails implements Parcelable {
 		this.villains = new ArrayList<Villain>(other.villains);
 		this.henchmen = new ArrayList<Villain>(other.henchmen);
 		this.heroes = new ArrayList<Hero>(other.heroes);
+		this.useAdvancedRules = other.useAdvancedRules;
 	}
 	
 	public GameDetails(Parcel in) {
@@ -89,6 +91,8 @@ public class GameDetails implements Parcelable {
 		for (int i = 0; i < arrSize; ++i) {
 			reservedHeroes.add(Hero.get(in.readString()));
 		}
+		
+		useAdvancedRules = (in.readByte() != 0);
 	}
 
 	public void setActiveSets(long newSets) {
@@ -104,6 +108,10 @@ public class GameDetails implements Parcelable {
 		this.numPlayers = numPlayers;
 	}
 	
+	public void setUseAdvancedRules(boolean useAdvancedRules) {
+		this.useAdvancedRules = useAdvancedRules;
+	}
+
 	public int getNumVillains() {
 		return numVillains;
 	}
@@ -195,7 +203,12 @@ public class GameDetails implements Parcelable {
 		numHenchmen = numHenchmenPerPlayer[numPlayers];
 		setNumHeroes(numHeroesPerPlayer[numPlayers]);
 		setVillainDeckContentsForCardType(CardType.bystander, numBystanderPerPlayer[numPlayers]);
-		setVillainDeckContentsForCardType(CardType.masterStrike, numPlayers > 1 ? 5 : 1);
+		if (numPlayers == 1 && !useAdvancedRules) {
+			setVillainDeckContentsForCardType(CardType.masterStrike, 1);
+		} else {
+			setVillainDeckContentsForCardType(CardType.masterStrike, 5);
+		}
+		
 		if (numPlayers == 1) {
 			addNote("Use only 3 henchman cards");
 		}
@@ -362,6 +375,8 @@ public class GameDetails implements Parcelable {
 		for (Hero h : reservedHeroes) {
 			dest.writeString(h.name());
 		}
+		
+		dest.writeByte((byte)(useAdvancedRules ? 1 : 0));
 	}
 	
 	 public static final Parcelable.Creator<GameDetails> CREATOR

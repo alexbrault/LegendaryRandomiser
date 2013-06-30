@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 	public static final String GAME_OPTIONS = "net.threedoubloons.legendaryrandomiser.GAME_OPTIONS";
 	private GameDetails options;
 	private TextView numPlayers;
+	private CheckBox useAdvancedRules;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 		numPlayersBar.setOnSeekBarChangeListener(this);
 		
 		numPlayers = (TextView)findViewById(R.id.num_players);
+		useAdvancedRules = (CheckBox)findViewById(R.id.aos_use_advanced_setup);
 		numPlayers.setText(Integer.toString(options.getNumPlayers()));
 	}
 
@@ -79,7 +82,13 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
 		options.setNumPlayers(progress + 1);
-		numPlayers.setText(Integer.toString(options.getNumPlayers()));		
+		numPlayers.setText(Integer.toString(options.getNumPlayers()));
+		
+		if (options.getNumPlayers() == 1) {
+			useAdvancedRules.setVisibility(View.VISIBLE);
+		} else {
+			useAdvancedRules.setVisibility(View.GONE);
+		}
 	}
 
 	@Override
@@ -88,5 +97,9 @@ public class OptionsSelectActivity extends Activity implements OnSeekBarChangeLi
 
 	@Override
 	public void onStopTrackingTouch(SeekBar seekBar) {
+	}
+	
+	public void checkAdvancedRules(View view) {
+		options.setUseAdvancedRules(useAdvancedRules.isChecked());
 	}
 }
