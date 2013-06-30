@@ -24,22 +24,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class SetupCardsAdapter implements ListAdapter {
-	private List<SortableCardBase> activeCards;
-	private List<SortableCardBase> inactiveCards;
-	private HashMap<ICardBase, SortableCardBase> allCards;
+	private List<SortableCardBase> cards;
+	private HashMap<ICardBase, SortableCardBase> cardMap;
 	private LayoutInflater inflater;
 	private List<DataSetObserver> observers = new ArrayList<DataSetObserver>();
 		
 	public SetupCardsAdapter(Context context, Collection<? extends ICardBase> cards) {
-		this.activeCards = new ArrayList<SortableCardBase>(cards.size());
-		this.inactiveCards = new ArrayList<SortableCardBase>(cards.size());
-		this.allCards = new HashMap<ICardBase, SetupCardsAdapter.SortableCardBase>(cards.size());
+		this.cards = new ArrayList<SortableCardBase>(cards.size());
+		this.cardMap = new HashMap<ICardBase, SetupCardsAdapter.SortableCardBase>(cards.size());
 		Resources res = context.getResources();
 		
 		for (ICardBase c : cards) {
 			SortableCardBase s = new SortableCardBase(res, c);
-			this.activeCards.add(s);
-			allCards.put(c, s);
+			this.cards.add(s);
+			cardMap.put(c, s);
 		}
 		
 		this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -48,12 +46,7 @@ public class SetupCardsAdapter implements ListAdapter {
 	}
 
 	private void sortCards() {
-		Collections.sort(this.activeCards, new Comparator<SortableCardBase>() {
-			public int compare(SortableCardBase lhs, SortableCardBase rhs) {
-				return lhs.key.compareTo(rhs.key);
-			}
-		});
-		Collections.sort(this.inactiveCards, new Comparator<SortableCardBase>() {
+		Collections.sort(this.cards, new Comparator<SortableCardBase>() {
 			public int compare(SortableCardBase lhs, SortableCardBase rhs) {
 				return lhs.key.compareTo(rhs.key);
 			}
@@ -61,15 +54,7 @@ public class SetupCardsAdapter implements ListAdapter {
 	}
 	
 	public void toggleCard(ICardBase card) {
-		SortableCardBase c = allCards.get(card);
-		if (c.isActive) {
-			this.activeCards.remove(c);
-			this.inactiveCards.add(c);
-		} else {
-			this.inactiveCards.remove(c);
-			this.activeCards.add(c);
-		}
-		
+		SortableCardBase c = cardMap.get(card);		
 		c.isActive = !c.isActive;
 		sortCards();
 		notifyObservers();
@@ -83,21 +68,16 @@ public class SetupCardsAdapter implements ListAdapter {
 
 	@Override
 	public int getCount() {
-		return activeCards.size() + inactiveCards.size();
+		return cards.size();
 	}
 	
 	private ICardBase get(int pos) {
-		if (pos < activeCards.size()) {
-			return activeCards.get(pos).card;
-		} else {
-			pos -= activeCards.size();
-			return inactiveCards.get(pos).card;
-		}
+		return cards.get(pos).card;
 	}
 
 	@Override
 	public Object getItem(int pos) {
-		return get(pos);
+		return cards.get(pos).card;
 	}
 
 	@Override
@@ -116,7 +96,8 @@ public class SetupCardsAdapter implements ListAdapter {
 			view = inflater.inflate(R.layout.legendary_item_label, null);
 		}
 		
-		ICardBase card = get(pos);
+		SortableCardBase c = cards.get(pos);
+		ICardBase card = c.card;
 		
 		view.setTag(R.id.lil_label, card);
 		
@@ -148,7 +129,7 @@ public class SetupCardsAdapter implements ListAdapter {
 			view.findViewById(R.id.hl_colours).setVisibility(View.GONE);
 		}
 
-		if (pos < activeCards.size()) {
+		if (c.isActive) {
 			label.setEnabled(true);
 			label.setPaintFlags(label.getPaintFlags() & ~(Paint.STRIKE_THRU_TEXT_FLAG));
 		} else {
