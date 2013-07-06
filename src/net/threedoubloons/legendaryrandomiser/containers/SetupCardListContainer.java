@@ -63,8 +63,6 @@ public class SetupCardListContainer implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		Object o = v.getTag(R.id.lil_label);
-		if (o instanceof ICardBase) {
-			adapter.toggleCard((ICardBase)o);
-		}
+		adapter.toggleCard(o);
 	}
 }

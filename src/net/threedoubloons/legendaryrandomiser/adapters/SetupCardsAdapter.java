@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -25,19 +24,16 @@ import android.widget.TextView;
 
 public class SetupCardsAdapter implements ListAdapter {
 	private List<SortableCardBase> cards;
-	private HashMap<ICardBase, SortableCardBase> cardMap;
 	private LayoutInflater inflater;
 	private List<DataSetObserver> observers = new ArrayList<DataSetObserver>();
 		
 	public SetupCardsAdapter(Context context, Collection<? extends ICardBase> cards) {
 		this.cards = new ArrayList<SortableCardBase>(cards.size());
-		this.cardMap = new HashMap<ICardBase, SetupCardsAdapter.SortableCardBase>(cards.size());
 		Resources res = context.getResources();
 		
 		for (ICardBase c : cards) {
 			SortableCardBase s = new SortableCardBase(res, c);
 			this.cards.add(s);
-			cardMap.put(c, s);
 		}
 		
 		this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -53,11 +49,13 @@ public class SetupCardsAdapter implements ListAdapter {
 		});
 	}
 	
-	public void toggleCard(ICardBase card) {
-		SortableCardBase c = cardMap.get(card);		
-		c.isActive = !c.isActive;
-		sortCards();
-		notifyObservers();
+	public void toggleCard(Object card) {
+		if (card instanceof SortableCardBase) {
+			SortableCardBase c = (SortableCardBase)card;
+			c.isActive = !c.isActive;
+			sortCards();
+			notifyObservers();
+		}
 	}
 
 	private void notifyObservers() {
@@ -99,7 +97,7 @@ public class SetupCardsAdapter implements ListAdapter {
 		SortableCardBase c = cards.get(pos);
 		ICardBase card = c.card;
 		
-		view.setTag(R.id.lil_label, card);
+		view.setTag(R.id.lil_label, c);
 		
 		TextView label = (TextView)view.findViewById(R.id.lil_label);
 		ImageView expansion = (ImageView)view.findViewById(R.id.lil_expansion_icon);
