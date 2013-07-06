@@ -42,8 +42,9 @@ public class SetupCardListContainer implements OnClickListener {
 					}
 					
 					layout.addView(newView, i);
-					newView.setOnClickListener(this);
 				}
+				
+				newView.setOnClickListener(this);
 			}
 			
 			layout.removeViews(adapterCount, layout.getChildCount() - adapterCount);

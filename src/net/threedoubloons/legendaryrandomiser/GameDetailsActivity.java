@@ -55,9 +55,7 @@ public class GameDetailsActivity extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		villainsContainer.dispose();
-		henchmenContainer.dispose();
-		heroesContainer.dispose();
+		disposeContainers();
 		super.onDestroy();
 	}
 
@@ -100,6 +98,8 @@ public class GameDetailsActivity extends Activity {
 		expansion.setTag(details.getScheme().getCard().getExpansion());
 		
 		LayoutInflater inflater = getLayoutInflater();
+		
+		disposeContainers();
 		
 		villainsContainer = new SetupCardListContainer(this, (LinearLayout)findViewById(R.id.villains_list), details.getVillains());
 		henchmenContainer = new SetupCardListContainer(this, (LinearLayout)findViewById(R.id.henchmen_list),details.getHenchmen());
@@ -145,6 +145,18 @@ public class GameDetailsActivity extends Activity {
 		
 		
 		((ScrollView)findViewById(R.id.scroll)).smoothScrollTo(0, 0);
+	}
+
+	private void disposeContainers() {
+		if (villainsContainer != null) {
+			villainsContainer.dispose();
+		}
+		if (henchmenContainer != null) {
+			henchmenContainer.dispose();
+		}
+		if (heroesContainer != null) {
+			heroesContainer.dispose();
+		}
 	}
 
 	/**
