@@ -185,7 +185,7 @@ public class GameDetails implements Parcelable {
 		addHeroes();
 	}
 
-	private void initialiseLists() {
+	public void initialiseLists() {
 		Hero.initialiseAllList(activeSets);
 		Mastermind.initialiseAllList(activeSets);
 		Scheme.initialiseAllList(activeSets);

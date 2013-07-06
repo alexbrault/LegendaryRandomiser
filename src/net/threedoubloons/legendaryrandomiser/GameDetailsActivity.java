@@ -48,6 +48,7 @@ public class GameDetailsActivity extends Activity {
 			randomiseDetails();
 		} else {
 			details = (GameDetails)savedInstanceState.getParcelable(OptionsSelectActivity.GAME_OPTIONS);
+			details.initialiseLists();
 		}
 		setupContents();
 	}
