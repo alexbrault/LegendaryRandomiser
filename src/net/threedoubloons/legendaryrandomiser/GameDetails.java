@@ -183,6 +183,21 @@ public class GameDetails implements Parcelable {
 		addVillains();
 		addHenchmen();
 		addHeroes();
+		checkInconsistencies();
+	}
+
+	private void checkInconsistencies() {
+		if (villains.size() < numVillains) {
+			addError("Too few villains");
+		}
+		
+		if (henchmen.size() < numHenchmen) {
+			addError("Too few henchmen");
+		}
+		
+		if (heroes.size() < numHeroes) {
+			addError("Too few heroes");
+		}
 	}
 
 	public void initialiseLists() {
@@ -275,8 +290,12 @@ public class GameDetails implements Parcelable {
 	}
 
 	private void addVillains() {
-		while (villains.size() < numVillains) {
-			addRandomVillain();
+		if (numVillains >= Villain.getAll().size()) {
+			villains = new ArrayList<Villain>(Villain.getAll());
+		} else {
+			while (villains.size() < numVillains) {
+				addRandomVillain();
+			}
 		}
 	}
 	
@@ -291,8 +310,12 @@ public class GameDetails implements Parcelable {
 	}
 
 	private void addHenchmen() {
-		while (henchmen.size() < numHenchmen) {
-			addRandomHenchman();
+		if (numHenchmen >= Villain.getAllHenchmen().size()) {
+			henchmen = new ArrayList<Villain>(Villain.getAllHenchmen());
+		} else {
+			while (henchmen.size() < numHenchmen) {
+				addRandomHenchman();
+			}
 		}
 	}
 	
@@ -307,8 +330,12 @@ public class GameDetails implements Parcelable {
 	}
 
 	private void addHeroes() {
-		while (heroes.size() < numHeroes) {
-			addRandomHero();
+		if (numHeroes >= Hero.getAll().size()) {
+			heroes = new ArrayList<Hero>(Hero.getAll());
+		} else {
+			while (heroes.size() < numHeroes) {
+				addRandomHero();
+			}
 		}
 	}
 	
