@@ -24,6 +24,10 @@ public enum Villain implements ICardBase {
 	mlf(R.string.vil_mlf, R.drawable.vil_mlf, false, Sets.DarkCity),
 	streetsOfNY(R.string.vil_streets_ny, R.drawable.vil_streets_of_ny, false, Sets.DarkCity),
 	underworld(R.string.vil_underworld, R.drawable.vil_underworld, false, Sets.DarkCity),
+	
+	//Fantastic Four
+	heralds(R.string.vil_heralds, /*R.drawable.vil_heralds*/0, false, Sets.FantasticFour),
+	subterranea(R.string.vil_subterranea, /*R.drawable.vil_subterranea*/0, false, Sets.FantasticFour),
 
 
 	handNinja(R.string.hen_hand_ninja, R.drawable.hen_hand_ninja, true),

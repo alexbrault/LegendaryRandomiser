@@ -16,6 +16,7 @@ final class C {
 }
 
 final class T {
+	static final int NONE = 0;
 	static final int AVENGERS = R.drawable.team_avengers;
 	static final int FFOUR = R.drawable.team_ffour;
 	static final int KNIGHTS = R.drawable.team_marvelknights;
@@ -30,7 +31,7 @@ public enum Hero implements ICardBase {
 	blackWidow(R.string.hero_blackWidow, R.drawable.hero_black_widow, T.AVENGERS, new int[]{C.TECH, C.COVERT, C.COVERT, C.COVERT}),
 	captain(R.string.hero_captain, R.drawable.hero_captain_a, T.AVENGERS, new int[]{C.INSTINCT, C.STRENGTH, C.TECH, C.COVERT}),
 	cyclops(R.string.hero_cyclops, R.drawable.hero_cyclops, T.XMEN, new int[]{C.STRENGTH, C.RANGED, C.RANGED, C.RANGED}),
-	deadpool(R.string.hero_deadpool, R.drawable.hero_deadpool, 0, new int[]{C.TECH, C.COVERT, C.INSTINCT, C.INSTINCT}),
+	deadpool(R.string.hero_deadpool, R.drawable.hero_deadpool, T.NONE, new int[]{C.TECH, C.COVERT, C.INSTINCT, C.INSTINCT}),
 	emmaFrost(R.string.hero_emmaFrost, R.drawable.hero_emma_frost, T.XMEN, new int[]{C.RANGED, C.COVERT, C.INSTINCT, C.STRENGTH}),
 	gambit(R.string.hero_gambit, R.drawable.hero_gambit, T.XMEN, new int[]{C.RANGED, C.COVERT, C.INSTINCT, C.INSTINCT}),
 	hawkeye(R.string.hero_hawkeye, R.drawable.hero_hawkeye, T.AVENGERS, new int[]{C.INSTINCT, C.TECH, C.TECH, C.TECH}),
@@ -61,8 +62,12 @@ public enum Hero implements ICardBase {
 	professorX(R.string.hero_profx, R.drawable.hero_profx, T.XMEN, new int[]{C.RANGED, C.INSTINCT, C.RANGED, C.COVERT}, Sets.DarkCity),
 	punisher(R.string.hero_punisher, R.drawable.hero_punisher, T.KNIGHTS, new int[]{C.TECH, C.TECH, C.STRENGTH, C.TECH}, Sets.DarkCity),
 	wolverine_dc(R.string.hero_wolverine, R.drawable.hero_wolverine_dc, T.XFORCE, new int[]{C.INSTINCT, C.COVERT, C.STRENGTH, C.COVERT}, Sets.DarkCity),
-	
-	
+
+	human_torch(R.string.hero_human_torch, /*R.drawable.hero_human_torch*/0, T.FFOUR, new int[4], Sets.FantasticFour),
+	invisible_woman(R.string.hero_invisible_woman, /*R.drawable.hero_invisible_woman*/0, T.FFOUR, new int[4], Sets.FantasticFour),
+	mr_fantastic(R.string.hero_mr_fantastic, /*R.drawable.hero_mr_fantastic*/0, T.FFOUR, new int[4], Sets.FantasticFour),
+	silver_surfer(R.string.hero_silver_surfer, /*R.drawable.hero_silver_surfer*/0, T.NONE, new int[4], Sets.FantasticFour),
+	thing(R.string.hero_thing, /*R.drawable.hero_thing*/0, T.FFOUR, new int[4], Sets.FantasticFour),
 	;
 	
 	private final CardBase card;

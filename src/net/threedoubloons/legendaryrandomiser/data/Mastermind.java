@@ -20,6 +20,10 @@ public enum Mastermind implements ICardBase {
 	mephisto(R.string.mm_mephisto, R.drawable.mm_mephisto, Villain.underworld, Sets.DarkCity),
 	mrSinister(R.string.mm_mr_sinister, R.drawable.mm_mr_sinister, Villain.marauders, Sets.DarkCity),
 	stryfe(R.string.mm_stryfe, R.drawable.mm_stryfe, Villain.mlf, Sets.DarkCity),
+	
+	// Fantastic Four
+	galactus(R.string.mm_galactus, /*R.drawable.mm_galactus*/0, Villain.heralds, Sets.FantasticFour),
+	moleman(R.string.mm_moleman, /*R.drawable.mm_moleman*/0, Villain.subterranea, Sets.FantasticFour),
 	;
 	private final Villain alwaysLeads;
 	private final CardBase card;

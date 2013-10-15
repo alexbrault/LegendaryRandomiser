@@ -32,4 +32,10 @@
     <string name="hero_nightcrawler">Nightcrawler</string>
     <string name="hero_profx">Professor X</string>
     <string name="hero_punisher">The Punisher</string>
+    
+    <string name="hero_human_torch">Human Torch</string>
+    <string name="hero_invisible_woman">Invisible Woman</string>
+    <string name="hero_mr_fantastic">Mr. Fantastic</string>
+    <string name="hero_silver_surfer">Silver Surfer</string>
+    <string name="hero_thing">Thing</string>
 </resources>
