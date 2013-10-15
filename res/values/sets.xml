@@ -3,14 +3,17 @@
     <string-array name="pref_sets_labels">
         <item >@string/set_core</item>
         <item >@string/set_darkcity</item>
+        <item >@string/set_ffour</item>
     </string-array>
     
     <array
         name="pref_sets_icons">
         <item>@drawable/exp_core</item>
         <item>@drawable/exp_darkcity</item>
+        <item>@drawable/exp_ffour</item>
     </array>
     
     <string name="set_core">Core Set</string>
     <string name="set_darkcity">Dark City</string>
+    <string name="set_ffour">Fantastic Four</string>
 </resources>

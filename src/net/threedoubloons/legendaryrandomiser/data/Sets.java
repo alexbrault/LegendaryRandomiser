@@ -6,7 +6,8 @@ import net.threedoubloons.legendaryrandomiser.R;
 
 public enum Sets {
 	CoreSet(R.drawable.exp_core, R.string.set_core),
-	DarkCity(R.drawable.exp_darkcity, R.string.set_darkcity);	
+	DarkCity(R.drawable.exp_darkcity, R.string.set_darkcity),
+	FantasticFour(R.drawable.exp_ffour, R.string.set_ffour);
 	
 	private final int symbol;
 	private final int name;
