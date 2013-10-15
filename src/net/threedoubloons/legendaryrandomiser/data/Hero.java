@@ -15,42 +15,54 @@ final class C {
 	static final int TECH = R.drawable.col_tech;
 }
 
+final class T {
+	static final int AVENGERS = R.drawable.team_avengers;
+	static final int FFOUR = R.drawable.team_ffour;
+	static final int KNIGHTS = R.drawable.team_marvelknights;
+	static final int SHIELD = R.drawable.team_shield;
+	static final int SPIDER = R.drawable.team_spiderfriends;
+	static final int XMEN = R.drawable.team_xmen;
+	static final int XFORCE = R.drawable.team_xforce; 
+}
+
 public enum Hero implements ICardBase {
 	none(0, 0, 0, null),
-	blackWidow(R.string.hero_blackWidow, R.drawable.hero_black_widow, R.drawable.team_avengers, new int[]{C.TECH, C.COVERT, C.COVERT, C.COVERT}),
-	captain(R.string.hero_captain, R.drawable.hero_captain_a, R.drawable.team_avengers, new int[]{C.INSTINCT, C.STRENGTH, C.TECH, C.COVERT}),
-	cyclops(R.string.hero_cyclops, R.drawable.hero_cyclops, R.drawable.team_xmen, new int[]{C.STRENGTH, C.RANGED, C.RANGED, C.RANGED}),
+	blackWidow(R.string.hero_blackWidow, R.drawable.hero_black_widow, T.AVENGERS, new int[]{C.TECH, C.COVERT, C.COVERT, C.COVERT}),
+	captain(R.string.hero_captain, R.drawable.hero_captain_a, T.AVENGERS, new int[]{C.INSTINCT, C.STRENGTH, C.TECH, C.COVERT}),
+	cyclops(R.string.hero_cyclops, R.drawable.hero_cyclops, T.XMEN, new int[]{C.STRENGTH, C.RANGED, C.RANGED, C.RANGED}),
 	deadpool(R.string.hero_deadpool, R.drawable.hero_deadpool, 0, new int[]{C.TECH, C.COVERT, C.INSTINCT, C.INSTINCT}),
-	emmaFrost(R.string.hero_emmaFrost, R.drawable.hero_emma_frost, R.drawable.team_xmen, new int[]{C.RANGED, C.COVERT, C.INSTINCT, C.STRENGTH}),
-	gambit(R.string.hero_gambit, R.drawable.hero_gambit, R.drawable.team_xmen, new int[]{C.RANGED, C.COVERT, C.INSTINCT, C.INSTINCT}),
-	hawkeye(R.string.hero_hawkeye, R.drawable.hero_hawkeye, R.drawable.team_avengers, new int[]{C.INSTINCT, C.TECH, C.TECH, C.TECH}),
-	hulk(R.string.hero_hulk, R.drawable.hero_hulk, R.drawable.team_avengers, new int[]{C.INSTINCT, C.STRENGTH, C.STRENGTH, C.STRENGTH}),
-	ironMan(R.string.hero_ironMan, R.drawable.hero_ironman, R.drawable.team_avengers, new int[]{C.RANGED, C.TECH, C.TECH, C.TECH}),
-	nickFury(R.string.hero_nickFury, R.drawable.hero_nick_fury, R.drawable.team_shield, new int[]{C.TECH, C.COVERT, C.STRENGTH, C.TECH}),
-	rogue(R.string.hero_rogue, R.drawable.hero_rogue, R.drawable.team_xmen, new int[]{C.STRENGTH, C.COVERT, C.COVERT, C.STRENGTH}),
-	spiderman(R.string.hero_spiderman, R.drawable.hero_spiderman,  R.drawable.team_spiderfriends, new int[]{C.INSTINCT, C.STRENGTH, C.TECH, C.COVERT}),
-	storm(R.string.hero_storm, R.drawable.hero_storm, R.drawable.team_xmen, new int[]{C.RANGED, C.RANGED, C.COVERT, C.RANGED}),
-	thor(R.string.hero_thor, R.drawable.hero_thor, R.drawable.team_avengers, new int[]{C.STRENGTH, C.RANGED, C.RANGED, C.RANGED}),
-	wolverine(R.string.hero_wolverine, R.drawable.hero_wolverine, R.drawable.team_xmen, new int[]{C.INSTINCT, C.INSTINCT, C.INSTINCT, C.INSTINCT}),
+	emmaFrost(R.string.hero_emmaFrost, R.drawable.hero_emma_frost, T.XMEN, new int[]{C.RANGED, C.COVERT, C.INSTINCT, C.STRENGTH}),
+	gambit(R.string.hero_gambit, R.drawable.hero_gambit, T.XMEN, new int[]{C.RANGED, C.COVERT, C.INSTINCT, C.INSTINCT}),
+	hawkeye(R.string.hero_hawkeye, R.drawable.hero_hawkeye, T.AVENGERS, new int[]{C.INSTINCT, C.TECH, C.TECH, C.TECH}),
+	hulk(R.string.hero_hulk, R.drawable.hero_hulk, T.AVENGERS, new int[]{C.INSTINCT, C.STRENGTH, C.STRENGTH, C.STRENGTH}),
+	ironMan(R.string.hero_ironMan, R.drawable.hero_ironman, T.AVENGERS, new int[]{C.RANGED, C.TECH, C.TECH, C.TECH}),
+	nickFury(R.string.hero_nickFury, R.drawable.hero_nick_fury, T.SHIELD, new int[]{C.TECH, C.COVERT, C.STRENGTH, C.TECH}),
+	rogue(R.string.hero_rogue, R.drawable.hero_rogue, T.XMEN, new int[]{C.STRENGTH, C.COVERT, C.COVERT, C.STRENGTH}),
+	spiderman(R.string.hero_spiderman, R.drawable.hero_spiderman,  T.SPIDER, new int[]{C.INSTINCT, C.STRENGTH, C.TECH, C.COVERT}),
+	storm(R.string.hero_storm, R.drawable.hero_storm, T.XMEN, new int[]{C.RANGED, C.RANGED, C.COVERT, C.RANGED}),
+	thor(R.string.hero_thor, R.drawable.hero_thor, T.AVENGERS, new int[]{C.STRENGTH, C.RANGED, C.RANGED, C.RANGED}),
+	wolverine(R.string.hero_wolverine, R.drawable.hero_wolverine, T.XMEN, new int[]{C.INSTINCT, C.INSTINCT, C.INSTINCT, C.INSTINCT}),
 	
 	//Dark City
-	angel(R.string.hero_angel, R.drawable.hero_angel, R.drawable.team_xmen, new int[]{C.COVERT, C.STRENGTH, C.INSTINCT, C.STRENGTH}, Sets.DarkCity),
-	blade(R.string.hero_blade, R.drawable.hero_blade, R.drawable.team_marvelknights, new int[]{C.COVERT, C.STRENGTH, C.TECH, C.INSTINCT}, Sets.DarkCity),
-	bishop(R.string.hero_bishop, R.drawable.hero_bishop, R.drawable.team_xmen, new int[]{C.RANGED, C.COVERT, C.RANGED, C.TECH}, Sets.DarkCity),
-	cable(R.string.hero_cable, R.drawable.hero_cable, R.drawable.team_xforce, new int[]{C.TECH, C.RANGED, C.COVERT, C.RANGED}, Sets.DarkCity),
-	colossus(R.string.hero_colossus, R.drawable.hero_colossus, R.drawable.team_xforce, new int[]{C.STRENGTH, C.STRENGTH, C.COVERT, C.STRENGTH}, Sets.DarkCity),
-	daredevil(R.string.hero_daredevil, R.drawable.hero_daredevil, R.drawable.team_marvelknights, new int[]{C.STRENGTH, C.INSTINCT, C.COVERT, C.INSTINCT}, Sets.DarkCity),
-	domino(R.string.hero_domino, R.drawable.hero_domino, R.drawable.team_xforce, new int[]{C.TECH, C.INSTINCT, C.TECH, C.COVERT}, Sets.DarkCity),
-	electra(R.string.hero_electra, R.drawable.hero_elektra, R.drawable.team_marvelknights, new int[]{C.COVERT, C.INSTINCT, C.INSTINCT, C.INSTINCT}, Sets.DarkCity),
-	forge(R.string.hero_forge, R.drawable.hero_forge, R.drawable.team_xforce, new int[]{C.TECH, C.TECH, C.TECH, C.TECH}, Sets.DarkCity),
-	ghostRider(R.string.hero_ghost_rider, R.drawable.hero_ghost_rider, R.drawable.team_marvelknights, new int[]{C.TECH, C.RANGED, C.STRENGTH, C.RANGED}, Sets.DarkCity),
-	iceman(R.string.hero_iceman, R.drawable.hero_iceman, R.drawable.team_xmen, new int[]{C.RANGED, C.RANGED, C.STRENGTH, C.RANGED}, Sets.DarkCity),
-	ironFist(R.string.hero_ironfist, R.drawable.hero_iron_fist, R.drawable.team_marvelknights, new int[]{C.STRENGTH, C.INSTINCT, C.STRENGTH, C.STRENGTH}, Sets.DarkCity),
-	jeanGrey(R.string.hero_jean_grey, R.drawable.hero_jean_grey, R.drawable.team_xmen, new int[]{C.RANGED, C.COVERT, C.COVERT, C.RANGED}, Sets.DarkCity),
-	nightCrawler(R.string.hero_nightcrawler, R.drawable.hero_nightcrawler, R.drawable.team_xmen, new int[]{C.INSTINCT, C.COVERT, C.INSTINCT, C.COVERT}, Sets.DarkCity),
-	professorX(R.string.hero_profx, R.drawable.hero_profx, R.drawable.team_xmen, new int[]{C.RANGED, C.INSTINCT, C.RANGED, C.COVERT}, Sets.DarkCity),
-	punisher(R.string.hero_punisher, R.drawable.hero_punisher, R.drawable.team_marvelknights, new int[]{C.TECH, C.TECH, C.STRENGTH, C.TECH}, Sets.DarkCity),
-	wolverine_dc(R.string.hero_wolverine, R.drawable.hero_wolverine_dc, R.drawable.team_xforce, new int[]{C.INSTINCT, C.COVERT, C.STRENGTH, C.COVERT}, Sets.DarkCity),
+	angel(R.string.hero_angel, R.drawable.hero_angel, T.XMEN, new int[]{C.COVERT, C.STRENGTH, C.INSTINCT, C.STRENGTH}, Sets.DarkCity),
+	blade(R.string.hero_blade, R.drawable.hero_blade, T.KNIGHTS, new int[]{C.COVERT, C.STRENGTH, C.TECH, C.INSTINCT}, Sets.DarkCity),
+	bishop(R.string.hero_bishop, R.drawable.hero_bishop, T.XMEN, new int[]{C.RANGED, C.COVERT, C.RANGED, C.TECH}, Sets.DarkCity),
+	cable(R.string.hero_cable, R.drawable.hero_cable, T.XFORCE, new int[]{C.TECH, C.RANGED, C.COVERT, C.RANGED}, Sets.DarkCity),
+	colossus(R.string.hero_colossus, R.drawable.hero_colossus, T.XFORCE, new int[]{C.STRENGTH, C.STRENGTH, C.COVERT, C.STRENGTH}, Sets.DarkCity),
+	daredevil(R.string.hero_daredevil, R.drawable.hero_daredevil, T.KNIGHTS, new int[]{C.STRENGTH, C.INSTINCT, C.COVERT, C.INSTINCT}, Sets.DarkCity),
+	domino(R.string.hero_domino, R.drawable.hero_domino, T.XFORCE, new int[]{C.TECH, C.INSTINCT, C.TECH, C.COVERT}, Sets.DarkCity),
+	electra(R.string.hero_electra, R.drawable.hero_elektra, T.KNIGHTS, new int[]{C.COVERT, C.INSTINCT, C.INSTINCT, C.INSTINCT}, Sets.DarkCity),
+	forge(R.string.hero_forge, R.drawable.hero_forge, T.XFORCE, new int[]{C.TECH, C.TECH, C.TECH, C.TECH}, Sets.DarkCity),
+	ghostRider(R.string.hero_ghost_rider, R.drawable.hero_ghost_rider, T.KNIGHTS, new int[]{C.TECH, C.RANGED, C.STRENGTH, C.RANGED}, Sets.DarkCity),
+	iceman(R.string.hero_iceman, R.drawable.hero_iceman, T.XMEN, new int[]{C.RANGED, C.RANGED, C.STRENGTH, C.RANGED}, Sets.DarkCity),
+	ironFist(R.string.hero_ironfist, R.drawable.hero_iron_fist, T.KNIGHTS, new int[]{C.STRENGTH, C.INSTINCT, C.STRENGTH, C.STRENGTH}, Sets.DarkCity),
+	jeanGrey(R.string.hero_jean_grey, R.drawable.hero_jean_grey, T.XMEN, new int[]{C.RANGED, C.COVERT, C.COVERT, C.RANGED}, Sets.DarkCity),
+	nightCrawler(R.string.hero_nightcrawler, R.drawable.hero_nightcrawler, T.XMEN, new int[]{C.INSTINCT, C.COVERT, C.INSTINCT, C.COVERT}, Sets.DarkCity),
+	professorX(R.string.hero_profx, R.drawable.hero_profx, T.XMEN, new int[]{C.RANGED, C.INSTINCT, C.RANGED, C.COVERT}, Sets.DarkCity),
+	punisher(R.string.hero_punisher, R.drawable.hero_punisher, T.KNIGHTS, new int[]{C.TECH, C.TECH, C.STRENGTH, C.TECH}, Sets.DarkCity),
+	wolverine_dc(R.string.hero_wolverine, R.drawable.hero_wolverine_dc, T.XFORCE, new int[]{C.INSTINCT, C.COVERT, C.STRENGTH, C.COVERT}, Sets.DarkCity),
+	
+	
 	;
 	
 	private final CardBase card;
