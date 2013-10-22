@@ -29,6 +29,12 @@ public enum Scheme implements ICardBase {
 	babyHope(R.string.sc_baby, R.string.sc_baby_short, Sets.DarkCity),
 	blowupHelicarrier(R.string.sc_helicarrier, R.string.sc_helicarrier_short, Sets.DarkCity),
 	crimeWave(R.string.sc_crime_wave, R.string.sc_crime_wave_short, Sets.DarkCity),
+	
+	// Fantastic Four
+	negativeZone(R.string.sc_negative_zone, R.string.sc_negative_zone_short, Sets.FantasticFour),
+	forceField(R.string.sc_force_field, R.string.sc_force_field_short, Sets.FantasticFour),
+	glacier(R.string.sc_glacier, R.string.sc_glacier_short, Sets.FantasticFour),
+	cosmicRays(R.string.sc_cosmic_rays, R.string.sc_cosmic_rays_short, Sets.FantasticFour),
 	;
 	private final CardBase card;
 	private final int longName;
@@ -197,6 +203,22 @@ public enum Scheme implements ICardBase {
 				if (!details.addPreferredHenchman(Villain.maggiaGoons)) {
 					details.addError("Scheme requires the Maggia Goons henchman group");
 				}
+			}});
+		schemeActions.put("negativeZone", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+			}});
+		schemeActions.put("forceField", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 7);
+			}});
+		schemeActions.put("glacier", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 7);
+			}});
+		schemeActions.put("cosmicRays", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 6);
 			}});
 	}
 }

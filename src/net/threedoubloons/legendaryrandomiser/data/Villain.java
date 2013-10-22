@@ -26,8 +26,8 @@ public enum Villain implements ICardBase {
 	underworld(R.string.vil_underworld, R.drawable.vil_underworld, false, Sets.DarkCity),
 	
 	//Fantastic Four
-	heralds(R.string.vil_heralds, /*R.drawable.vil_heralds*/0, false, Sets.FantasticFour),
-	subterranea(R.string.vil_subterranea, /*R.drawable.vil_subterranea*/0, false, Sets.FantasticFour),
+	heralds(R.string.vil_heralds, R.drawable.vil_heralds, false, Sets.FantasticFour),
+	subterranea(R.string.vil_subterranea, R.drawable.vil_subterranea, false, Sets.FantasticFour),
 
 
 	handNinja(R.string.hen_hand_ninja, R.drawable.hen_hand_ninja, true),

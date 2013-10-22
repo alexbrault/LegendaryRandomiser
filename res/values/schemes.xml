@@ -49,4 +49,17 @@
     <string name="sc_xcutioner">the <b>X-Cutioner\'s Song</b></string>
     <string name="sc_xcutioner_short">X-Cutioner\'s Song</string>
     
+    
+    
+    <string name="sc_cosmic_rays">to <b>Bathe Earth in Cosmic Rays</b></string>
+    <string name="sc_cosmic_rays_short">Bathe Earth in Cosmic Rays</string>
+    
+    <string name="sc_glacier">to <b>Flood the Planet with Melted Glaciers</b></string>
+    <string name="sc_glacier_short">Flood the Planet with Melted Glaciers</string>
+    
+    <string name="sc_force_field">to create an <b>Invisible Force Field</b></string>
+    <string name="sc_force_field_short">Invisible Force field</string>
+    
+    <string name="sc_negative_zone">to <b>Pull Reality into the Negative Zone</b></string>
+    <string name="sc_negative_zone_short">Pull Reality into the Negative Zone</string>
 </resources>

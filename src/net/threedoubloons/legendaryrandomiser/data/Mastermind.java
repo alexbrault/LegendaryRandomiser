@@ -22,8 +22,8 @@ public enum Mastermind implements ICardBase {
 	stryfe(R.string.mm_stryfe, R.drawable.mm_stryfe, Villain.mlf, Sets.DarkCity),
 	
 	// Fantastic Four
-	galactus(R.string.mm_galactus, /*R.drawable.mm_galactus*/0, Villain.heralds, Sets.FantasticFour),
-	moleman(R.string.mm_moleman, /*R.drawable.mm_moleman*/0, Villain.subterranea, Sets.FantasticFour),
+	galactus(R.string.mm_galactus, R.drawable.mm_galactus, Villain.heralds, Sets.FantasticFour),
+	moleman(R.string.mm_moleman, R.drawable.mm_moleman, Villain.subterranea, Sets.FantasticFour),
 	;
 	private final Villain alwaysLeads;
 	private final CardBase card;

@@ -63,11 +63,11 @@ public enum Hero implements ICardBase {
 	punisher(R.string.hero_punisher, R.drawable.hero_punisher, T.KNIGHTS, new int[]{C.TECH, C.TECH, C.STRENGTH, C.TECH}, Sets.DarkCity),
 	wolverine_dc(R.string.hero_wolverine, R.drawable.hero_wolverine_dc, T.XFORCE, new int[]{C.INSTINCT, C.COVERT, C.STRENGTH, C.COVERT}, Sets.DarkCity),
 
-	human_torch(R.string.hero_human_torch, /*R.drawable.hero_human_torch*/0, T.FFOUR, new int[4], Sets.FantasticFour),
-	invisible_woman(R.string.hero_invisible_woman, /*R.drawable.hero_invisible_woman*/0, T.FFOUR, new int[4], Sets.FantasticFour),
-	mr_fantastic(R.string.hero_mr_fantastic, /*R.drawable.hero_mr_fantastic*/0, T.FFOUR, new int[4], Sets.FantasticFour),
-	silver_surfer(R.string.hero_silver_surfer, /*R.drawable.hero_silver_surfer*/0, T.NONE, new int[4], Sets.FantasticFour),
-	thing(R.string.hero_thing, /*R.drawable.hero_thing*/0, T.FFOUR, new int[4], Sets.FantasticFour),
+	human_torch(R.string.hero_human_torch, R.drawable.hero_human_torch, T.FFOUR, new int[]{C.RANGED, C.INSTINCT, C.RANGED, C.RANGED}, Sets.FantasticFour),
+	invisible_woman(R.string.hero_invisible_woman, R.drawable.hero_invisible_woman, T.FFOUR, new int[]{C.COVERT, C.RANGED, C.COVERT, C.RANGED}, Sets.FantasticFour),
+	mr_fantastic(R.string.hero_mr_fantastic, R.drawable.hero_mr_fantastic, T.FFOUR, new int[]{C.TECH, C.TECH, C.INSTINCT, C.TECH}, Sets.FantasticFour),
+	silver_surfer(R.string.hero_silver_surfer, R.drawable.hero_silver_surfer, T.NONE, new int[]{C.STRENGTH, C.COVERT, C.RANGED, C.RANGED}, Sets.FantasticFour),
+	thing(R.string.hero_thing, R.drawable.hero_thing, T.FFOUR, new int[]{C.INSTINCT, C.STRENGTH, C.STRENGTH, C.STRENGTH}, Sets.FantasticFour),
 	;
 	
 	private final CardBase card;
