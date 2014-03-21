@@ -11,7 +11,7 @@
     <string name="hero_ironMan">Iron Man</string>
     <string name="hero_nickFury">Nick Fury</string>
     <string name="hero_rogue">Rogue</string>
-    <string name="hero_spiderman">Spiderman</string>
+    <string name="hero_spiderman">Spider-Man</string>
     <string name="hero_storm">Storm</string>
     <string name="hero_thor">Thor</string>
     <string name="hero_wolverine">Wolverine</string>
@@ -38,4 +38,10 @@
     <string name="hero_mr_fantastic">Mr. Fantastic</string>
     <string name="hero_silver_surfer">Silver Surfer</string>
     <string name="hero_thing">Thing</string>
+    
+    <string name="hero_symbiote">Symbiote Spider-Man</string>
+    <string name="hero_black_cat">Black Cat</string>
+    <string name="hero_moon_knight">Moon Knight</string>
+    <string name="hero_scarlet_spider">Scarlet Spider</string>
+    <string name="hero_spider_woman">Spider-Woman</string>
 </resources>

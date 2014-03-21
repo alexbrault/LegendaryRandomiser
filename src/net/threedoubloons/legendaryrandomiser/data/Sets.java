@@ -7,7 +7,9 @@ import net.threedoubloons.legendaryrandomiser.R;
 public enum Sets {
 	CoreSet(R.drawable.exp_core, R.string.set_core),
 	DarkCity(R.drawable.exp_darkcity, R.string.set_darkcity),
-	FantasticFour(R.drawable.exp_ffour, R.string.set_ffour);
+	FantasticFour(R.drawable.exp_ffour, R.string.set_ffour),
+	PaintRed(R.drawable.exp_paint_red, R.string.set_paint_red),
+	;
 	
 	private final int symbol;
 	private final int name;

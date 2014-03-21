@@ -24,6 +24,10 @@ public enum Mastermind implements ICardBase {
 	// Fantastic Four
 	galactus(R.string.mm_galactus, R.drawable.mm_galactus, Villain.heralds, Sets.FantasticFour),
 	moleman(R.string.mm_moleman, R.drawable.mm_moleman, Villain.subterranea, Sets.FantasticFour),
+	
+	// Paint the Town Red
+	carnage(R.string.mm_carnage, R.drawable.mm_carnage, Villain.maxCarnage, Sets.PaintRed),
+	mysterio(R.string.mm_mysterio, R.drawable.mm_mysterio, Villain.sinisterSix, Sets.PaintRed),
 	;
 	private final Villain alwaysLeads;
 	private final CardBase card;

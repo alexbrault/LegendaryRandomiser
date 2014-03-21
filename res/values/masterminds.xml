@@ -13,4 +13,7 @@
     
     <string name="mm_galactus">Galactus</string>
     <string name="mm_moleman">Mole Man</string>
+    
+    <string name="mm_carnage">Carnage</string>
+    <string name="mm_mysterio">Mysterio</string>
 </resources>

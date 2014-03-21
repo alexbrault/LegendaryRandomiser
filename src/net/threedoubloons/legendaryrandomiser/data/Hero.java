@@ -68,6 +68,12 @@ public enum Hero implements ICardBase {
 	mr_fantastic(R.string.hero_mr_fantastic, R.drawable.hero_mr_fantastic, T.FFOUR, new int[]{C.TECH, C.TECH, C.INSTINCT, C.TECH}, Sets.FantasticFour),
 	silver_surfer(R.string.hero_silver_surfer, R.drawable.hero_silver_surfer, T.NONE, new int[]{C.STRENGTH, C.COVERT, C.RANGED, C.RANGED}, Sets.FantasticFour),
 	thing(R.string.hero_thing, R.drawable.hero_thing, T.FFOUR, new int[]{C.INSTINCT, C.STRENGTH, C.STRENGTH, C.STRENGTH}, Sets.FantasticFour),
+	
+	symbiote(R.string.hero_symbiote, R.drawable.hero_symbiote, T.SPIDER, new int[]{C.STRENGTH, C.INSTINCT, C.COVERT, C.RANGED}, Sets.PaintRed),
+	blackCat(R.string.hero_black_cat, R.drawable.hero_black_cat, T.SPIDER, new int[]{C.COVERT, C.COVERT, C.INSTINCT, C.COVERT}, Sets.PaintRed),
+	moonKnight(R.string.hero_moon_knight, R.drawable.hero_moon_knight, T.KNIGHTS, new int[]{C.INSTINCT, C.TECH, C.TECH, C.INSTINCT}, Sets.PaintRed),
+	scarletSpider(R.string.hero_scarlet_spider, R.drawable.hero_scarlet_spider, T.SPIDER, new int[]{C.STRENGTH, C.INSTINCT, C.COVERT, C.STRENGTH}, Sets.PaintRed),
+	spiderWoman(R.string.hero_spider_woman, R.drawable.hero_spider_woman, T.SPIDER, new int[]{C.STRENGTH, C.RANGED, C.RANGED, C.COVERT}, Sets.PaintRed),
 	;
 	
 	private final CardBase card;

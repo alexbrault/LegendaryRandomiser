@@ -35,6 +35,12 @@ public enum Scheme implements ICardBase {
 	forceField(R.string.sc_force_field, R.string.sc_force_field_short, Sets.FantasticFour),
 	glacier(R.string.sc_glacier, R.string.sc_glacier_short, Sets.FantasticFour),
 	cosmicRays(R.string.sc_cosmic_rays, R.string.sc_cosmic_rays_short, Sets.FantasticFour),
+	
+	// Paint the Town Red
+	dailyBugle(R.string.sc_daily_bugle, R.string.sc_daily_bugle_short, Sets.PaintRed),
+	spliceDNA(R.string.sc_splice_dna, R.string.sc_splice_dna_short, Sets.PaintRed),
+	cloneSaga(R.string.sc_clone_saga, R.string.sc_clone_saga_short, Sets.PaintRed),
+	weaveLies(R.string.sc_weave_lies, R.string.sc_weave_lies_short, Sets.PaintRed),
 	;
 	private final CardBase card;
 	private final int longName;
@@ -219,6 +225,28 @@ public enum Scheme implements ICardBase {
 		schemeActions.put("cosmicRays", new SchemeAction() {
 			public void apply(GameDetails details) {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 6);
+			}});
+		schemeActions.put("dailyBugle", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				Villain h = details.getRandomHenchman();
+				details.reserveHenchman(h);
+				details.addNote(String.format("Add 6 henchmen from a single group to the Hero deck"/*, h.getCard().getName()*/));
+			}});
+		schemeActions.put("spliceDNA", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				if (!details.addPreferredVillain(Villain.sinisterSix)) {
+					details.addError("Scheme requires the Sinister Six villain group");
+				}
+			}});
+		schemeActions.put("cloneSaga", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+			}});
+		schemeActions.put("weaveLies", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 7);
 			}});
 	}
 }

@@ -28,6 +28,10 @@ public enum Villain implements ICardBase {
 	//Fantastic Four
 	heralds(R.string.vil_heralds, R.drawable.vil_heralds, false, Sets.FantasticFour),
 	subterranea(R.string.vil_subterranea, R.drawable.vil_subterranea, false, Sets.FantasticFour),
+	
+	// Paint the Town Red
+	maxCarnage(R.string.vil_max_carnage, R.drawable.vil_max_carnage, false, Sets.PaintRed),
+	sinisterSix(R.string.vil_sinister_six, R.drawable.vil_sinister_six, false, Sets.PaintRed),
 
 
 	handNinja(R.string.hen_hand_ninja, R.drawable.hen_hand_ninja, true),

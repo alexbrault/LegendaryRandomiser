@@ -4,6 +4,7 @@
         <item >@string/set_core</item>
         <item >@string/set_darkcity</item>
         <item >@string/set_ffour</item>
+        <item >@string/set_paint_red</item>
     </string-array>
     
     <array
@@ -11,9 +12,11 @@
         <item>@drawable/exp_core</item>
         <item>@drawable/exp_darkcity</item>
         <item>@drawable/exp_ffour</item>
+        <item>@drawable/exp_paint_red</item>
     </array>
     
     <string name="set_core">Core Set</string>
     <string name="set_darkcity">Dark City</string>
     <string name="set_ffour">Fantastic Four</string>
+    <string name="set_paint_red">Paint the Town Red</string>
 </resources>

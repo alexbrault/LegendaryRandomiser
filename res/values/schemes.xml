@@ -62,4 +62,18 @@
     
     <string name="sc_negative_zone">to <b>Pull Reality into the Negative Zone</b></string>
     <string name="sc_negative_zone_short">Pull Reality into the Negative Zone</string>
+    
+    
+    
+    <string name="sc_daily_bugle">to <b>Invade the Daily Bugle News HQ</b></string>
+    <string name="sc_daily_bugle_short">Invade the Daily Bugle News HQ</string>
+    
+    <string name="sc_splice_dna">to <b>Splice Humans with Spider DNA</b></string>
+    <string name="sc_splice_dna_short">Splice Humans with Spider DNA</string>
+    
+    <string name="sc_clone_saga"><b>The Clone Saga</b></string>
+    <string name="sc_clone_saga_short">The Clone Saga</string>
+    
+    <string name="sc_weave_lies">to <b>Weave a Web of Lies</b></string>
+    <string name="sc_weave_lies_short">Weave a Web of Lies</string>
 </resources>

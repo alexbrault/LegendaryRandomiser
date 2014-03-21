@@ -38,6 +38,7 @@ public class GameDetails implements Parcelable {
 	private transient ArrayList<String> notes = new ArrayList<String>();
 	private transient ArrayList<String> errors = new ArrayList<String>();
 	private boolean useAdvancedRules = false;
+	private ArrayList<Villain> reservedVillains = new ArrayList<Villain>();
 	
 	public GameDetails() {
 		initialiseLists();
@@ -300,13 +301,18 @@ public class GameDetails implements Parcelable {
 	}
 	
 	private void addRandomVillain() {
+		Villain v = getRandomVillain();
+		villains.add(v);
+	}
+
+	public Villain getRandomVillain() {
 		int mPosition;
 		Villain v;
 		do {
 			mPosition = r.nextInt(Villain.getAll().size());
 			v = Villain.getAll().get(mPosition);
-		} while (villains.contains(v));
-		villains.add(v);
+		} while (villains.contains(v) || reservedVillains.contains(v));
+		return v;
 	}
 
 	private void addHenchmen() {
@@ -320,13 +326,18 @@ public class GameDetails implements Parcelable {
 	}
 	
 	private void addRandomHenchman() {
+		Villain v = getRandomHenchman();
+		henchmen.add(v);
+	}
+
+	public Villain getRandomHenchman() {
 		int vPosition;
 		Villain v;
 		do {
 			vPosition = r.nextInt(Villain.getAllHenchmen().size());
 			v = Villain.getAllHenchmen().get(vPosition);
-		} while (henchmen.contains(v));
-		henchmen.add(v);
+		} while (henchmen.contains(v) || reservedVillains.contains(v));
+		return v;
 	}
 
 	private void addHeroes() {
@@ -352,6 +363,14 @@ public class GameDetails implements Parcelable {
 	
 	public void reserveHero(Hero h) {
 		reservedHeroes.add(h);
+	}
+	
+	public void reserveVillain(Villain h) {
+		reservedVillains.add(h);
+	}
+	
+	public void reserveHenchman(Villain h) {
+		reservedVillains.add(h);
 	}
 	
 	private void addRandomHero() {
