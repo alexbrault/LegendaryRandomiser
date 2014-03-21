@@ -7,4 +7,5 @@
 	<dimen name="app_defaultsize_h">180dp</dimen>
 	<dimen name="app_minimumsize_w">632dp</dimen>
 	<dimen name="app_minimumsize_h">180dp</dimen>
+	<dimen name="details_spacing">19dp</dimen>
 </resources>

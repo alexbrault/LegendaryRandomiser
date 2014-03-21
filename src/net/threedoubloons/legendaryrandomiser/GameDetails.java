@@ -35,6 +35,7 @@ public class GameDetails implements Parcelable {
 	private ArrayList<Hero> heroes = new ArrayList<Hero>();
 	private ArrayList<Hero> reservedHeroes = new ArrayList<Hero>();
 	private transient HashMap<CardType, Integer> villainDeckContents = new HashMap<CardType, Integer>();
+	private transient HashMap<CardType, Integer> heroDeckContents = new HashMap<CardType, Integer>();
 	private transient ArrayList<String> notes = new ArrayList<String>();
 	private transient ArrayList<String> errors = new ArrayList<String>();
 	private boolean useAdvancedRules = false;
@@ -171,6 +172,14 @@ public class GameDetails implements Parcelable {
 	
 	public void setVillainDeckContentsForCardType(CardType type, int number) {
 		villainDeckContents.put(type, number);
+	}
+	
+	public final Collection<Map.Entry<CardType, Integer>> getHeroDeckContents() {
+		return heroDeckContents.entrySet();
+	}
+	
+	public void setHeroDeckContentsForCardType(CardType type, int number) {
+		heroDeckContents.put(type, number);
 	}
 	
 	public void randomiseAll() {

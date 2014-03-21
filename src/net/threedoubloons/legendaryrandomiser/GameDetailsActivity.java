@@ -119,6 +119,24 @@ public class GameDetailsActivity extends Activity {
 			label.setCompoundDrawablesWithIntrinsicBounds(card.getKey().getPictureId(), 0, 0, 0);
 			list.addView(v);
 		}
+
+		list = (LinearLayout)findViewById(R.id.herodeck_list);
+		list.removeAllViews();
+		for (Map.Entry<CardType, Integer> card : details.getHeroDeckContents()) {
+			if (card.getValue() == 0) {
+				continue;
+			}
+			
+			v = inflater.inflate(R.layout.legendary_item_label, null);
+			label = (TextView)v.findViewById(R.id.lil_label);
+			label.setText(String.format("%d %s", card.getValue(), getString(card.getKey().getName())));
+			label.setCompoundDrawablesWithIntrinsicBounds(card.getKey().getPictureId(), 0, 0, 0);
+			list.addView(v);
+		}
+		
+		if (list.getChildCount() == 0) {
+			findViewById(R.id.hero_deck).setVisibility(View.GONE);
+		}
 		
 		list = (LinearLayout)findViewById(R.id.notes_list);
 		list.removeAllViews();

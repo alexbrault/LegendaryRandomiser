@@ -191,7 +191,7 @@ public enum Scheme implements ICardBase {
 		schemeActions.put("saveHumans", new SchemeAction() {
 			public void apply(GameDetails details) {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
-				details.addNote(String.format("Add %d bystanders to the hero deck", details.getNumPlayers() == 1 ? 12 : 24));
+				details.setHeroDeckContentsForCardType(CardType.bystander, details.getNumPlayers() == 1 ? 12 : 24);
 			}});
 		schemeActions.put("babyHope", new SchemeAction() {
 			public void apply(GameDetails details) {
@@ -231,7 +231,7 @@ public enum Scheme implements ICardBase {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
 				Villain h = details.getRandomHenchman();
 				details.reserveHenchman(h);
-				details.addNote(String.format("Add 6 henchmen from a single group to the Hero deck"/*, h.getCard().getName()*/));
+				details.setHeroDeckContentsForCardType(CardType.makeSpecificCardType(h), 6);
 			}});
 		schemeActions.put("spliceDNA", new SchemeAction() {
 			public void apply(GameDetails details) {

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
     <TextView
-        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
         android:text="@string/MastermindLabel"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -16,18 +14,12 @@
         layout="@layout/legendary_item_label"
         android:id="@+id/mastermind"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"/>
+        android:layout_height="wrap_content"/>
     
     <TextView
-        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/mastermind"
-        android:layout_below="@+id/mastermind"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="@dimen/details_spacing"
         android:text="@string/scheme_label"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
@@ -35,17 +27,12 @@
         layout="@layout/legendary_item_label"
         android:id="@+id/scheme"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_below="@+id/textView4" />
+        android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/scheme"
-        android:layout_below="@+id/scheme"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="@dimen/details_spacing"
         android:text="@string/leading_label"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -53,18 +40,13 @@
         android:id="@+id/villains_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
         android:orientation="vertical" >
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/villains_list"
-        android:layout_below="@+id/villains_list"
         android:text="@string/also_leading_label"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
@@ -74,18 +56,13 @@
         android:id="@+id/henchmen_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_below="@+id/textView3"
         android:orientation="vertical" >
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/henchmen_list"
-        android:layout_below="@+id/henchmen_list"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="@dimen/details_spacing"
         android:text="@string/villaindeck_label"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -93,9 +70,7 @@
         android:id="@+id/villaindeck_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView5"
-        android:layout_below="@+id/textView5"
         android:orientation="vertical" >
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

@@ -19,10 +19,12 @@
         android:id="@+id/villains" >
 	</include>
     
+	<View android:layout_height="@dimen/details_spacing" 
+	    android:layout_width="match_parent"/>
+	
 	<include 
         layout="@layout/heroes_display"
-        android:id="@+id/heroes"
-        android:layout_marginTop="27dp" >
+        android:id="@+id/heroes" >
 	</include>
 	
 
