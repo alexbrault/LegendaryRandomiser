@@ -230,8 +230,12 @@ public enum Scheme implements ICardBase {
 			public void apply(GameDetails details) {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
 				Villain h = details.getRandomHenchman();
-				details.reserveHenchman(h);
-				details.setHeroDeckContentsForCardType(CardType.makeSpecificCardType(h), 6);
+				if (h != Villain.none) {
+					details.reserveHenchman(h);
+					details.setHeroDeckContentsForCardType(CardType.makeSpecificCardType(h), 6);
+				} else {
+					details.addError("Scheme requires a henchmen group");
+				}
 			}});
 		schemeActions.put("spliceDNA", new SchemeAction() {
 			public void apply(GameDetails details) {

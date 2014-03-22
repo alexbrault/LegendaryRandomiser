@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -340,11 +341,16 @@ public class GameDetails implements Parcelable {
 	}
 
 	public Villain getRandomHenchman() {
+		List<Villain> allHenchmen = Villain.getAllHenchmen();
+		if (allHenchmen.size() == 0) {
+			return Villain.none;
+		}
+		
 		int vPosition;
 		Villain v;
 		do {
-			vPosition = r.nextInt(Villain.getAllHenchmen().size());
-			v = Villain.getAllHenchmen().get(vPosition);
+			vPosition = r.nextInt(allHenchmen.size());
+			v = allHenchmen.get(vPosition);
 		} while (henchmen.contains(v) || reservedVillains.contains(v));
 		return v;
 	}
