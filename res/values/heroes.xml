@@ -44,4 +44,19 @@
     <string name="hero_moon_knight">Moon Knight</string>
     <string name="hero_scarlet_spider">Scarlet Spider</string>
     <string name="hero_spider_woman">Spider-Woman</string>
-</resources>
+    
+    <string name="ally_bullseye">Bullseye</string>
+    <string name="ally_dr_octopus">Dr. Octopus</string>
+    <string name="ally_electro">Electro</string>
+    <string name="ally_enchantress">Enchantress</string>
+    <string name="ally_green_goblin">Green Goblin</string>
+    <string name="ally_juggernaut">Juggernaut</string>
+    <string name="ally_kingpin">Kingpin</string>
+    <string name="ally_kraven">Kraven</string>
+    <string name="ally_loki">Loki</string>
+    <string name="ally_magneto">Magneto</string>
+    <string name="ally_mysterio">Mysterio</string>
+    <string name="ally_mystique">Mystique</string>
+    <string name="ally_sabretooth">Sabretooth</string>
+    <string name="ally_ultron">Ultron</string>
+    <string name="ally_venom">Venom</string>
