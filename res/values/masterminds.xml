@@ -15,5 +15,10 @@
     <string name="mm_moleman">Mole Man</string>
     
     <string name="mm_carnage">Carnage</string>
-    <string name="mm_mysterio">Mysterio</string>
+    <string name="mm_mysterio">Mysterio</string>   
+    
+    <string name="mm_dr_strange">Dr. Strange</string>
+    <string name="mm_nick_fury">Nick Fury</string>
+    <string name="mm_odin">Odin</string>
+    <string name="mm_professor_x">Professor X</string>
 </resources>
