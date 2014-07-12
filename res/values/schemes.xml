@@ -76,4 +76,31 @@
     
     <string name="sc_weave_lies">to <b>Weave a Web of Lies</b></string>
     <string name="sc_weave_lies_short">Weave a Web of Lies</string>
+    
+    
+    
+    <string name="sc_build_megavault">to <b>Build an Underground Mega-Vault Prison</b></string>
+    <string name="sc_build_megavault_short">Build an Underground Mega-Vault Prison</string>
+    
+    <string name="sc_cage_villains">to <b>Cage Villains in Power-Suppressing Cells</b></string>
+    <string name="sc_cage_villains_short">Cage Villains in Power-Suppressing Cells</string>
+    
+    <string name="sc_crown_thor">to <b>Crown Thor King of Asgard</b></string>
+    <string name="sc_crown_thor">Crown Thor King of Asgard</string>
+    
+    <string name="sc_crush_hydra">to <b>Crush Hydra</b></string>
+    <string name="sc_crush_hydra">Crush Hydra</string>
+    
+    <string name="sc_graduation_academy"><b>Graduation at Xavier's Academy</b></string>
+    <string name="sc_graduation_academy">Graduation at Xavier's Academy</string>
+    
+    <string name="sc_infiltrate_lair">to <b>Infiltrate the Lair with Spies</b></string>
+    <string name="sc_infiltrate_lair_short">Infiltrate the Lair with Spies</string>
+    
+    <string name="sc_mass_produce_armor">to <b>Mass Produce War Machine Armor</b></string>
+    <string name="sc_mass_produce_armor_short">Mass Produce War Machine Armor</string>
+    
+    <string name="sc_resurect_heroes">to <b>Resurect Heroes with the Norn Stones</b></string>
+    <string name="sc_resurect_heroes_short">Resurect Heroes with the Norn Stones</string>
+
 </resources>
