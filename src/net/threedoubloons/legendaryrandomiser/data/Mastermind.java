@@ -30,10 +30,10 @@ public enum Mastermind implements ICardBase {
 	mysterio(R.string.mm_mysterio, R.drawable.mm_mysterio, Villain.sinisterSix, Sets.PaintRed),
 	
 	// Villains
-	drStrange(R.string.mm_drStrange, R.drawable.mm_drStrange, Villain.defenders, Sets.Villains),
+	drStrange(R.string.mm_dr_strange, R.drawable.mm_dr_strange, Villain.defenders, Sets.Villains),
 	nickFury(R.string.mm_nick_fury, R.drawable.mm_nick_fury, Villain.avengers, Sets.Villains),
 	odin(R.string.mm_odin, R.drawable.mm_odin, Villain.asgardianWarriors, Sets.Villains),
-	professorX(R.string.mm_mr_professor_x, R.drawable.mm_professor_x, Villain.xmenFirstClass, Sets.Villains),
+	professorX(R.string.mm_professor_x, R.drawable.mm_professor_x, Villain.xmenFirstClass, Sets.Villains),
 	;
 	private final Villain alwaysLeads;
 	private final CardBase card;
