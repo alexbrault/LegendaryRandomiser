@@ -9,6 +9,7 @@ public enum Sets {
 	DarkCity(R.drawable.exp_darkcity, R.string.set_darkcity),
 	FantasticFour(R.drawable.exp_ffour, R.string.set_ffour),
 	PaintRed(R.drawable.exp_paint_red, R.string.set_paint_red),
+	Villains(R.drawable.exp_paint_red, R.string.set_villains),
 	;
 	
 	private final int symbol;
