@@ -32,6 +32,15 @@ public enum Villain implements ICardBase {
 	// Paint the Town Red
 	maxCarnage(R.string.vil_max_carnage, R.drawable.vil_max_carnage, false, Sets.PaintRed),
 	sinisterSix(R.string.vil_sinister_six, R.drawable.vil_sinister_six, false, Sets.PaintRed),
+	
+	// Villains
+	avengers(R.string.vil_avengers, R.drawable.vil_avengers, false, Sets.Villains),
+	defenders(R.string.vil_defenders, R.drawable.vil_defenders, false, Sets.Villains),
+	marvelKnights(R.string.vil_marvelKnights, R.drawable.vil_marvelKnights, false, Sets.Villains),
+	spiderFriends(R.string.vil_spider_friends, R.drawable.vil_spider_friends, false, Sets.DarkCity),
+	uncannyAvengers(R.string.vil_uncanny_avengers, R.drawable.vil_uncanny_avengers, false, Sets.Villains),
+	uncannyXmen(R.string.vil_uncanny_xmen, R.drawable.vil_uncanny_xmen, false, Sets.Villains),
+	xmenFirstClass(R.string.vil_xmen1Class, R.drawable.vil_xmen1Class, false, Sets.Villains),
 
 
 	handNinja(R.string.hen_hand_ninja, R.drawable.hen_hand_ninja, true),
@@ -42,6 +51,12 @@ public enum Villain implements ICardBase {
 	//Dark city
 	maggiaGoons(R.string.hen_goons, R.drawable.hen_goons, true, Sets.DarkCity),
 	phalanx(R.string.hen_phalanx, R.drawable.hen_phalanx, true, Sets.DarkCity),
+	
+	//Villains
+	asgardianWarrior(R.string.hen_asgardian_warrior, R.drawable.hen_asgardian_warrior, true, Sets.Villains),
+	cops(R.string.hen_cops, R.drawable.hen_cops, true, Sets.Villains),
+	multipleMan(R.string.hen_multiple_man, R.drawable.hen_multiple_man, true, Sets.Villains),
+	assaultSquad(R.string.hen_assault_squad, R.drawable.hen_assault_squad, true, Sets.Villains),
 	;
 	
 	private CardBase card;
