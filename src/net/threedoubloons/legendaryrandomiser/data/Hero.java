@@ -24,6 +24,10 @@ final class T {
 	static final int SPIDER = R.drawable.team_spiderfriends;
 	static final int XMEN = R.drawable.team_xmen;
 	static final int XFORCE = R.drawable.team_xforce; 
+	static final int BROTHERHOOD = R.drawable.team_brotherhood; 
+	static final int FASGARD = R.drawable.team_foesofasgard; 
+	static final int SIN6 = R.drawable.team_sinister6; 
+	static final int SYNDICATE = R.drawable.team_crimesyndicate; 
 }
 
 public enum Hero implements ICardBase {
@@ -74,6 +78,22 @@ public enum Hero implements ICardBase {
 	moonKnight(R.string.hero_moon_knight, R.drawable.hero_moon_knight, T.KNIGHTS, new int[]{C.INSTINCT, C.TECH, C.TECH, C.INSTINCT}, Sets.PaintRed),
 	scarletSpider(R.string.hero_scarlet_spider, R.drawable.hero_scarlet_spider, T.SPIDER, new int[]{C.STRENGTH, C.INSTINCT, C.COVERT, C.STRENGTH}, Sets.PaintRed),
 	spiderWoman(R.string.hero_spider_woman, R.drawable.hero_spider_woman, T.SPIDER, new int[]{C.STRENGTH, C.RANGED, C.RANGED, C.COVERT}, Sets.PaintRed),
+	
+	bullseye(R.string.hero_bullseye, R.drawable.hero_bullseye, T.SYNDICATE, new int[]{C.INSTINCT, C.RANGED, C.COVERT, C.RANGED}, Sets.Villains),
+	kingpin(R.string.hero_kingpin, R.drawable.hero_kingpin, T.SYNDICATE, new int[]{C.STRENGTH, C.COVERT, C.TECH, C.STRENGTH}, Sets.Villains),
+	ultron(R.string.hero_ultron, R.drawable.hero_ultron, T.NONE, new int[]{C.TECH, C.TECH, C.TECH, C.TECH}, Sets.Villains),
+	loki(R.string.hero_loki, R.drawable.hero_loki, T.FASGARD, new int[]{C.COVERT, C.RANGED, C.COVERT, C.COVERT}, Sets.Villains),
+	enchantress(R.string.hero_enchantress, R.drawable.hero_enchantress, T.FASGARD, new int[]{C.RANGED, C.COVERT, C.COVERT, C.COVERT}, Sets.Villains),
+	sabretooth(R.string.hero_sabretooth, R.drawable.hero_sabretooth, T.BROTHERHOOD, new int[]{C.INSTINCT, C.INSTINCT, C.COVERT, C.STRENGTH}, Sets.Villains),
+	mystique(R.string.hero_mystique, R.drawable.hero_mystique, T.BROTHERHOOD, new int[]{C.COVERT, C.TECH, C.INSTINCT, C.COVERT}, Sets.Villains),
+	magneto(R.string.hero_magneto, R.drawable.hero_magneto, T.BROTHERHOOD, new int[]{C.RANGED, C.STRENGTH, C.RANGED, C.RANGED}, Sets.Villains),
+	juggernaut(R.string.hero_juggernaut, R.drawable.hero_juggernaut, T.BROTHERHOOD, new int[]{C.STRENGTH, C.STRENGTH, C.STRENGTH, C.STRENGTH}, Sets.Villains),
+	venom(R.string.hero_venom, R.drawable.hero_venom, T.SIN6, new int[]{C.STRENGTH, C.INSTINCT, C.STRENGTH, C.INSTINCT}, Sets.Villains),
+	mysterio(R.string.hero_mysterio, R.drawable.hero_mysterio, T.SIN6, new int[]{C.COVERT, C.RANGED, C.TECH, C.INSTINCT}, Sets.Villains),
+	kraven(R.string.hero_kraven, R.drawable.hero_kraven, T.SIN6, new int[]{C.INSTINCT, C.COVERT, C.STRENGTH, C.INSTINCT}, Sets.Villains),
+	greenGoblin(R.string.hero_green_goblin, R.drawable.hero_green_goblin, T.SIN6, new int[]{C.TECH, C.TECH, C.INSTINCT, C.TECH}, Sets.Villains),
+	drOctopus(R.string.hero_drOctopus, R.drawable.hero_drOctopus, T.FSIN6, new int[]{C.TECH, C.TECH, C.STRENGTH, C.TECH}, Sets.Villains),
+	electro(R.string.hero_electro, R.drawable.hero_electro, T.SIN6, new int[]{C.RANGED, C.RANGED, C.RANGED, C.RANGED}, Sets.Villains),
 	;
 	
 	private final CardBase card;
