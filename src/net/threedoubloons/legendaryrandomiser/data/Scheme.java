@@ -41,6 +41,16 @@ public enum Scheme implements ICardBase {
 	spliceDNA(R.string.sc_splice_dna, R.string.sc_splice_dna_short, Sets.PaintRed),
 	cloneSaga(R.string.sc_clone_saga, R.string.sc_clone_saga_short, Sets.PaintRed),
 	weaveLies(R.string.sc_weave_lies, R.string.sc_weave_lies_short, Sets.PaintRed),
+	
+	// Villains
+	resurectHeroes(R.string.sc_resurect_heroes, R.string.sc_resurect_heroes_short, Sets.Villains),
+	megaVault(R.string.sc_build_megavault, R.string.sc_build_megavault_short, Sets.Villains),
+	cageVillains(R.string.sc_cage_villains, R.string.sc_cage_villains_short, Sets.Villains),
+	crownThor(R.string.sc_crown_thor, R.string.sc_crown_thor_short, Sets.Villains),
+	crushHydra(R.string.sc_crush_hydra, R.string.sc_crush_hydra_short, Sets.Villains),
+	graduation(R.string.sc_graduation_academy, R.string.sc_graduation_academy_short, Sets.Villains),
+	infiltrateLair(R.string.sc_infiltrate_lair, R.string.sc_infiltrate_lair_short, Sets.Villains),
+	massArmor(R.string.sc_mass_produce_armor, R.string.sc_mass_produce_armor_short, Sets.Villains),
 	;
 	private final CardBase card;
 	private final int longName;
@@ -251,6 +261,48 @@ public enum Scheme implements ICardBase {
 		schemeActions.put("weaveLies", new SchemeAction() {
 			public void apply(GameDetails details) {
 				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 7);
+			}});
+		schemeActions.put("massArmor", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				if (!details.addPreferredHenchman(Villain.assaultSquad)) {
+					details.addError("Scheme requires the S.H.I.E.L.D. Assault Squad backup adversary group");
+				}
+			}});
+		schemeActions.put("resurectHeroes", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+			}});
+		schemeActions.put("megaVault", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				if (details.getNumPlayers() < 5) {
+					details.addNote(String.format("Use only %d Bindings cards", details.getNumPlayers() * 5));
+				}
+			}});
+		schemeActions.put("cageVillains", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				details.addNote(String.format("Place %d Cops cards next to the plot", details.getNumPlayers() * 2));
+			}});
+		schemeActions.put("crownThor", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				details.addNote("Place the Thor adversary next to the plot");
+			}});
+		schemeActions.put("crushHydra", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+			}});
+		schemeActions.put("graduation", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				details.addNote("Place 8 Bystanders next to the plot");
+			}});
+		schemeActions.put("infiltrateLair", new SchemeAction() {
+			public void apply(GameDetails details) {
+				details.setVillainDeckContentsForCardType(CardType.schemeTwist, 8);
+				details.addNote("Place 21 Bystanders next to the plot");
 			}});
 	}
 }

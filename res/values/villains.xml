@@ -21,4 +21,12 @@
     <string name="vil_max_carnage">Maximum Carnage</string>
     <string name="vil_sinister_six">Sinister Six</string>
     
+    <string name="vil_mavengers">Avengers</string>
+    <string name="vil_uncanny_avengers">Uncanny Avengers</string>
+    <string name="vil_spider_friends">Spider-Friends</string>
+    <string name="vil_marvel_knights">Marvel Knights</string>
+    <string name="vil_defenders">Defenders</string>
+    <string name="vil_x_men_first_class">X-Men First Class</string>
+    <string name="vil_uncanny_x_men">Uncanny X-Men</string>
+    
 </resources>

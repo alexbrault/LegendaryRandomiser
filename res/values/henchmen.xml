@@ -7,4 +7,9 @@
     
     <string name="hen_goons">Maggia Goons</string>
     <string name="hen_phalanx">Phalanx</string>
+    
+    <string name="hen_asgardian_warrior">Asgardian Warrior</string>
+    <string name="hen_multiple_man">Multiple Man</string>
+    <string name="hen_assault_squad">S.H.I.E.L.D. Assault Squad</string>
+    <string name="hen_cops">Cops</string>
 </resources>
