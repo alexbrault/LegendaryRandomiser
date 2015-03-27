@@ -24,6 +24,12 @@ final class T {
 	static final int SPIDER = R.drawable.team_spiderfriends;
 	static final int XMEN = R.drawable.team_xmen;
 	static final int XFORCE = R.drawable.team_xforce; 
+	static final int HYDRA = R.drawable.team_hydra;
+	static final int FOESOFASGARD = R.drawable.team_foesofasgard;
+	static final int GUARDIANSGALAXY = R.drawable.team_guardiansgalaxy;
+	static final int SINISTER6 = R.drawable.team_sinister6;
+	static final int BROTHERHOOD = R.drawable.team_brotherhood;
+	static final int CRIMESYNDICATE = R.drawable.team_crimesyndicate;
 }
 
 public enum Hero implements ICardBase {
@@ -74,6 +80,7 @@ public enum Hero implements ICardBase {
 	moonKnight(R.string.hero_moon_knight, R.drawable.hero_moon_knight, T.KNIGHTS, new int[]{C.INSTINCT, C.TECH, C.TECH, C.INSTINCT}, Sets.PaintRed),
 	scarletSpider(R.string.hero_scarlet_spider, R.drawable.hero_scarlet_spider, T.SPIDER, new int[]{C.STRENGTH, C.INSTINCT, C.COVERT, C.STRENGTH}, Sets.PaintRed),
 	spiderWoman(R.string.hero_spider_woman, R.drawable.hero_spider_woman, T.SPIDER, new int[]{C.STRENGTH, C.RANGED, C.RANGED, C.COVERT}, Sets.PaintRed),
+	
 	;
 	
 	private final CardBase card;
